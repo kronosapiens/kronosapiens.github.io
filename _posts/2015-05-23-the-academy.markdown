@@ -42,7 +42,9 @@ You have a lot of freedom in creating your model, provided that you conform to t
 2. On initialization, your model must accept a `pandas.DataFrame` object as the first argument. It can accept an arbitrary number of keyword arguments, which can serve as the parameters to your model. The parameters are model-dependent -- you can make them anything you want, or have none at all.
 3. Your model must implement a `predict()` method, which will return a `pandas.DataFrame`, with scores for all of the member's traits. pandas is a very powerful and popular library for doing data analysis. You can read more about it [here](http://pandas.pydata.org/)
 
-That's it! There is a PreProcessor class which will help you prepare the data. Here's how the model should work:
+That's it! As long as your model exposes the interface described, you can implement it in any way you like, from support vector machine to `randint()`.
+
+There is a PreProcessor class which will help you prepare the data. Here's how the model should work:
 
 {% highlight python %}
 >>> from question.prediction.models import hofstadter
@@ -59,7 +61,7 @@ That's it! There is a PreProcessor class which will help you prepare the data. H
 
 
 ### Testing a model
-After developing a model, it is important that you test it. Only by testing model accuracy and tracking accuracy over time will we be able to make continual movement towards effectiveness and accuracy.
+After developing a model, it is important that you test it. Only by testing model accuracy and tracking this metric over time will we be able to make continual movement towards greater effectiveness.
 
 To test a model, use the `PredictionTest` class:
 
