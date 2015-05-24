@@ -2,7 +2,8 @@
 layout: post
 title:  "The Academy: A Machine Learning Framework"
 date:   2015-05-23 15:15:59
-categories: software machine-learning
+categories: machine-learning
+tags: software, personality
 ---
 
 *One of my last projects at my previous company was to implement a framework for developing and testing various predictive models.  Thinking about the users, designing the simplest and most useful interface, adding splashes of color and personality -- it was a really enjoyable project.*
