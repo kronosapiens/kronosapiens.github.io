@@ -11,11 +11,11 @@ tags:
 ---
 
 #### So.
-It's five months into working at <company>, and things are going pretty well.
+It's five months into working at the startup, and things are going pretty well.
 
-The product is continually improving. Our user base and overall app activity is increasing day-over-day at a very satisfying rate (official numbers cannot be made public, unfortunately).
+The product is continually improving. Our user base and overall app activity is increasing day-over-day at a very satisfying rate (official numbers cannot be made public, unfortunately). We make an iPhone game in which people can play a sort of customized trivia with each other, by making comparisons of people they know.
 
-We have released three versions of the iPhone app since December (2.0, 2.1, and 2.2), and are over halfway finished with 2.3.
+We have released three versions of the game since December (2.0, 2.1, and 2.2), and are over halfway finished with 2.3.
 
 The company is small -- there is the founder/CEO, our VP of design, and five (soon to be four) engineers. Three on iOS, and two on the backend.
 
@@ -38,13 +38,13 @@ The first discussion we had as an engineering team was about methods of communic
 
 The API endpoints currently look like this:
 
-    https://<company>/api/v1/round/loadgames/
+    https://startup.com/api/v1/round/loadgames/
     # The request to get the current member's games.
 
 Astute readers will notice the `/v1/` in the URI. The API is a Django project, with [TastyPie](https://django-tastypie.readthedocs.org/en/latest/) for the REST interface, and view functions are mapped to URIs in the following way:
 
 {% highlight python %}
-# <company>/urls.py
+# startup/urls.py
 
 from tastypie.api import Api
 from contest import rest as ContestAPI
@@ -53,14 +53,14 @@ v1_api = Api(api_name="v1")
 v1_api.register(ContestAPI.RoundResource())
 {% endhighlight %}
 
-Here, `RoundResource` is a TastyPie object which wraps a number of resource-related endpoints (in this case, the `Round` resource, which represents a game in <company>.)
+Here, `RoundResource` is a TastyPie object which wraps a number of resource-related endpoints (in this case, the `Round` resource, which represents a game.)
 
 Currently, every resource has a single `rest.py` file which defines the endpoints for that resource. URI versioning would involve the creation of additional `rest.py` files, each representing a different version of the API.
 
 That would look something like this:
 
 {% highlight python %}
-# <company>/urls.py
+# startup/urls.py
 
 from tastypie.api import Api
 from contest.rest_old import restv1 as V1ContestAPI
@@ -102,7 +102,7 @@ The second option was to keep one `rest` file per endpoint and to use *condition
             return const.APP_DEV_VERSION
 
         user_agent = request.META.get('HTTP_USER_AGENT')
-        # Looks like '<company>/2.1 (iPhone; iOS 8.1.2; Scale/2.00)'
+        # Looks like 'Startup/2.1 (iPhone; iOS 8.1.2; Scale/2.00)'
         try:
             app = user_agent.split(' ')[0]
             version = app.split('/')[1]
@@ -112,7 +112,6 @@ The second option was to keep one `rest` file per endpoint and to use *condition
 {% endhighlight %}
 
 We then set the version number as a property of the request object (as `request.app_version`), and voilá! Every view function can now easily change logic based on app version. This approach results in code that looks like this:
-
 
 {% highlight python %}
         is_new_search = request.app_version >= 2.2
@@ -299,19 +298,15 @@ None of the caching libraries I had looked at provided a suitable level of gener
 
 {% highlight python %}
     MEMBER_JSON_KEY = 'mjson_{}_for_{}' # Filled by self.id and friend.id
-
     @cache.auto_set(MEMBER_JSON_KEY, [(0,'id'), (1,'id')], 60 * 5) # 5 minutes
     def to_json(self, friend):
         '''Must pass member, even if self'''
         json = {
             "userid": str(self.id),
             "firstname": self.first_name,
-            "middlename": self.middle_name,
             "lastname": self.last_name,
-            "gender": self.gender,
             "photopath": self.thumbnail_url,
-            "originphoto": self.photo_url,
-            "ts": self.last_updated,
+            "timestamp": self.last_updated,
             }
        # More stuff
 {% endhighlight %}
@@ -338,7 +333,7 @@ The implemention of reduce which was in place when v2.2 was released was a much 
 
 The consequence of this is that when we began preparing to deploy the *new* reduce implementation, we had to version not only for the pre-reduce app (v2.1), but the *earlier version of reduce*. This meant that instead of a `True`/`False` switch at the level of the view function, we had to communicate even more information to the model, and teach the model to take different paths based on which version of the app it was serving.
 
-This increased the complexity of the problem significantly (think `n^3` vs `n^2`), and led to us doing things like this:
+This increased the complexity of the problem significantly and led to us doing things like this:
 
 {% highlight python %}
     def get_reduc_version(self, request):
