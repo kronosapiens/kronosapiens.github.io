@@ -34,13 +34,13 @@ Easy enough. Now, create a directory for all your environments to go. This can b
 
 I created a top-level directory in my `code` directory called `environments`, where I plan on keeping all of the virtual environments I create for any of my projects.
 
-{% highlight java %}
+~~~
 code/
 	personal/
 	projects/
 	work/
 	environments/
-{% endhighlight %}
+~~~
 
 Now, let's actually create an environment.
 
@@ -60,7 +60,7 @@ By default, virtualenv will look in the active virtual environment for a package
 
 Alright! We now have our very own virtual environment! Let's take a look at what we've made:
 
-{% highlight java %}
+~~~
 code/
 	environments/
 		env_one/
@@ -68,8 +68,7 @@ code/
 			include/
 			lib/
 			.Python
-
-{% endhighlight %}
+~~~
 
 The `/bin` directory contains the binaries, like `pip` and `python`, which you'll actually be running when you use this environment. It also contains an executable python filed called `activate`, which we'll talk about in a second.
 
@@ -79,7 +78,7 @@ The `/include` directory contains a directory called `python2.7/`, which contain
 
 Here's what's inside `site-packages` to start:
 
-{% highlight java %}
+~~~
 site-packages/
 	_markerlib/
 	pip/
@@ -88,7 +87,7 @@ site-packages/
 	setuptools-2.6.dist-info/
 	easy_install.py
 	pkg_resources.py
-{% endhighlight %}
+~~~
 
 Pretty bare-bones, huh?
 

@@ -32,7 +32,7 @@ The first issue, that of organizing files, is a stylistic one. Different people 
 
 For my project, I've chosen to go with three top-level folders containing a mix of python files (also known as 'modules') and data storage directories. This is what I'm working with:
 
-{% highlight java %}
+~~~
 backend/
 	modules/
 		__init__.py
@@ -49,7 +49,7 @@ backend/
 	.gitignore
 	README.md
 	scripts.py
-{% endhighlight %}
+~~~
 
 In this structure, the majority of the codebase lives in the `modules/` directory. My test files live, unsurprisingly, in `tests/`, while my non-python data files (project-related CSV files, pickled pandas objects, etc) live in the `data/` directory. My notes and other non-code bits of text go in the `notes/` directory. `.gitignore` and `README.md` are git-related, and, finally, `scripts.py` is where I put any development scripts that I write to speed up the development process (but which won't make it into production).
 

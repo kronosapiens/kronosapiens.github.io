@@ -309,7 +309,7 @@ We want this system to be resilient to failure and to operator error, meaning we
 
 Fortunately, all of this can be accomplished via Chef recipes! Here are the two cookbooks we will be considering:
 
-{% highlight java %}
+~~~
 cookbooks/
 
   rabbitmq/
@@ -322,7 +322,7 @@ cookbooks/
     recipes/
       default.rb
       celery.rb
-{% endhighlight %}
+~~~
 
 First, let's consider the one-recipe cookbook for RabbitMQ:
 
@@ -375,7 +375,7 @@ Now, let's turn to the recipes for managing the Celery workers. Here, we seen ex
 
 Peeking into `cookbooks/supervisor/attributes/default.rb`, we discover a settings module used to store configuration for the entire cookbook:
 
-~~~ruby
+{% highlight ruby %}
 default['supervisor']['unix_http_server']['chmod'] = '700'
 default['supervisor']['unix_http_server']['chown'] = 'root:root'
 default['supervisor']['inet_port'] = nil
@@ -398,7 +398,7 @@ default['celery']['workdir'] = "<path/to/your_proj>"
 default['celery']['log_directory'] = "/var/log/celery"
 default['celery']['log_path'] = "/var/log/celery/worker.log"
 default['celery']['log_level'] = "INFO"
-~~~
+{% endhighlight %}
 
 Turning to `supervisor/recipes/celery.rb`, we see the specific resources controlling Celery:
 

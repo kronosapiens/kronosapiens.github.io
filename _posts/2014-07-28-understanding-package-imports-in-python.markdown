@@ -16,7 +16,7 @@ I have been having an embarassingly hard time getting a handle on package import
 
 First, let's start with a project I'm calling 'backend'. Here's the file structure:
 
-{% highlight java %}
+~~~
 backend/
 	backend/
 		__init__.py
@@ -24,7 +24,7 @@ backend/
 		tests/
 		__init__.py
 			test_analyzer.py
-{% endhighlight %}
+~~~
 
 And my `PYTHONPATH`:
 
@@ -345,14 +345,14 @@ backend/tests/test_visualizer.py ..
 
 Alright! Let's try an experiment: moving the `tests/` directory one level up, so it's a *sibling* directory to the `backend` package, rather than a child. Typing this command: `mv backend/tests .` gives us this:
 
-{% highlight java %}
+~~~
 backend/
 	backend/
 		__init__.py
 		analyzer.py
 	tests/
 		test_analyzer.py
-{% endhighlight %}
+~~~
 
 Fingers crossed. `py.test`
 
@@ -368,14 +368,14 @@ Let's say you're working on a project but don't want to add it to your PYTHONPAT
 
 Let's consider another project, a webapp, with the following structure:
 
-{% highlight java %}
+~~~
 webapp/
 	webapp/
 		__init__.py
 		views.py
 	tests/
 		test_integration.py
-{% endhighlight %}
+~~~
 
 Note that this directory is *not* in my PYTHONPATH:*
 
