@@ -11,7 +11,7 @@ tags:
 ---
 
 #### So.
-It's five months into working at Knozen, and things are going pretty well.
+It's five months into working at <company>, and things are going pretty well.
 
 The product is continually improving. Our user base and overall app activity is increasing day-over-day at a very satisfying rate (official numbers cannot be made public, unfortunately).
 
@@ -38,13 +38,13 @@ The first discussion we had as an engineering team was about methods of communic
 
 The API endpoints currently look like this:
 
-    https://knozen/api/v1/round/loadgames/
+    https://<company>/api/v1/round/loadgames/
     # The request to get the current member's games.
 
 Astute readers will notice the `/v1/` in the URI. The API is a Django project, with [TastyPie](https://django-tastypie.readthedocs.org/en/latest/) for the REST interface, and view functions are mapped to URIs in the following way:
 
 {% highlight python %}
-# knozen/urls.py
+# <company>/urls.py
 
 from tastypie.api import Api
 from contest import rest as ContestAPI
@@ -53,14 +53,14 @@ v1_api = Api(api_name="v1")
 v1_api.register(ContestAPI.RoundResource())
 {% endhighlight %}
 
-Here, `RoundResource` is a TastyPie object which wraps a number of resource-related endpoints (in this case, the `Round` resource, which represents a game in Knozen.)
+Here, `RoundResource` is a TastyPie object which wraps a number of resource-related endpoints (in this case, the `Round` resource, which represents a game in <company>.)
 
 Currently, every resource has a single `rest.py` file which defines the endpoints for that resource. URI versioning would involve the creation of additional `rest.py` files, each representing a different version of the API.
 
 That would look something like this:
 
 {% highlight python %}
-# knozen/urls.py
+# <company>/urls.py
 
 from tastypie.api import Api
 from contest.rest_old import restv1 as V1ContestAPI
@@ -102,7 +102,7 @@ The second option was to keep one `rest` file per endpoint and to use *condition
             return const.APP_DEV_VERSION
 
         user_agent = request.META.get('HTTP_USER_AGENT')
-        # Looks like 'Knozen/2.1 (iPhone; iOS 8.1.2; Scale/2.00)'
+        # Looks like '<company>/2.1 (iPhone; iOS 8.1.2; Scale/2.00)'
         try:
             app = user_agent.split(' ')[0]
             version = app.split('/')[1]
