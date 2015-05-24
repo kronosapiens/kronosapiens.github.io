@@ -2,7 +2,7 @@
 layout: post
 title:  "The Academy: A Machine Learning Framework"
 date:   2015-05-23 15:15:59
-categories: machine-learning
+categories: software machine-learning
 ---
 
 *One of my last projects at my previous company was to implement a framework for developing and testing various predictive models.  Thinking about the users, designing the simplest and most useful interface, adding splashes of color and personality -- it was a really enjoyable project.*
@@ -30,6 +30,7 @@ prediction/
     predict_traits.py
 {% endhighlight %}
 
+<!--more-->
 
 `predict_traits.py` is the command which makes the actual predictions for our production users. You update this file to change the model we use in production. We'll come back to this soon.
 
