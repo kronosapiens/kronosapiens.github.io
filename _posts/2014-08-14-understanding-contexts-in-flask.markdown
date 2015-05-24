@@ -3,9 +3,10 @@ layout: post
 title: "Understanding Contexts in Flask"
 date: 2014-08-14 12:00:34 -0400
 comments: true
-categories: 
+categories: blog
+tags:
 - flask
-- web development
+- web-development
 - testing
 
 ---
@@ -118,12 +119,12 @@ class FlaskClientTestCase(unittest.TestCase):
 		db.create_all()
 		Role.insert_roles()
 		self.client = self.app.test_client(use_cookies=True)
-	
+
 	def tearDown(self):
 		db.session.remove()
 		db.drop_all()
 		self.app_context.pop()
-		
+
 	def test_home_page(self):
 		response = self.client.get(url_for('main.index))
 		self.assertTrue('Stranger' in response.get_data(as_text=True)
@@ -161,7 +162,7 @@ class TestIntegration(unittest.TestCase):
         db.init_app(app)
         self.app = app.test_client()
 
-    def tearDown(self): 
+    def tearDown(self):
         for collection in db.session.db.collection_names()[1:]: # Skip first
             db.session.db.drop_collection(collection)
 
@@ -234,14 +235,14 @@ class TestIntegration(unittest.TestCase):
         db.init_app(app)
         self.app = app.test_client()
 
-    def tearDown(self): 
+    def tearDown(self):
         for collection in db.session.db.collection_names()[1:]: # Skip first
             db.session.db.drop_collection(collection)
 
     def test_trial(self):
         Trial('Parkinsons').save()
         rv = self.app.get('/trials/Parkinsons')
-        assert 'Trial found: Parkinsons' in rv.data 
+        assert 'Trial found: Parkinsons' in rv.data
 ```
 
 I run it... and it works. Well, that's great. Turns out my janky setup is actually... ok? This is strange. I'm not popping or pushing or withing or anything.
@@ -289,7 +290,7 @@ Not much going on here just yet.
 
 ```python
 ipdb> request
-<Request 'http://localhost/trials/Parkinsons' [GET]>        
+<Request 'http://localhost/trials/Parkinsons' [GET]>
 ipdb> request.view_args
 {'name': u'Parkinsons'}
 ipdb> request.path
@@ -330,7 +331,7 @@ I tried to switch my test suite away from hard-coded URLs and towards `url_for()
 ```python
 RuntimeError: Application was not able to create a URL adapter for request independent URL generation. You might be able to fix this by setting the SERVER_NAME config variable.
 ```
- 
+
 I pop on over to the Flask [config docs](http://flask.pocoo.org/docs/config/), and see this, under the description of the `SERVER_NAME` variable:
 
 >Setting a SERVER_NAME also by default enables URL generation without a request context but with an application context.

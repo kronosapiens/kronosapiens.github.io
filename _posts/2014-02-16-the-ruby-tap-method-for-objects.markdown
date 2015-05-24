@@ -3,7 +3,8 @@ layout: post
 title: "The Ruby 'Tap' Method for Objects"
 date: 2014-02-16 07:30:27 -0400
 comments: true
-categories:
+categories: blog
+tags:
 - ruby
 - methods
 

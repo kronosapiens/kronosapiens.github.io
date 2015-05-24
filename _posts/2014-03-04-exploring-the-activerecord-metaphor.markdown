@@ -3,7 +3,8 @@ layout: post
 title: "Exploring the ActiveRecord Metaphor"
 date: 2014-03-04 18:05:55 -0400
 comments: true
-categories: 
+categories: blog
+tags:
 - activerecord
 - rails
 - databases

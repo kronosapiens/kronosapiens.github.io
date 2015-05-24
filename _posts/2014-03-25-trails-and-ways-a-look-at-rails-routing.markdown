@@ -3,7 +3,8 @@ layout: post
 title: "Trails &amp; Ways: A Look at Rails Routing"
 date: 2014-03-25 17:58:16 -0400
 comments: true
-categories:
+categories: blog
+tags:
 - routing
 
 ---

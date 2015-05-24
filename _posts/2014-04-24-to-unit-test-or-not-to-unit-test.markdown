@@ -3,7 +3,8 @@ layout: post
 title: "To Unit Test or not to Unit Test"
 date: 2014-04-24 17:52:44 -0400
 comments: true
-categories: 
+categories: blog
+tags:
 - testing
 
 ---

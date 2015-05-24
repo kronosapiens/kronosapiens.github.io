@@ -3,7 +3,8 @@ layout: post
 title: "Self-Focus vs. Collaboration in a Programming School"
 date: 2014-05-05 08:39:12 -0400
 comments: true
-categories: 
+categories: blog
+tags:
 - learning
 
 ---

@@ -3,7 +3,8 @@ layout: post
 title: "Creating superfunctions in Python"
 date: 2014-07-16 16:14:16 -0700
 comments: true
-categories: 
+categories: blog
+tags:
 - python
 - architecture
 
@@ -31,7 +32,7 @@ I realized that I wanted these Feature Functions to have *knowledge* about their
 
 Enter **function attributes**. Python allows you to assign arbitrary attributes to a function, in the same way that you can assign attributes to any object (which is unsurprising -- functions are first-class citizens, objects, in Python).
 
-My preferred syntax looks something like this: 
+My preferred syntax looks something like this:
 
 ```python
 
@@ -39,7 +40,7 @@ def PAOFFSET(unigrams, df=True, agg=True, metrics=['O0']):
     unigrams = clean(unigrams, metrics)
     analysis = unigrams['ND_Offset']
 	...
-    return analysis 
+    return analysis
 PAOFFSET.q = 1
 PAOFFSET.trait = 'ND_Offset'
 

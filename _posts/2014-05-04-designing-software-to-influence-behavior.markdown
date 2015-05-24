@@ -3,9 +3,10 @@ layout: post
 title: "Designing Software to Influence Behavior"
 date: 2014-05-04 17:11:13 -0400
 comments: true
-categories:
+categories: blog
+tags:
 - software
-- behavioral economics
+- behavioral-economics
 
 ---
 

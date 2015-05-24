@@ -3,9 +3,10 @@ layout: post
 title: "Sorting in pandas"
 date: 2014-06-13 09:20:25 -0400
 comments: true
-categories:
+categories: blog
+tags:
 - pandas
-- data structures
+- data-structures
 - python
 
 ---

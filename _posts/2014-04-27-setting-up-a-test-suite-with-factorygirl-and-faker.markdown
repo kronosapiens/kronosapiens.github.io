@@ -3,7 +3,8 @@ layout: post
 title: "Setting up a test suite with FactoryGirl and Faker"
 date: 2014-04-27 17:47:18 -0400
 comments: true
-categories:
+categories: blog
+tags:
 - testing
 - gems
 
@@ -24,13 +25,13 @@ Factory girl works by letting you define 'factories', which contain all the info
 Here's one of our factories (I'll explain what's going on below):
 
 ```ruby
-FactoryGirl.define do 
+FactoryGirl.define do
 
   sequence :title do |n|
     Faker::Name.name + n.to_s
   end
 
-  factory :lesson do 
+  factory :lesson do
     title
     description { Faker::Lorem.sentence }
     references { Faker::Internet.url }
@@ -48,7 +49,7 @@ FactoryGirl.define do
     before(:create) do |lesson|
       lesson.tags << create(:tag)
     end
-  
+
   end
 end
 ```
@@ -80,7 +81,7 @@ You may be wondering what's going on with `Faker::Name.name`. [Faker](https://gi
 ## Defining values for the objects attributes
 
 ```ruby
-factory :lesson do 
+factory :lesson do
     title
     description { Faker::Lorem.sentence }
     references { Faker::Internet.url }
@@ -145,7 +146,7 @@ The `let` syntax gives us speed while keeping us DRY. Use it!
 
 Going back to FactoryGirl, we see how easily we can create new lessons and configure them as necessary for out tests. One of our tests checks a method which returns all lessons by status. FactoryGirl's `trait` feature gave us the ability to control just enough of the lesson's information to pass that test, while keeping most of the data out of our hands (making our test suite more valuable, by making the data as close to possible as real life).
 
-Finally, let's take a peek at what `lesson1` looks like: 
+Finally, let's take a peek at what `lesson1` looks like:
 
 ```ruby
  #<Lesson id: 1, title: "Mr. Madyson Mayert4", description: "Quidem eligendi non laboriosam ratione ipsam labor...", references: "http://bernhard.net/izaiah", created_at: "2014-04-27 22:54:56", updated_at: "2014-04-27 22:54:56", specific_time: "2014-04-27 22:54:56", specific_location: "60691 Milan Trail", status: "open", slug: "mr.-madyson-mayert4">

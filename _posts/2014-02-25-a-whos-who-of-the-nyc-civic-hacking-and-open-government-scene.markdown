@@ -3,10 +3,11 @@ layout: post
 title: "A Who's Who of the NYC Civic Hacking and Open Government Scene"
 date: 2014-02-25 18:07:13 -0400
 comments: true
-categories: 
-- civic hacking
-- open government
-- open data
+categories: blog
+tags:
+- civic-hacking
+- open-government
+- open-data
 - nyc
 
 ---

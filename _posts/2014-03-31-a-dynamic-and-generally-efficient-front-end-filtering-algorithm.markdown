@@ -3,7 +3,8 @@ layout: post
 title: "A Dynamic and Generally Efficient Front-End Filtering Algorithm"
 date: 2014-03-31 17:55:46 -0400
 comments: true
-categories: 
+categories: blog
+tags:
 - filtering
 
 ---

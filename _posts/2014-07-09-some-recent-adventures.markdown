@@ -3,7 +3,8 @@ layout: post
 title: "Some Recent Adventures"
 date: 2014-07-09 00:30:14 -0400
 comments: true
-categories: 
+categories: blog
+tags:
 - reflections
 
 ---
@@ -25,7 +26,7 @@ In the last two months, I:
 
 ![What an Upvote looks like](https://pbs.twimg.com/media/BrKZxF7CAAAFbkB.png)
 
-	
+
 *Helped build a mesh network of temperature sensors for [HeatSeekNYC](http://heatseeknyc.com/), using XBees and Raspberry Pi.*
 
 ![Plus I got to work with @hrldcpr, itself an experience](https://pbs.twimg.com/media/BqM5KNHIgAAI4XK.jpg:large)

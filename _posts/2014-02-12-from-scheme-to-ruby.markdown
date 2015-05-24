@@ -3,10 +3,11 @@ layout: post
 title: "From Scheme to Ruby"
 date: 2014-02-12 07:34:47 -0400
 comments: true
-categories:
+categories: blog
+tags:
 - ruby
 - scheme
-- programming languages
+- programming-languages
 
 ---
 

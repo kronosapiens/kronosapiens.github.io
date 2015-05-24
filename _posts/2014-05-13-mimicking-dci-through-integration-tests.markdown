@@ -3,7 +3,8 @@ layout: post
 title: "Mimicking DCI through Integration Tests"
 date: 2014-05-13 11:59:55 -0400
 comments: true
-categories: 
+categories: blog
+tags:
 - testing
 - design
 
@@ -71,22 +72,22 @@ describe "Account Transfer" do
   let(:destination_account) { Account.new(balance: 100) }
 
   describe 'transfer interactions' do
-    it "can transfer $20" do    	
+    it "can transfer $20" do
 		expect(destination_account).to receive(:transfer_in).with(20)
-	
+
 		source_account.transfer_to(destination_account, 20)
-      
+
 		expect(destination_account.balance).to eq(120)
 		expect(source_account.balance).to eq(20)
     end
-    
-    it "raises an error given insufficient funds" do    
-		expect(source_account.transfer_to(destination_account, 200)).to raise_error(RuntimeError, "Insufficient Funds")     
+
+    it "raises an error given insufficient funds" do
+		expect(source_account.transfer_to(destination_account, 200)).to raise_error(RuntimeError, "Insufficient Funds")
     end
-    
+
 	# Any other interactions you'd like to test and document
   end
-  
+
 end
 ```
 

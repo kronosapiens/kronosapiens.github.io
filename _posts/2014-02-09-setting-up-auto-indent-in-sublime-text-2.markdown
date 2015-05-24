@@ -3,10 +3,11 @@ layout: post
 title: "Setting up Auto-Indent in Sublime Text 2"
 date: 2014-02-09 23:48:25 -0500
 comments: true
-categories:
-- Sublime Text 2
-- Workflow
-- Keyboard Shortcuts
+categories: blog
+tags:
+- sublime-text-2
+- workflow
+- keyboard-shortcuts
 
 ---
 
@@ -17,15 +18,15 @@ Switching to Sublime Text 2, I worried that the days of blissful auto-indent wer
 <!--more-->
 
 Navigate to "Sublime Text 2" -> "Preferences" -> "Key Bindings - User", which will bring up a preferences file.
- 
+
 Copy this code between the square brackets:
- 
+
 `{ "keys": ["command+option+i"], "command": "reindent"}`
 
 (feel free to change the shortcut to whatever you like)
 
 If you'd rather access the feature through the menu interface, you can find it under Edit -> Line -> Reindent.
- 
+
 And there was much rejoicing among the people.
 
 More info: https://stackoverflow.com/questions/9495007/indenting-code-in-sublime-text-2

@@ -3,9 +3,10 @@ layout: post
 title: "Designing to be Subclassed"
 date: 2014-08-15 09:00:05 -0400
 comments: true
-categories: 
+categories: blog
+tags:
 - design
-- open source
+- open-source
 
 ---
 
@@ -67,7 +68,7 @@ class Device(object):
         self.path = self.device_dir + subject_id + '_device.csv'
         self.data = self.create_device()
 ```
-This is much clearer for both some other developer trying to subclass your library, as well as for *future you*, an important but often ignored part of your life. 
+This is much clearer for both some other developer trying to subclass your library, as well as for *future you*, an important but often ignored part of your life.
 
 For those of you looking closely, you may have noticed some *bonus weirdness.* Go back and look at the first line of `create_device()`:
 
@@ -119,17 +120,17 @@ import re  # Python Regular Expression library
 
 class SessionParser(object):
     """Object which can parse CSVs of typing data."""
-    
+
 	...
-	
+
 def parse_row(self, row):
         """Parse all typing data in a single row."""
         self.current_subject = row['user:id']
         self.current_device = self.load_device(self.current_subject)
         self.current_submit_time_str = row['context:timestamp']
-        current_submit_time = pd.to_datetime(self.current_submit_time_str) 
+        current_submit_time = pd.to_datetime(self.current_submit_time_str)
         # Creates a pandas.tslib.Timestamp
-        
+
 	... # More stuff
 ```
 
@@ -152,16 +153,16 @@ SESSION_KEY = 'finemotortest'
 
 class SessionParser(object):
     """Object which can parse CSVs of typing data."""
-    
+
     ...
-    
+
     def parse_row(self, row):
         """Parse all typing data in a single row."""
         self.current_participant = row[USER_ID_KEY]
         self.current_device = self.load_device(self.current_participant)
         self.current_submit_time = pd.to_datetime(row[TIMESTAMP_KEY])
         # Creates a pandas.tslib.Timestamp
-        
+
         ... # More stuff
 ```
 
@@ -182,7 +183,7 @@ SESSION_KEY = 'urn:ohmage:prompt:id:finemotortest'
 
 class OhmageParser(SessionParser):
     """Object wich can parse JSONs of typing data from the Ohmage API"""
-    
+
 	...
 
     def parse_row(self, row):
@@ -193,7 +194,7 @@ class OhmageParser(SessionParser):
         # Assignments to satisfy the conventions of the parent class.
         self.current_submit_time = pd.to_datetime(row[TIMESTAMP_KEY])
         ...
-        
+
     def create_session(self, row):
         s = Session(row[SESSION_ID_KEY], pd.to_datetime(row[TIMESTAMP_KEY]))
         s.participant = self.create_or_load_participant(row)
@@ -219,7 +220,7 @@ When I was subclassing my own library, I wanted to override as few methods as po
 
 Further, an override is a signal that the child class has different needs from the parent class -- a few of these may be necessary, but too many may suggest that you haven't thought through inheritence structure enough.
 
-While going through this subclassing process, I discovered that there was a certain elegant and emergent clustering of methods into three categories:
+While going through this subclassing process, I discovered that there was a certain elegant and emergent clustering of methods into three tags:
 
 #### Interface Methods
 
@@ -244,8 +245,8 @@ For example, consider my `save_dataframe()` method from `SessionParser` (**Note*
             output_dataframe = dataframe
         finally:
             (output_dataframe.sort(columns=['SubmitTime', 'Task', 'TouchTime']).
-                to_pickle(self.storage_dir + participant_id)) 
-            # Saves a pandas DataFrame locally as a 'pickle' 
+                to_pickle(self.storage_dir + participant_id))
+            # Saves a pandas DataFrame locally as a 'pickle'
 ```
 
 
@@ -256,7 +257,7 @@ Compare with the overriden method in `OhmageParser`, the child class:
         """Write new data to the database."""
         if parsed_row['task_dataframe'] is not None:
             self.save_typing_data(task_dataframe)
-        
+
         if parsed_row['motion_dataframe'] is not None:
             self.save_motion_data(parse_row)
 
@@ -294,7 +295,7 @@ By overriding (and essentially neutralizing) an internal method, without changin
 ### Public Methods
 
 These are the good-looking, outward facing prom kings and queens of your class. These are the methods that people will come to know and love. These should be as powerful and generic as possible. Most importantly, **their inputs and outputs should rarely, if ever change.**
-	
+
 Well, maybe not never. But *very rarely*. These public methods are what form the API, the interface, between your classes and the rest of the universe. They're how other people will learn to interact with your class. When people start using your library as part of their project, *these methods are what they will add to their code*. This means that if you screw around with these methods, everyone who is using your library will have to change their code.
 
 To avoid that, these methods should be quite general-purpose, with lots of optional arguments and flags so people can tweak behavior while still working within the boundaries that the method defines.
@@ -314,7 +315,7 @@ Here's a good example. Consider the old, busted version:
         """Convert a JSON of fine motor test data into a DataFrame."""
 
 	... # About a dozen lines of pure brilliance
-        
+
         if task_dataframes:
             return pd.concat(task_dataframes)
         else:
@@ -325,7 +326,7 @@ Ok, so assuming my `task_dataframes` list isn't empty (which happens, live data 
 ```python
     def parse_row(self, row):
         """Parse all typing data in a single row."""
-	
+
 	... # More brilliance
 
         session_dataframe = self.convert_session_fmt_to_dataframe(raw_session)
@@ -356,7 +357,7 @@ Fortunately, a better solution presented itself *immediately*:
         """Convert a dict of session data into a multi-task DataFrame."""
 
 	... # Nobel-prize winning algorithmic brilliance
- 
+
         return {'task_dataframe': task_dataframe,
             'motion_dataframe': motion_dataframe}
 ```
@@ -365,7 +366,7 @@ Gosh, that was easy. Let's go up a level:
 ```python
     def parse_row(self, row):
         """Parse all typing data in a single row."""
-  	
+
 	... # Pure poetry
 
         parsed_row = self.convert_raw_session_to_dataframes(session_dict)
@@ -378,7 +379,7 @@ Oh, neat. I want to add something to the return value? Just toss that sucker in 
 ```python
     def parse_all(self, check_parsed=True):
         """Parse each row in a pandas DataFrame.""""
-    
+
 	... # I think I've used this joke up
 
             parsed_row = self.parse_row(row)

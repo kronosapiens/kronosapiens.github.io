@@ -3,7 +3,8 @@ layout: post
 title: "Understanding Package Imports in Python"
 date: 2014-07-28 15:46:23 -0400
 comments: true
-categories: 
+categories: blog
+tags:
 - python
 - development
 
@@ -187,7 +188,7 @@ It goes back to importing locally. **Now I understand the convention of naming d
 
 ## Submodules
 
-Now, let's look at importing modules from within a package. 
+Now, let's look at importing modules from within a package.
 
 For a long time, I assumed that if you imported a package, you could automatically access all of the modules within the package. It took an uncomfortably large amount of time debugging testing errors that I finally realized that this wasn't the case.
 
@@ -277,7 +278,7 @@ Ok, that worked out. Now, though, we'll try running the test using the [pytest](
 ƒ: py.test backend/tests/test_analyzer.py
 ============= test session starts ==============
 platform darwin -- Python 2.7.6 -- py-1.4.20 -- pytest-2.5.2
-collected 0 items / 1 errors 
+collected 0 items / 1 errors
 
 ==================== ERRORS ====================
 ______ERROR collecting backend/tests/test_analyzer.py ____________
@@ -297,7 +298,7 @@ What is this? This is the bug that has been haunting me. Usually I just delete f
 ƒ: py.test backend/tests/test_analyzer.py
 ============= test session starts ==============
 platform darwin -- Python 2.7.6 -- py-1.4.20 -- pytest-2.5.2
-collected 0 items / 1 errors 
+collected 0 items / 1 errors
 
 ==================== ERRORS ====================
 __________ERROR collecting backend/tests/test_analyzer.py __________
@@ -316,7 +317,7 @@ Well... something changed at least. Investigating the error, I notice that it su
 ƒ: py.test backend/tests/test_analyzer.py
 ============= test session starts ==============
 platform darwin -- Python 2.7.6 -- py-1.4.20 -- pytest-2.5.2
-collected 28 items 
+collected 28 items
 
 backend/tests/test_analyzer.py ............................
 
@@ -329,7 +330,7 @@ OH COME ON. Really? This isn't the first time that `.pyc` and `__pycache__` have
 ƒ: py.test
 ============= test session starts ==============
 platform darwin -- Python 2.7.6 -- py-1.4.20 -- pytest-2.5.2
-collected 76 items 
+collected 76 items
 
 backend/tests/test_analyzer.py ............................
 backend/tests/test_device.py ....
@@ -361,7 +362,7 @@ Sigh. As with most thing programming, *#itsalwaysusererror*. Mind your PYTHONPAT
 ## BONUS: Testing a Non-Package
 
 Let's say you're working on a project but don't want to add it to your PYTHONPATH. It's a work-in-progress, no one else should be able to import it, what have you. Can you still import those modules to test them?
-	
+
 *It seems like it.*
 
 Let's consider another project, a webapp, with the following structure:
@@ -392,7 +393,7 @@ Let's try running `py.test` from `webapp/`:
 ƒ: py.test
 =============== test session starts ===============
 platform darwin -- Python 2.7.5 -- py-1.4.22 -- pytest-2.6.0
-collected 5 items 
+collected 5 items
 
 tests/test_integration.py ..
 
@@ -409,7 +410,7 @@ From `webapp/tests/`:
 ƒ: py.test
 =============== test session starts ===============
 platform darwin -- Python 2.7.5 -- py-1.4.22 -- pytest-2.6.0
-collected 0 items / 2 errors 
+collected 0 items / 2 errors
 
 =============== ERRORS ===============
 _________ ERROR collecting test_integration.py _________

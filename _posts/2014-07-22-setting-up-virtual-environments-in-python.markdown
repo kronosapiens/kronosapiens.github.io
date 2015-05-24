@@ -3,7 +3,8 @@ layout: post
 title: "Setting up Virtual Environments in Python"
 date: 2014-07-22 15:38:01 -0400
 comments: true
-categories: 
+categories: blog
+tags:
 - python
 - devops
 
@@ -130,7 +131,7 @@ Now, let's figure out how to install new packages. Out of the box, a virtual env
 ƒ: source pm_app/bin/activate
 (pm_app)[16:47:07] environments
 ƒ: python
-Python 2.7.5 (default, Mar  9 2014, 22:15:05) 
+Python 2.7.5 (default, Mar  9 2014, 22:15:05)
 [GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.0.68)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import pandas
@@ -145,7 +146,7 @@ ImportError: No module named numpy
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ImportError: No module named matplotlib
->>> 
+>>>
 
 ```
 
@@ -156,7 +157,7 @@ We're going to talk about installing packages in a second, but first let's zoom 
 Here's python's `sys.path` in my global environment:
 
 ```
-Python 2.7.5 (default, Mar  9 2014, 22:15:05) 
+Python 2.7.5 (default, Mar  9 2014, 22:15:05)
 [GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.0.68)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import sys
@@ -186,13 +187,13 @@ Type "help", "copyright", "credits" or "license" for more information.
  '/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/lib-dynload',
  '/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/PyObjC',
  '/Library/Python/2.7/site-packages']
->>> 
+>>>
 ```
 
 Here's the same thing, inside of my virtual environment:
 
 ```
-Python 2.7.5 (default, Mar  9 2014, 22:15:05) 
+Python 2.7.5 (default, Mar  9 2014, 22:15:05)
 [GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.0.68)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import sys
@@ -235,17 +236,17 @@ Installing collected packages: numpy
 Successfully installed numpy
 Cleaning up...
 (env_one)[16:58:14] environments
-ƒ: 
+ƒ:
 ```
 
 Well, gosh.
 
 ```
-Python 2.7.5 (default, Mar  9 2014, 22:15:05) 
+Python 2.7.5 (default, Mar  9 2014, 22:15:05)
 [GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.0.68)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import numpy
->>> 
+>>>
 ```
 
 Let's take a look in our `env_one/lib/site-packages` folder and see if anything looks different.
@@ -312,7 +313,7 @@ See the full documentation over at the [official site](https://virtualenv.pypa.i
 Shout out to Jamie Matthews' [excellent post](http://www.dabapps.com/blog/introduction-to-pip-and-virtualenv-python/) covering much of the same ground (which helped me quite a bit).
 
 ## Postscript
-	
+
 The ultimate test. I've created an environment called `pm_app` and have installed only the packages that the ParagonMeasure backend should require. I'm about to `cd` back into the main repository and run the test suite...
 
 ```
@@ -336,7 +337,7 @@ wsgiref (0.1.2)
 ƒ: py.test
 ============test session starts ============
 platform darwin -- Python 2.7.6 -- py-1.4.20 -- pytest-2.5.2
-collected 77 items 
+collected 77 items
 
 logs/test id_outliers.txt .
 logs/test_outliers.txt .

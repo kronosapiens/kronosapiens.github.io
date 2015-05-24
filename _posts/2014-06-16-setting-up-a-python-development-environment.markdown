@@ -4,9 +4,10 @@ published: false
 title: "Setting up an IPython development environment"
 date: 2014-06-16 08:03:47 -0400
 comments: true
-categories: 
+categories: blog
+tags:
 - python
-- development environment
+- development-environment
 
 ---
 
@@ -101,7 +102,7 @@ There are multiple ways to run this test:
 
 Now that your tests are written, you have a few options for running them. The simplest is to type `python -m test_file` into the terminal. This will run the file with the `__name__` variable set to `__main__` (which is what you want). The tests will run, Unittest will print out a report (with details on the results and information about any errors), and you'll be dropped back off in the terminal.
 
-This is a fine method, but 
+This is a fine method, but
 
 ## 3. Debugging
 
@@ -115,5 +116,5 @@ My preferred debugging workflow (assuming you've enabled module autoreloading in
 
 ### b. `%run -d some_file`
 
-An alternative debugging 
+An alternative debugging
 

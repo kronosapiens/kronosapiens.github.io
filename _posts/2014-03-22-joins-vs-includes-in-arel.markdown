@@ -3,7 +3,8 @@ layout: post
 title: "'joins' vs. 'includes' in Arel"
 date: 2014-03-22 18:00:50 -0400
 comments: true
-categories: 
+categories: blog
+tags:
 - arel
 - sql
 - rails

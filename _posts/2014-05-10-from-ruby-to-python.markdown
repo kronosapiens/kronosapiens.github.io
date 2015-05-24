@@ -3,7 +3,8 @@ layout: post
 title: "From Ruby to Python"
 date: 2014-05-10 14:35:04 -0400
 comments: true
-categories:
+categories: blog
+tags:
 - python
 - ruby
 
@@ -36,7 +37,7 @@ A **class variable** in Ruby is a **member variable** in Python (and they behave
 There are some interesting different between the languages in this regard.
 
 Ruby doesn't care about whitespace, with indentation being primarily an aid to programmers. Functions, loops, and other definitions are closed with the `end` keyword. Additionally, blocks are demarcated by either the `do` keyword, or via the use of `{ }`.
-	
+
 Python, on the other hand, relies on whitespace to interpret its syntax. Right indenting a line four spaces in from the line above indicates that the line is a block to be passed to the preceding function. *Left* indenting four spaces indicates the end of the function definition or block (and corresponding conditional). Additionally, Python uses the `:` to indicate the beginning of a block.
 
 ## Interpretation & Execution
@@ -85,7 +86,7 @@ One of the ways that Ruby lets us filter arrays is through the `select` and `rej
 ```ruby
 evens = [1, 2, 3, 4, 5, 6].select { |num| num % 2 == 0 }
 ```
-	
+
 Python lets us do this via its 'list comprehension' syntax, as follows:
 
 ```python
@@ -117,7 +118,7 @@ Ruby handles inheritance via the `<` operator, like so: `class Dog < Mammal`, wh
 In Ruby, we access overridden methods of the parent class by simply calling `super` within the overriding method. In Python, the syntax is slightly more complicated:
 
 ```
-```python
+```python
 super(ChildClass, self).overriden_method(all_arguments_except_self)
 ```
 
@@ -141,7 +142,7 @@ Ruby and Python differ in that in Ruby, class variables are *shared* between ind
 ## String Interpolation
 
 In Ruby, we can interpolate the results of method calls into strings using the following syntax:
-	
+
 ```ruby
 "The class of this object is #{self.class}, and 5 + 8 is #{5+8}"
 ```
@@ -159,8 +160,10 @@ Yet another option:
 ```python
 "The class of this object is {0}, and 5 + 8 is {1}".format(self.class, 5+8)
 ```
-	
-It seems as though Python will interpret the commands that are passed as arguments to `format`, and then insert them into the string based on the index numbers provided within the curly braces.Relatedly, the equivalent of Ruby's `value.to_s` method in Python is `str(value)`.
+
+It seems as though Python will interpret the commands that are passed as arguments to `format`, and then insert them into the string based on the index numbers provided within the curly braces.
+
+Relatedly, the equivalent of Ruby's `value.to_s` method in Python is `str(value)`.
 
 ## Testing
 

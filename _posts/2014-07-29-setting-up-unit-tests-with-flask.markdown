@@ -3,7 +3,8 @@ layout: post
 title: "Setting up Unit Tests with Flask, SQLAlchemy, and Postgres"
 date: 2014-07-29 17:17:56 -0400
 comments: true
-categories: 
+categories: blog
+tags:
 - python
 - flask
 - databases
@@ -83,7 +84,7 @@ In [4]: webapp.db.session # Tab completion
 webapp.db.session       webapp.db.sessionmaker
 In [5]: webapp.db.session
 Out[5]: <sqlalchemy.orm.scoping.scoped_session at 0x10c4a5990>
-In [6]: webapp.db.session?  
+In [6]: webapp.db.session?
 # A bunch more stuff, including:
 File:           /Users/kronosapiens/Dropbox/Documents/Development/code/environments/pm/lib/python2.7/site-packages/sqlalchemy/orm/scoping.py
 ```
@@ -192,8 +193,8 @@ webapp.db.session.begin_nested     webapp.db.session.execute          webapp.db.
 webapp.db.session.bind             webapp.db.session.expire           webapp.db.session.is_modified      webapp.db.session.rollback
 webapp.db.session.close            webapp.db.session.expire_all       webapp.db.session.merge            webapp.db.session.scalar
 webapp.db.session.close_all        webapp.db.session.expunge          webapp.db.session.new              webapp.db.session.session_factory
-webapp.db.session.commit           webapp.db.session.expunge_all      webapp.db.session.no_autoflush     
-webapp.db.session.configure        webapp.db.session.flush            webapp.db.session.object_session   
+webapp.db.session.commit           webapp.db.session.expunge_all      webapp.db.session.no_autoflush
+webapp.db.session.configure        webapp.db.session.flush            webapp.db.session.object_session
 ```
 Neat. And look at that -- `.close()` and `.close_all()`. Those look like they might be able to solve our Postgres locking problem. Let's see what they do, through a little example:
 
@@ -212,7 +213,7 @@ In [35]: webapp.db.session.commit()
 
 In [36]: Participant.query.all()
 2014-07-29 18:22:05,772 INFO sqlalchemy.engine.base.Engine BEGIN (implicit)
-2014-07-29 18:22:05,772 INFO sqlalchemy.engine.base.Engine SELECT participant.id AS participant_id, participant.name AS participant_name 
+2014-07-29 18:22:05,772 INFO sqlalchemy.engine.base.Engine SELECT participant.id AS participant_id, participant.name AS participant_name
 FROM participant
 2014-07-29 18:22:05,772 INFO sqlalchemy.engine.base.Engine {}
 Out[36]: [<Participant u'daniel'>]
@@ -231,7 +232,7 @@ In [138]: webapp.db.drop_all()
 2014-07-29 18:25:49,958 INFO sqlalchemy.engine.base.Engine {'name': u'session'}
 2014-07-29 18:25:49,963 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname=current_schema() and relname=%(name)s
 2014-07-29 18:25:49,963 INFO sqlalchemy.engine.base.Engine {'name': u'participant'}
-2014-07-29 18:25:49,965 INFO sqlalchemy.engine.base.Engine 
+2014-07-29 18:25:49,965 INFO sqlalchemy.engine.base.Engine
 DROP TABLE session
 2014-07-29 18:25:49,965 INFO sqlalchemy.engine.base.Engine {}
 # ?? Looks like it's locked.
@@ -269,7 +270,7 @@ In [10]: webapp.db.session.commit()
 
 In [11]: Participant.query.all()
 # Suppressing the SQL Query > stdout for brevity
-Out[12]: [<Participant u'daniel'>] 
+Out[12]: [<Participant u'daniel'>]
 
 In [12]: webapp.db.session.close()
 2014-07-29 20:14:06,950 INFO sqlalchemy.engine.base.Engine ROLLBACK
@@ -279,16 +280,16 @@ In [13]: webapp.db.drop_all()
 2014-07-29 20:14:17,812 INFO sqlalchemy.engine.base.Engine {'name': u'session'}
 2014-07-29 20:14:17,815 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname=current_schema() and relname=%(name)s
 2014-07-29 20:14:17,815 INFO sqlalchemy.engine.base.Engine {'name': u'participant'}
-2014-07-29 20:14:17,817 INFO sqlalchemy.engine.base.Engine 
+2014-07-29 20:14:17,817 INFO sqlalchemy.engine.base.Engine
 DROP TABLE session
 2014-07-29 20:14:17,817 INFO sqlalchemy.engine.base.Engine {}
 2014-07-29 20:14:17,821 INFO sqlalchemy.engine.base.Engine COMMIT
-2014-07-29 20:14:17,825 INFO sqlalchemy.engine.base.Engine 
+2014-07-29 20:14:17,825 INFO sqlalchemy.engine.base.Engine
 DROP TABLE participant
 2014-07-29 20:14:17,826 INFO sqlalchemy.engine.base.Engine {}
 2014-07-29 20:14:17,835 INFO sqlalchemy.engine.base.Engine COMMIT
 
-In [14]: 
+In [14]:
 ```
 
 SUCCESS!!! It seems like all that was missing was a call to the session telling it to close the connection.
@@ -311,7 +312,7 @@ class TestParticipant(unittest.TestCase):
         db.session.close()
         db.drop_all()
         db.create_all()
-        
+
     def test_lookup(self):
         participant = Participant('test')
         db.session.add(participant)

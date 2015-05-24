@@ -3,8 +3,9 @@ layout: post
 title: "Civic Hacking as Inspiration"
 date: 2014-02-14 07:32:35 -0400
 comments: true
-categories:
-- development community
+categories: blog
+tags:
+- community
 
 ---
 
