@@ -33,8 +33,8 @@ Here's an antipattern: you may think you won't need variable X until method C, s
 Initialize your variables once, in `__init__`, so they'll be there when you need them, and you won't have to struggle remembering what *order* you ***expected*** your users to want to do things. Requirements change, emergent behavior emerges. Don't confuse yourself and shackle yourself to a single use-case by obscuring what variables your objects depend on.
 
 **Second**, don't write functions which run in `__init__` and set instance variables internally to themselves. You'll confuse the hell out of everyone, as people will have to remember *which* variables are set by *which*, since they can't tell by looking at `__init__`. Take a cue from the functional programmers and have those functions *return* their values and set those return values explicitly in `__init__`. Consider the following example:
-
-```python
+}
+{% highlight python %}
 class Device(object):
 
     def __init__(self, subject_id):
@@ -42,10 +42,11 @@ class Device(object):
         self.device_dir = 'data/devices/'
         self.path = self.device_dir + subject_id + '_device.csv'
         self.create_device()
-```
+{% endhighlight %}
+
 Things are actually looking fine until we get to that last line -- `self.create_device()` looks like it's doing some heavy duty lifting, but we can't tell by looking at `__init__`. We have to go down to where `create_device` is defined to see what variables it's setting:
 
-```python
+{% highlight python %}
     def create_device(self):
         """Create the device dataframe"""
         self.get_device_dimensions()
@@ -56,31 +57,31 @@ Things are actually looking fine until we get to that last line -- `self.create_
                                      sep='<>', skiprows=[0,1])
         raw_device = self.add_key_data(raw_device)
         self.data = raw_device.set_index('key', drop=False)
-```
+{% endhighlight %}
 
 So it seems like it's setting `self.data`. It would've been much clearer if `create_device` had just `return`ed `raw_device.set_index('key, drop=False)`, and our `__init__` looked more like this:
-
-```python
+}
+{% highlight python %}
 class Device(object):
     def __init__(self, subject_id):
         self.subject_id = subject_id
         self.device_dir = 'data/devices/'
         self.path = self.device_dir + subject_id + '_device.csv'
         self.data = self.create_device()
-```
+{% endhighlight %}
 This is much clearer for both some other developer trying to subclass your library, as well as for *future you*, an important but often ignored part of your life.
 
 For those of you looking closely, you may have noticed some *bonus weirdness.* Go back and look at the first line of `create_device()`:
 
-```python
+{% highlight python %}
     def create_device(self):
         """Create the device dataframe"""
         self.get_device_dimensions()
-```
+{% endhighlight %}
 
 What is this? `get_device_dimensions()`? What does that do? What does that return? Now I have to go read some *more* source code? What kind of terrible developer are you? Let's peek:
 
-```python
+{% highlight python %}
     def get_device_dimensions(self):
         """Get the device dimensions in pixels and millimeters"""
         try:
@@ -89,12 +90,12 @@ What is this? `get_device_dimensions()`? What does that do? What does that retur
             f = open(self.device_dir+'default_device.csv')
         self.px_size = f.readline().rstrip().split(' ')[-1]
         self.mm_size = f.readline().rstrip().split(' ')[-1]
-```
+{% endhighlight %}
 *You're kidding me*. You just set *two more instance variables* and said *nothing*. There should be a fine for this sort of malfeasance.
 
 Let's take a few breaths and look at the refactored new hotness:
-
-```python
+}
+{% highlight python %}
 class Device(object):
     def __init__(self, participant_id):
         self.participant_id = participant_id
@@ -102,7 +103,7 @@ class Device(object):
         self.path = self.device_dir + participant_id + '_device.csv'
         self.px_size, self.mm_size = self.get_device_dimensions()
         self.keys = self.create_device()
-```
+{% endhighlight %}
 Such clarity. Such ease-of-subclassing. Such justice.
 
 ## Using Constants
@@ -112,8 +113,8 @@ One of the first modules I wrote in the library was `session_parser.py`, definin
 The parser would go row-by-row through the CSV, pull out some of the fields, convert them to dictionaries, and then do further work on the values in the dictionaries. This meant that `SessionParser` needed to store some knowledge of the structure of the CSV and the interior dictionaries -- specifically, knowledge about the *keys*.
 
 My original `session_parser.py` looked something like this:
-
-```python
+n %}
+{% highlight python %}
 ... # More imports
 import re  # Python Regular Expression library
 
@@ -132,7 +133,7 @@ def parse_row(self, row):
         # Creates a pandas.tslib.Timestamp
 
 	... # More stuff
-```
+{% endhighlight %}
 
 This was fine for a while -- all my data was coming from the same source, so I naively hard-coded all of the keys right into the methods. Things changed once we went online, though. Data was coming from a web service via an API, not from CSVs stored locally. The data was *mostly* the same, but there were a number of small differences in convention and structure... including, of course, in the CSV column names and dictionary keys.
 
@@ -142,8 +143,8 @@ I needed to find some way for the library running locally to use one set of keys
 2. Subclassed parsers can redefine the constants without having to change any of the actual method logic.
 
 My new `session_parser.py` looks more like this:
-
-```python
+n %}
+{% highlight python %}
 ... # More imports
 import re  # Python Regular Expression library
 
@@ -164,11 +165,11 @@ class SessionParser(object):
         # Creates a pandas.tslib.Timestamp
 
         ... # More stuff
-```
+{% endhighlight %}
 
 Meanwhile, the subclassed version, `OhmageParser`, looks like this:
-
-```python
+n %}
+{% highlight python %}
 ... # More imports
 from webapp import db
 
@@ -209,7 +210,7 @@ class OhmageParser(SessionParser):
             p.save()
         return p
 
-```
+{% endhighlight %}
 You'll notice a number of things here. The first is that I've redefined the keys by changing the constants at the top of the module. This means that methods defined in `session_parser.py` can run in the subclass of `OhmageParser` without any problem. The second is that I've actually overridden the `parse_row()` method. I've done this because `parse_row()` implements some I/O functionality that required some more heavy-duty customization. This is the subject of the next session.
 
 ## Interface methods, public methods, internal methods
@@ -232,7 +233,7 @@ In my case, moving from local to the web meant that I need to override the metho
 
 For example, consider my `save_dataframe()` method from `SessionParser` (**Note**: I still need to implement functionality for saving two kinds of data -- something I've done on the new version but not the original):
 
-```python
+{% highlight python %}
     def save_dataframe(self, parsed_row):
         """Save (create or update) participant data as appropriate."""
         # NOTE: NOT IMPLEMENTED DUAL TASK/MOTION DATAFRAMES
@@ -247,12 +248,12 @@ For example, consider my `save_dataframe()` method from `SessionParser` (**Note*
             (output_dataframe.sort(columns=['SubmitTime', 'Task', 'TouchTime']).
                 to_pickle(self.storage_dir + participant_id))
             # Saves a pandas DataFrame locally as a 'pickle'
-```
+{% endhighlight %}
 
 
 Compare with the overriden method in `OhmageParser`, the child class:
 
-```python
+{% highlight python %}
     def save_dataframe(self, parsed_row):
         """Write new data to the database."""
         if parsed_row['task_dataframe'] is not None:
@@ -274,7 +275,7 @@ Compare with the overriden method in `OhmageParser`, the child class:
         motion_data_list = motion_dataframe.to_dict(outtype='records')
 
         db.session.db.MotionData.insert(motion_data_list)
-```
+{% endhighlight %}
 
 You'll note how the same method signature (`save_dataframe(self, parsed_row)`) means that the core methods inherited from the parent class don't need to know about the implementation of this method -- the child can override the method to deal with new storage requirements, but as long as it keeps the function signature the same, inherited methods will work just fine.
 
@@ -284,11 +285,11 @@ These are methods which the class uses internally for various tasks, but are gen
 
 One example was `SessionParser`'s `is_already_parsed()` method. In the parent class, this method would reference a dictionary of already-seen dataframes to establish whether or not a new row had been parsed. The child class, `OhmageParser`, since it was pulling data from an API and could constrain the query by dates, could ensure that it was seeing only new data by specifying a recent time period. This method was called by the `parse_all()` method, which is the principal public method of the parent class (and the one that I definitely didn't want to have to override), which meant that I needed to do something like this:
 
-```python
+{% highlight python %}
     def is_already_parsed(self, row):
         """Unecessary b/c Ohmage can be queried w/ date range."""
         return False
-```
+{% endhighlight %}
 
 By overriding (and essentially neutralizing) an internal method, without changing it's method signature, I was able *adapt* the behavior of the parent class's methods *without* overriding them.
 
@@ -310,7 +311,7 @@ They're such a good return value it's almost too hard to believe. Think about it
 
 Here's a good example. Consider the old, busted version:
 
-```python
+{% highlight python %}
     def convert_raw_session_to_dataframe(self, raw_session):
         """Convert a JSON of fine motor test data into a DataFrame."""
 
@@ -320,10 +321,10 @@ Here's a good example. Consider the old, busted version:
             return pd.concat(task_dataframes)
         else:
             return False
-```
+{% endhighlight %}
 Ok, so assuming my `task_dataframes` list isn't empty (which happens, live data can be treacherous), I squeeze it all into a single DataFrame and return that sucker. The result gets recieved like this:
 
-```python
+{% highlight python %}
     def parse_row(self, row):
         """Parse all typing data in a single row."""
 
@@ -335,24 +336,24 @@ Ok, so assuming my `task_dataframes` list isn't empty (which happens, live data 
             session_dataframe['SubmitTime'] = current_submit_time
             session_dataframe = session_dataframe.set_index(['SubmitTime'], drop=False)
         return session_dataframe, self.current_subject
-```
+{% endhighlight %}
 Note that `parse_row` expects `convert_raw_session_to_dataframe` to return **one** DataFrame. It then does some further work and returns a **tuple** of the DataFrame and the current_subject.
 
 Going up one more level, let's see how it comes together:
 
-```python
+{% highlight python %}
     def parse_file(self, check_parsed=True):
         """Parse each row in a CSV file"""
 
             fmt_dataframe, subject_id = self.parse_row(row)
             if fmt_dataframe is not False:
                 self.save_dataframe(fmt_dataframe, subject_id)
-```
+{% endhighlight %}
 Ok, so `parse_file` expects to get a tuple back from `parse_row`. Of course, this entire design is stupid. Why? Because the minute I needed to add something -- say, for example, a second DataFrame, the entire thing fell apart. I needed to change *every* call to `convert_raw_session_to_dataframe` to expect a tuple of DataFrames, and *every* call to `parse_row` to give back a tuple of two DataFrames and a user. Ridiculous.
 
 Fortunately, a better solution presented itself *immediately*:
 
-```python
+{% highlight python %}
     def convert_raw_session_to_dataframes(self, session_dict):
         """Convert a dict of session data into a multi-task DataFrame."""
 
@@ -360,10 +361,10 @@ Fortunately, a better solution presented itself *immediately*:
 
         return {'task_dataframe': task_dataframe,
             'motion_dataframe': motion_dataframe}
-```
+{% endhighlight %}
 Gosh, that was easy. Let's go up a level:
 
-```python
+{% highlight python %}
     def parse_row(self, row):
         """Parse all typing data in a single row."""
 
@@ -373,10 +374,10 @@ Gosh, that was easy. Let's go up a level:
 
         parsed_row['participant_id'] = self.current_participant
         return parsed_row
-```
+{% endhighlight %}
 Oh, neat. I want to add something to the return value? Just toss that sucker in the dict.
 
-```python
+{% highlight python %}
     def parse_all(self, check_parsed=True):
         """Parse each row in a pandas DataFrame.""""
 
@@ -386,7 +387,7 @@ Oh, neat. I want to add something to the return value? Just toss that sucker in 
             if (parsed_row['task_dataframe'] is not None or
                 parsed_row['motion_dataframe'] is not None):
                 self.save_dataframe(parsed_row)
-```
+{% endhighlight %}
 Wow. So you're saying that I can now add *anything* I want to this `parsed_row` dictionary to meet virtually *any* new requirement without having to make *any* changes to existing code?
 
 Neat.

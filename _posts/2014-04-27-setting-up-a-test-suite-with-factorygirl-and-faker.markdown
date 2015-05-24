@@ -24,7 +24,7 @@ Factory girl works by letting you define 'factories', which contain all the info
 
 Here's one of our factories (I'll explain what's going on below):
 
-```ruby
+{% highlight ruby %}
 FactoryGirl.define do
 
   sequence :title do |n|
@@ -52,25 +52,25 @@ FactoryGirl.define do
 
   end
 end
-```
+{% endhighlight %}
 Let's take it bit by bit.
 
 ## Creating the factory
 
-```ruby
+{% highlight ruby %}
 FactoryGirl.define do
 	# code
 end
-```
+{% endhighlight %}
 This may be self-explanatory, but this code is where you tell FactoryGirl to define a new factory. All of the blocks that follow are organized by the 'define' function into a single factory. In this case, the factory is `:lesson`.
 
 ## Defining a sequence
 
-```ruby
+{% highlight ruby %}
   sequence :title do |n|
     Faker::Name.name + n.to_s
   end
-```
+{% endhighlight %}
 
 Many ActiveRecord objects require that their name or title (or similar) attributes be unique. FactoryGirl supports this by providing a syntax for defining 'sequences', where an attribute (in this case, `:title`) will be automatically incremented every time FactoryGirl creates an object out of that factory. In this case, `n` will increase by one every time we ask for a new object, so that no two objects have the same name.
 
@@ -80,14 +80,14 @@ You may be wondering what's going on with `Faker::Name.name`. [Faker](https://gi
 
 ## Defining values for the objects attributes
 
-```ruby
+{% highlight ruby %}
 factory :lesson do
     title
     description { Faker::Lorem.sentence }
     references { Faker::Internet.url }
     specific_time { DateTime.now }
     specific_location { Faker::Address.street_address }
-```
+{% endhighlight %}
 
 Here, we get down to business and define the values for all the attributes of the lesson object. Note that we don't *need* to define a value for every attribute. At minimum, you'll need to satisfy every validation requirement you've written for your object. Everything above that is optional, and you'll want to define attributes as necessary so you can test what you need to test.
 
@@ -95,7 +95,7 @@ You'll note that `title` doesn't have any value after it. That's because we've d
 
 ## Specifying specific traits
 
-```ruby
+{% highlight ruby %}
     trait :completed do
       status 'completed'
     end
@@ -103,43 +103,46 @@ You'll note that `title` doesn't have any value after it. That's because we've d
     trait :closed do
       status 'closed'
     end
-```
+{% endhighlight %}
 Here, we define special "options" for when we create our objects. Some of our tests test for behavior based on specific values for an attribute (in this case, the `status` attribute). We specify the trait when we create the object in our actual test file (which you'll see later). This `trait` feature is very powerful, and allows you to tap into the power of FactoryGirl without sacrificing the flexibility of creating objects explicitly in your tests.
 
 ## Advanced actions
-```ruby
+{% highlight ruby %}
     before(:create) do |lesson|
       lesson.tags << create(:tag)
     end
-```
+{% endhighlight %}
 
 Sometimes you need to take actions on your object before you can save it -- in our case, we wrote a custom validator which required a lesson to have at least one associated tag before it could be saved. We addressed this by defining a `before(:create)` action, which is called after an object is instantiated but before it is first saved to the database.
 
 ## FactoryGirl in action
 Now that you've seen all the powers of FactoryGirl in defining a factory, let's see it in action. Here's an exerpt from our `lesson_spec.rb` file:
 
-```ruby
+{% highlight ruby %}
 describe "Lesson" do
   let(:lesson1){ create(:lesson) }
   let(:lesson2){ create(:lesson) }
   let(:lesson3){ create(:lesson, :closed) }
   let(:lesson4){ create(:lesson, :completed) }
-```
+{% endhighlight %}
+
 As an aside, notice that we're using rspec's `let` syntax, which is powerful because it lets you *define* variables in your test file, but not actually *create* the objects until your actual test needs it. What that means is that `lesson1` is not actually created until much later, when we call it for the first time below:
 
-```ruby
+{% highlight ruby %}
 lesson1.registrations.create(:user => user1, :role => "student")
-```
+{% endhighlight %}
+
 The advantage here is that we can define the variables all in one place, but not use system resources creating and storing them until the point at which they are required in the test. Contrast this to the following:
 
-```ruby
+{% highlight ruby %}
 before(:each) do
 	@lesson1 = create(:lesson)
 	@lesson2 = create(:lesson)
 	@lesson3 = create(:lesson, :closed)
 	@lesson4 = create(:lesson, :completed)
 end
-```
+{% endhighlight %}
+
 This block would create all four lessons before the first test is run, and regardless of whether or not the variable is called, resulting in a *much* slower test suite. A third option, which is defining every variable at the top of every test, would be faster at runtime, but lead to a bloated and redundant test file.
 
 The `let` syntax gives us speed while keeping us DRY. Use it!
@@ -148,8 +151,8 @@ Going back to FactoryGirl, we see how easily we can create new lessons and confi
 
 Finally, let's take a peek at what `lesson1` looks like:
 
-```ruby
+{% highlight ruby %}
  #<Lesson id: 1, title: "Mr. Madyson Mayert4", description: "Quidem eligendi non laboriosam ratione ipsam labor...", references: "http://bernhard.net/izaiah", created_at: "2014-04-27 22:54:56", updated_at: "2014-04-27 22:54:56", specific_time: "2014-04-27 22:54:56", specific_location: "60691 Milan Trail", status: "open", slug: "mr.-madyson-mayert4">
-```
+{% endhighlight %}
 
 Happy testing!

@@ -64,7 +64,7 @@ Within the individual tests, then, we could instantiate the objects and *set the
 
 It would look something like the following:
 
-```ruby
+{% highlight ruby %}
 require 'spec_helper'
 
 describe "Account Transfer" do
@@ -89,7 +89,7 @@ describe "Account Transfer" do
   end
 
 end
-```
+{% endhighlight %}
 
 You'll notice that the tests are more granular than a typical integration test, with multiple assertions being contained within a single test. While this could be considered bad form, this is done with the intention of a single test being meant to document a complete interaction, rather than some smaller unit of behavior. My hope was that, by creating a 1:1 ratio of interaction to test, the test files would be stronger sources of documentation about high-level design.
 

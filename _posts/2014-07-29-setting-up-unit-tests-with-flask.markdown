@@ -40,10 +40,10 @@ Reading through the docs, I learned some useful terms:
 
 **Sessionmaker**: A factory object for creating sessions. Similar to an engine, this object is created once when an application is first instantiated (part of the application's configuration), and persists in memory, creating new sessions as needed. In SQLAlchemy, a sessionmaker is instantiated by *passing* an engine as an argument, which should suggest the connection between those two objects:
 
-```python
+{% highlight python %}
 Session = sessionmaker(bind=some_engine)
 session = Session()
-```
+{% endhighlight %}
 
 Here, `Session` is a factory class created by calling `sessionmaker` bound to `some_engine`. `session` is an individual session object, created by instantiating the `Session()` class.
 
@@ -57,7 +57,7 @@ Popping into the terminal, I did some investigation.
 
 Here's a snippet from my `webapp.__init__`:
 
-```python
+{% highlight python %}
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 
@@ -65,21 +65,21 @@ app = Flask(__name__)
 app.config.from_object('webapp.config.Development')
 
 db = SQLAlchemy(app)
-```
+{% endhighlight %}
 
 And so in my terminal:
 
-```python
+{% highlight python %}
 In [2]: webapp.db
 Out[2]: <SQLAlchemy engine='postgresql://kronosapiens:apple@localhost/pm_webapp'>
 In [3]: webapp.db?
 # A lot of stuff, including:
  File:        /Users/kronosapiens/Dropbox/Documents/Development/code/environments/pm/lib/python2.7/site-packages/flask_sqlalchemy/__init__.py
-```
+{% endhighlight %}
 
 Ok, so `db` in this case is part of Flask-SQLAlchemy, not SQLAlchemy proper. Good to know; this is a good sign. Digging further:
 
-```python
+{% highlight python %}
 In [4]: webapp.db.session # Tab completion
 webapp.db.session       webapp.db.sessionmaker
 In [5]: webapp.db.session
@@ -87,7 +87,7 @@ Out[5]: <sqlalchemy.orm.scoping.scoped_session at 0x10c4a5990>
 In [6]: webapp.db.session?
 # A bunch more stuff, including:
 File:           /Users/kronosapiens/Dropbox/Documents/Development/code/environments/pm/lib/python2.7/site-packages/sqlalchemy/orm/scoping.py
-```
+{% endhighlight %}
 
 Alright, it seems that I've crossed over into SQLAlchemy land. My hunch would be that Flask-SQLAlchemy subclassed the `db` object and added some Flask-specific features, which is why it contains methods and attributes from regular SQLAlchemy. Open source is fun.
 
@@ -104,7 +104,7 @@ Reading the SQLAlchemy session docs, I arrived at the idea of '[object states](h
 
 Understanding these distinctions was *super* helpful in understanding the role and behavior of sessions. Consider the following terminal session:
 
-```python
+{% highlight python %}
 In [7]: daniel = Participant('daniel')
 
 In [8]: daniel
@@ -136,13 +136,13 @@ Out[17]: False
 
 In [18]: insp.transient
 Out[18]: True
-```
+{% endhighlight %}
 
 Well, at least something makes sense. Moving on.
 
 Well, wait a second -- might we be able to use `webapp.db.session.rollback()` to restore our database after each test? Let's try:
 
-```python
+{% highlight python %}
 In [1]: from webapp.models import *
 
 In [2]: from webapp import db
@@ -176,14 +176,14 @@ In [12]: db.session.rollback()
 
 In [13]: Participant.query.all()
 Out[13]: [<Participant u'test'>, <Participant u'daniel'>]
-```
+{% endhighlight %}
 Darn. I was hoping that I wouldn't show up in those results.
 
 Alright, so it seems that `webapp.db.session.rollback()` can reset the session, but can't do much once we've flushed the session to the database. Also good to know.
 
 This `webapp.db.session` object seems to have a lot of goodies. Let's see what else it can do:
 
-```python
+{% highlight python %}
 In [132]: webapp.db.session. # Tab completion
 webapp.db.session.add              webapp.db.session.connection       webapp.db.session.get_bind         webapp.db.session.query
 webapp.db.session.add_all          webapp.db.session.delete           webapp.db.session.identity_key     webapp.db.session.query_property
@@ -195,10 +195,10 @@ webapp.db.session.close            webapp.db.session.expire_all       webapp.db.
 webapp.db.session.close_all        webapp.db.session.expunge          webapp.db.session.new              webapp.db.session.session_factory
 webapp.db.session.commit           webapp.db.session.expunge_all      webapp.db.session.no_autoflush
 webapp.db.session.configure        webapp.db.session.flush            webapp.db.session.object_session
-```
+{% endhighlight %}
 Neat. And look at that -- `.close()` and `.close_all()`. Those look like they might be able to solve our Postgres locking problem. Let's see what they do, through a little example:
 
-```python
+{% highlight python %}
 In [33]: daniel
 Out[33]: <Participant 'daniel'>
 
@@ -220,13 +220,13 @@ Out[36]: [<Participant u'daniel'>]
 
 In [37]: insp.persistent
 Out[137]: True
-```
+{% endhighlight %}
 
 Very cool. I saved myself to the database, and retrieved myself using the `.query.all()` method that my `Participant` model inherited from `db.Model`.
 
 Now let's try dropping the table (fingers crossed):
 
-```python
+{% highlight python %}
 In [138]: webapp.db.drop_all()
 2014-07-29 18:25:49,958 INFO sqlalchemy.engine.base.Engine select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname=current_schema() and relname=%(name)s
 2014-07-29 18:25:49,958 INFO sqlalchemy.engine.base.Engine {'name': u'session'}
@@ -238,11 +238,11 @@ DROP TABLE session
 # ?? Looks like it's locked.
 ^C^C^C^C^C^C^C^C^C^C^C
 # Yep. Very locked.
-```
+{% endhighlight %}
 
 Alright, time to restart Postgres... let's try this again.
 
-```python
+{% highlight python %}
 In [1]: import webapp
 
 In [2]: from webapp.models import Participant
@@ -290,7 +290,7 @@ DROP TABLE participant
 2014-07-29 20:14:17,835 INFO sqlalchemy.engine.base.Engine COMMIT
 
 In [14]:
-```
+{% endhighlight %}
 
 SUCCESS!!! It seems like all that was missing was a call to the session telling it to close the connection.
 
@@ -298,7 +298,7 @@ SUCCESS!!! It seems like all that was missing was a call to the session telling 
 
 Let's make some changes to our test file and see what we've got:
 
-```python
+{% highlight python %}
 import pdb # pdb.set_trace()
 import unittest
 import random
@@ -321,7 +321,7 @@ class TestParticipant(unittest.TestCase):
         assert participant in participants
         print "NUMBER OF ENTRIES:"
         print len(participants)
-```
+{% endhighlight %}
 
 Now, I'm sure there are better ways to write this test file -- I struggle with writing test files (although not the tests themselves), because I'm always struggling to balance the desire to keep the code DRY, to keep the tests fast, and to ensure that they're adequately rigorous. It seems like one of those "pick two of three" situations. Anyway, the subject for another post.
 
@@ -334,19 +334,20 @@ As an aside, I wonder if this "Postgres locking" situation is worth making a pul
 *-- Update --*
 Database troubles aren't over -- if you find yourself struggling with an error like this:
 
-```
+{% highlight bash %}
 E       InternalError: (InternalError) cannot drop table "group" because other objects depend on it
 E       DETAIL:  constraint trial_groups_group_id_fkey on table trial_groups depends on table "group"
 E       HINT:  Use DROP ... CASCADE to drop the dependent objects too.
 E        '\nDROP TABLE "group"' {}
-```
+{% endhighlight %}
+
 There's a great blog post addressing the issue [here](http://www.mbeckler.org/blog/?p=218).
 
 *-- Update 2 --*
 
 Apparently `session.close()` wasn't my only option. Compare with `session.remove()`
 
-```python
+{% highlight python %}
 In [13]: db.session.close?
 Type:        instancemethod
 String form: <bound method scoped_session.do of <sqlalchemy.orm.scoping.scoped_session object at 0x10438b0d0>>
@@ -369,4 +370,4 @@ specifically are rolled back.  The :class:`.Session` is then
 discarded.   Upon next usage within the same scope,
 the :class:`.scoped_session` will produce a new
 :class:`.Session` object.
-```
+{% endhighlight %}

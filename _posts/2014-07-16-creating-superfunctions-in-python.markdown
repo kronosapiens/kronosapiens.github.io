@@ -34,8 +34,7 @@ Enter **function attributes**. Python allows you to assign arbitrary attributes 
 
 My preferred syntax looks something like this:
 
-```python
-
+{% highlight python %}
 def PAOFFSET(unigrams, df=True, agg=True, metrics=['O0']):
     unigrams = clean(unigrams, metrics)
     analysis = unigrams['ND_Offset']
@@ -43,8 +42,7 @@ def PAOFFSET(unigrams, df=True, agg=True, metrics=['O0']):
     return analysis
 PAOFFSET.q = 1
 PAOFFSET.trait = 'ND_Offset'
-
-```
+{% endhighlight %}
 
 In this case, the `PAOFFSET` function has been given two attributes. The first, `q`, represents the size of the QGram that this function expects to recieves as an argument (in this case, one, creating unigrams). The second, `ND_Offset`, refers to the column in the data that this function is designed to analyze.
 

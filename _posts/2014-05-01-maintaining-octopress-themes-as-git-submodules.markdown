@@ -13,12 +13,13 @@ I've spent much of this week converting my technical blog onto Octopress, away f
 
 One of the first challenges I tackled was integrating a third-party theme, using git submodules. Octopress themes are generally contained within their own repos, and generally have four top-level components:
 
-```
+{% highlight bash %}
 sass/
 source/
 .editorconfig
 README.md
-```
+{% endhighlight %}
+
 The substance of the theme is stored in the first two directories, `sass` and `source`. `sass` contains all of the styling for the theme, including the base bootstrap styles, custom theme styles, and placeholders for user-added styles. `source` contains all of the html, page templates, and javascript files for the theme.
 
 <!--more-->
@@ -79,14 +80,14 @@ To emulate this workflow, you'll need to set up a second remote pointing to the 
 
 For example, here is my remote configuration for the MediumFox theme:
 
-```console
+{% highlight bash %}
 [14:25:07] (master) MediumFox
 ƒ: git remote -v
 origin	git@github.com:kronosapiens/MediumFox.git (fetch)
 origin	git@github.com:kronosapiens/MediumFox.git (push)
 sevenadrian	git@github.com:sevenadrian/MediumFox.git (fetch)
 sevenadrian	git@github.com:sevenadrian/MediumFox.git (push)
-```
+{% endhighlight %}
 
 In this example, I push all my edits to `origin`, and pull theme updates from `sevenadrian`.
 

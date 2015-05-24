@@ -34,13 +34,13 @@ Easy enough. Now, create a directory for all your environments to go. This can b
 
 I created a top-level directory in my `code` directory called `environments`, where I plan on keeping all of the virtual environments I create for any of my projects.
 
-```
+{% highlight java %}
 code/
 	personal/
 	projects/
 	work/
 	environments/
-```
+{% endhighlight %}
 
 Now, let's actually create an environment.
 
@@ -48,11 +48,11 @@ Now, let's actually create an environment.
 
 You should see some output that looks like this:
 
-```
+{% highlight bash %}
 Running virtualenv with interpreter /usr/bin/python
 New python executable in env_one/bin/python
 Installing setuptools, pip...done.
-```
+{% endhighlight %}
 
 You may be wondering about those options I passed. The `-p` flag specifies which version of Python to use to create the environment. Odds are you'll be fine without it -- I did a somewhat wonky install of the Enthought IPython Distribution and made some sort of default, so virtualenv kept crashing until I explicitly said to use regular old `python`.
 
@@ -60,7 +60,7 @@ By default, virtualenv will look in the active virtual environment for a package
 
 Alright! We now have our very own virtual environment! Let's take a look at what we've made:
 
-```
+{% highlight java %}
 code/
 	environments/
 		env_one/
@@ -69,7 +69,7 @@ code/
 			lib/
 			.Python
 
-```
+{% endhighlight %}
 
 The `/bin` directory contains the binaries, like `pip` and `python`, which you'll actually be running when you use this environment. It also contains an executable python filed called `activate`, which we'll talk about in a second.
 
@@ -79,7 +79,7 @@ The `/include` directory contains a directory called `python2.7/`, which contain
 
 Here's what's inside `site-packages` to start:
 
-```
+{% highlight java %}
 site-packages/
 	_markerlib/
 	pip/
@@ -88,7 +88,7 @@ site-packages/
 	setuptools-2.6.dist-info/
 	easy_install.py
 	pkg_resources.py
-```
+{% endhighlight %}
 
 Pretty bare-bones, huh?
 
@@ -114,10 +114,10 @@ The AWESOME way is to use the built-in `activate` method, as follows:
 
 This will do some magic and change your `$PATH` variable to point to the virtual environment *before anything else.* Further, you can `cd` around your hardrive and call files from anywhere without "leaving" the virtual environment. You also get a cool prompt, which I think is the best part:
 
-```
+{% highlight bash %}
 (env_one)[16:25:01] environments
 ƒ:
-```
+{% endhighlight %}
 (the ƒ is my own flavor)
 
 You can "leave" the environment by entering the `deactivate` command, which will restore the `$PATH` variable and put you back in your global environment.
@@ -126,7 +126,7 @@ You can "leave" the environment by entering the `deactivate` command, which will
 
 Now, let's figure out how to install new packages. Out of the box, a virtual environment is pretty bare-bones:
 
-```
+{% highlight bash %}
 [16:46:59] environments
 ƒ: source pm_app/bin/activate
 (pm_app)[16:47:07] environments
@@ -147,8 +147,7 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ImportError: No module named matplotlib
 >>>
-
-```
+{% endhighlight %}
 
 Heartbreaking.
 
@@ -156,7 +155,7 @@ We're going to talk about installing packages in a second, but first let's zoom 
 
 Here's python's `sys.path` in my global environment:
 
-```
+{% highlight python %}
 Python 2.7.5 (default, Mar  9 2014, 22:15:05)
 [GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.0.68)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
@@ -188,11 +187,11 @@ Type "help", "copyright", "credits" or "license" for more information.
  '/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/PyObjC',
  '/Library/Python/2.7/site-packages']
 >>>
-```
+{% endhighlight %}
 
 Here's the same thing, inside of my virtual environment:
 
-```
+{% highlight python %}
 Python 2.7.5 (default, Mar  9 2014, 22:15:05)
 [GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.0.68)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
@@ -217,7 +216,7 @@ Type "help", "copyright", "credits" or "license" for more information.
  '/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-mac',
  '/System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/plat-mac/lib-scriptpackages',
  '/Users/kronosapiens/Dropbox/Documents/Development/code/environments/pm_app/lib/python2.7/site-packages']
-```
+{% endhighlight %}
 
 Notice how the all the entries pointing to `/Library/` are totally gone, and the first entries are all pointing towards the directory containing my virtual env? That's how the magic happens.
 
@@ -227,7 +226,7 @@ We're using pandas and numpy pretty heavily at ParagonMeasure, so we need to get
 
 Let's try the obvious:
 
-```
+{% highlight bash %}
 (env_one)[16:57:33] environments
 ƒ: pip install numpy
 Downloading/unpacking numpy
@@ -237,21 +236,21 @@ Successfully installed numpy
 Cleaning up...
 (env_one)[16:58:14] environments
 ƒ:
-```
+{% endhighlight %}
 
 Well, gosh.
 
-```
+{% highlight python %}
 Python 2.7.5 (default, Mar  9 2014, 22:15:05)
 [GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.0.68)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import numpy
 >>>
-```
+{% endhighlight %}
 
 Let's take a look in our `env_one/lib/site-packages` folder and see if anything looks different.
 
-```
+{% highlight bash %}
 site-packages/
 	_markerlib/
 	numpy/
@@ -262,20 +261,20 @@ site-packages/
 	setuptools-2.6.dist-info/
 	easy_install.py
 	pkg_resources.py
-```
+{% endhighlight %}
 
 WELL HOW ABOUT THAT.
 
 Another way of looking at your packages is through the `pip list` command:
 
-```
+{% highlight bash %}
 (env_one)[17:22:45] environments
 ƒ: pip list
 numpy (1.8.1)
 pip (1.5.6)
 setuptools (3.6)
 wsgiref (0.1.2)
-```
+{% endhighlight %}
 
 ## Duplicating your environment
 
@@ -283,26 +282,26 @@ So, you've gotten your virtual environment set up just the way you like it. All 
 
 Via a requirements file. You can create one by entering the following:
 
-```
+{% highlight bash %}
 (env_one)[17:22:45] environments
 ƒ: pip freeze > requirements.txt`
-```
+{% endhighlight %}
 
 This will write a text file containing all of the packages and versions installed in that environment, in a special format that pip can re-interpret later. It'll look something like this:
 
-```
+{% highlight bash %}
 (env_one)[17:29:17] environments
 ƒ: pip freeze
 numpy==1.8.1
 wsgiref==0.1.2
-```
+{% endhighlight %}
 
 You can recreate that environment elsewhere by entering the following (assuming you've activated that other environment):
 
-```
+{% highlight bash %}
 (env_two)[17:22:45] environments
 ƒ: pip install -r requirements.txt
-```
+{% endhighlight %}
 
 You should see pip go ahead and start installing any missing packages. You can edit requirements.txt directly to add packages or change version numbers. Just know that If you delete a package from requirements.txt, virtualenv *won't* uninstall it when you run `pip install -r requirements.txt`.
 
@@ -316,7 +315,7 @@ Shout out to Jamie Matthews' [excellent post](http://www.dabapps.com/blog/introd
 
 The ultimate test. I've created an environment called `pm_app` and have installed only the packages that the ParagonMeasure backend should require. I'm about to `cd` back into the main repository and run the test suite...
 
-```
+{% highlight bash %}
 (pm_app)[18:06:23] (master*) backend
 ƒ: pip list
 backports.ssl-match-hostname (3.4.0.2)
@@ -350,6 +349,6 @@ tests/test_subject.py .......................
 tests/test_visualizer.py ..
 
 ============ 77 passed in 45.14 seconds ============
-```
+{% endhighlight %}
 
 YES!

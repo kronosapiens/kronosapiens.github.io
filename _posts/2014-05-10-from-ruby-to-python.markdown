@@ -52,30 +52,30 @@ If a function takes no arguments, then Python is similar to JavaScript in that y
 
 In Ruby, we would iterate over some array using the following syntax:
 
-```ruby
+{% highlight ruby %}
 array_of_things.each {|element| do_stuff_to(element) }
-```
+{% endhighlight %}
 
 or
 
-```ruby
+{% highlight ruby %}
 array_of_things.each do |element|
 	do_stuff_to(element)
 end
-```
+{% endhighlight %}
 
 Which is fine. Python, however, lets us do things like this:
 
-```python
+{% highlight python %}
 for element in array_of_things:
 		do_stuff_to(element)
-```
+{% endhighlight %}
 
 or this
 
-```python
+{% highlight python %}
 do_stuff_to(element) for element in array_of_things
-```
+{% endhighlight %}
 
 Wow!
 
@@ -83,29 +83,29 @@ Wow!
 
 One of the ways that Ruby lets us filter arrays is through the `select` and `reject` methods, which requires us to pass a block which evaluates some element(s) of the array and returns either `True` or `False`. Example:
 
-```ruby
+{% highlight ruby %}
 evens = [1, 2, 3, 4, 5, 6].select { |num| num % 2 == 0 }
-```
+{% endhighlight %}
 
 Python lets us do this via its 'list comprehension' syntax, as follows:
 
-```python
+{% highlight python %}
 evens = [num for num in range(1,7) if num % 2 == 0]
-```
+{% endhighlight %}
 
 One interesting feature of the list comprehension syntax is that it allows us to modify the variable after the conditional check but before inserting it into the array. For example:
 
-```python
+{% highlight python %}
 evens_squared = [num**2 for num in range(1,7) if num % 2 == 0]
-```
+{% endhighlight %}
 
 To accomplish the same in Ruby (I believe) would require us to call `map` on the results of `select` or `reject`, while Python allows us to perform both operations at once.
 
 Of course, Python also comes with a vanilla `filter` function, which accepts a function and an object to filter:
 
-```python
+{% highlight python %}
 evens = filter(lambda num: num % 2 == 0, range(1,7))
-```
+{% endhighlight %}
 
 Note the support for lambda (λ)!
 
@@ -117,10 +117,9 @@ Ruby handles inheritance via the `<` operator, like so: `class Dog < Mammal`, wh
 
 In Ruby, we access overridden methods of the parent class by simply calling `super` within the overriding method. In Python, the syntax is slightly more complicated:
 
-```
-```python
+{% highlight python %}
 super(ChildClass, self).overriden_method(all_arguments_except_self)
-```
+{% endhighlight %}
 
 #### Initialization
 
@@ -143,23 +142,23 @@ Ruby and Python differ in that in Ruby, class variables are *shared* between ind
 
 In Ruby, we can interpolate the results of method calls into strings using the following syntax:
 
-```ruby
+{% highlight ruby %}
 "The class of this object is #{self.class}, and 5 + 8 is #{5+8}"
-```
+{% endhighlight %}
 
 Python doesn't support this kind of in-string interpolation, however. One option is to concatenate strings and values (similar to how we construct strings in JavaScript). Another option, however, is to use the following syntax:
 
-```python
+{% highlight python %}
 "The class of this object is %s, and 5 + 8 is %s" % (self.class, 5 + 8)
-```
+{% endhighlight %}
 
 Here, Python will interpret the commands being passed after the `%` operator and insert them in the place of the `%s` placeholders.
 
 Yet another option:
 
-```python
+{% highlight python %}
 "The class of this object is {0}, and 5 + 8 is {1}".format(self.class, 5+8)
-```
+{% endhighlight %}
 
 It seems as though Python will interpret the commands that are passed as arguments to `format`, and then insert them into the string based on the index numbers provided within the curly braces.
 
@@ -172,7 +171,7 @@ Writing simple tests in Python is fairly straightforward. Python comes with a bu
 
 File: `test_file.py`
 
-```python
+{% highlight python %}
 import unittest
 
 #Here's our "unit".
@@ -193,7 +192,7 @@ def main():
 
 if __name__ == 'test_file':
     main()
-```
+{% endhighlight %}
 
 To set up a test file, you need to:
 
@@ -221,9 +220,9 @@ Ruby supports `unless` in lieu of `if not`, while Python only supports `if not`.
 
 To access subarrays, Ruby provides the [`.slice()`](http://www.ruby-doc.org/core-2.1.1/Array.html#method-i-slice). Python has this built in to the list object, via the following syntax:
 
-```python
+{% highlight python %}
 list[starting_index:ending_index:stride]
-```
+{% endhighlight %}
 
 With `starting_index` representing where in the list you'd like to begin the slice, `ending_index` being where you'd like to end the slice, and `stride` being the distance between elements you would like to select (providing a negative value for `stride` will give you the values in reverse!)
 
@@ -233,10 +232,10 @@ Ruby provides `put` and `puts` to print to the screen. `puts` automatically adds
 
 Python provides only the `print` command, but allows us to include a comma `,` after the argument to be printed, which will cause Python to not insert a newline. Thus,
 
-```python
+{% highlight python %}
 print 1, 2,
 print 3, 4
-```
+{% endhighlight %}
 
 Will output to `1 2 3 4`
 

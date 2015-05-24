@@ -95,18 +95,18 @@ I'll go over the examples one-by-one and try to unpack what's going on.
 
 From the Flask [docs](http://flask.pocoo.org/docs/appcontext/#app-context):
 
-```python
+{% highlight python %}
 from flask import Flask, current_app
 
 app = Flask(__name__)
 with app.app_context():
     # within this block, current_app points to app.
     print current_app.name
-```
+{% endhighlight %}
 
 From a testing example in *Flask Web Development*:
 
-```python
+{% highlight python %}
 import unittest
 from app import create_app, db
 from app.models import User, Role
@@ -128,14 +128,14 @@ class FlaskClientTestCase(unittest.TestCase):
 	def test_home_page(self):
 		response = self.client.get(url_for('main.index))
 		self.assertTrue('Stranger' in response.get_data(as_text=True)
-```
+{% endhighlight %}
 
 Finally, a third syntax:
 
-```python
+{% highlight python %}
 with app.test_client() as client:
     resp = client.get('/foo')
-```
+{% endhighlight %}
 Here, we pass in `app.test_client()` in as `client`.
 
 Poking around the [docs](http://flask.pocoo.org/docs/reqcontext/#request-context) some more, I found this clarifying nugget:
@@ -150,7 +150,7 @@ But in seriousness, this is a *very* helpful clarification. Some settings (such 
 
 As a counterexample, let's look at some of my pre-enlightenment code. From my integration test file, `tests/test_integration.py`:
 
-```python
+{% highlight python %}
 from flask import request
 import unittest
 
@@ -174,11 +174,11 @@ class TestIntegration(unittest.TestCase):
         with app.test_request_context('/?name=Daniel'):
             assert request.path == '/'
             assert request.args['name'] == 'Daniel'
-```
+{% endhighlight %}
 
 Amusingly, both of these tests passed, which made it hard for me to understand why the more elaborate setups discussed above are necessary. Here are the view functions that I was testing:
 
-```python
+{% highlight python %}
 @app.route('/')
 def root():
     return 'Hello world! What a beautiful day for research!'
@@ -186,16 +186,16 @@ def root():
 @app.route('/<name>')
 def name(name):
     return 'Hello {0}! What a beautiful day for research!'.format(name)
-```
+{% endhighlight %}
 
 Things became clear to me when I began trying to test more involved views. These two views are almost entirely self-contained -- they never access `g`, or the database, or anything. Further, in my utter ignorance, I didn't even realize that `test_params` *never actually made it to the views*. This became clear to me when I tried this:
 
-```python
+{% highlight python %}
 @app.route('/<name>')
 def name(name):
 	import ipdb; ipdb.set_trace()
     return 'Hello {0}! What a beautiful day for research!'.format(name)
-```
+{% endhighlight %}
 
 *And I never even hit the binding.*
 
@@ -211,18 +211,18 @@ Ok, time to set a goal: to be able to retrieve a model from my database. Let's s
 
 Let's start off by defining a view function in `webapp/views.py` to display a single research trial:
 
-```python
+{% highlight python %}
 @app.route('trials/<name>')
 def trial(name):
     trial = Trial.query.filter({'name': name}) # Mongo!
     if trial is None:
         return 'Trial not found!'
     return 'Trial found: {0}, {1}'.format(trial.name, trial.mongo_id)
-```
+{% endhighlight %}
 
 And writing a test. For brevity, I'm truncating the two tests I included earlier, but keeping the `setUp()` and `tearDown()` methods.
 
-```python
+{% highlight python %}
 from flask import request
 import unittest
 
@@ -243,7 +243,7 @@ class TestIntegration(unittest.TestCase):
         Trial('Parkinsons').save()
         rv = self.app.get('/trials/Parkinsons')
         assert 'Trial found: Parkinsons' in rv.data
-```
+{% endhighlight %}
 
 I run it... and it works. Well, that's great. Turns out my janky setup is actually... ok? This is strange. I'm not popping or pushing or withing or anything.
 
@@ -251,17 +251,17 @@ Well, might as well keep exploring. I've formally imported `g`, `current_app`, `
 
 `g`:
 
-```python
+{% highlight python %}
 ipdb> g
 <flask.g of 'webapp'>
 ipdb> g.get
 <bound method _AppCtxGlobals.get of <flask.g of 'webapp'>>
-```
+{% endhighlight %}
 I tab-completed `g.` and got exactly *one* method, `get`. I'm not sure what values are currently set on `g`, because it doesn't respond to `.keys()`. What a mystery.
 
 `current_app`:
 
-```python
+{% highlight python %}
 ipdb> current_app
 <Flask 'webapp'>
 ipdb> type(current_app)
@@ -271,24 +271,24 @@ ipdb> myapp
 <Flask 'webapp'>
 ipdb> type(myapp)
 <class 'flask.app.Flask'>
-```
+{% endhighlight %}
 About what I expected.
 
 `session`:
 
-```python
+{% highlight python %}
 ipdb> session
 <SecureCookieSession {}>
 ipdb> session.modified
 False
 ipdb> session.items()
 []
-```
+{% endhighlight %}
 Not much going on here just yet.
 
 `request`:
 
-```python
+{% highlight python %}
 ipdb> request
 <Request 'http://localhost/trials/Parkinsons' [GET]>
 ipdb> request.view_args
@@ -299,7 +299,7 @@ ipdb> request.url
 u'http://localhost/trials/Parkinsons'
 ipdb> request.headers
 EnvironHeaders([('Host', u'localhost'), ('Content-Length', u'0'), ('Content-Type', u'')])
-```
+{% endhighlight %}
 About right. Groovy. Those work.
 
 So why is my terrible test suite working? I'm distraught. Where have I entered the correct context? Miguel's example from above is the same as mine, except he creates and pushes an app context before creating his test client, while I don't. Yet I'm able to access the database just fine, and it seems like my contexts are being generated correctly.
@@ -312,12 +312,12 @@ Ok, I figured out at least one way that my testing setup differs from Miguel's.
 
 I threw a binding right after my `assert` statement and tried to see what variables I could find:
 
-```python
+{% highlight python %}
 ipdb> flask.g
 <LocalProxy unbound>
 ipdb> flask.current_app
 <LocalProxy unbound>
-```
+{% endhighlight %}
 As I thought. I'm using the Flask test client for my request, which means that while the *request* is made as it should be, and *within the request* (within the view functions, etc) all of the context variables exist, the minute the request finishes and the response is returned, those variables go away. I can make assertions only about the value of `response`.
 
 In Miguel's version, on the other hand, since he pushes and pops the application context inside of `setUp()` and `tearDown()`, he has access to `g` and `current_app` from anywhere in his test, and can make assertions about them.
@@ -328,9 +328,9 @@ A bit more strangeness. Flask gives you a helper function, `url_for()`, which ta
 
 I tried to switch my test suite away from hard-coded URLs and towards `url_for()`, but got the following error:
 
-```python
+{% highlight python %}
 RuntimeError: Application was not able to create a URL adapter for request independent URL generation. You might be able to fix this by setting the SERVER_NAME config variable.
-```
+{% endhighlight %}
 
 I pop on over to the Flask [config docs](http://flask.pocoo.org/docs/config/), and see this, under the description of the `SERVER_NAME` variable:
 
@@ -346,10 +346,10 @@ Anyway, life's mysteries.
 
 Getting back into the office today, I kept working on the test suite. I was still getting bugs with `url_for()`, so I threw in a binding and poked around:
 
-```python
+{% highlight python %}
 ipdb> url_for('trials')
 'http://http://localhost:5000//trials'
-```
+{% endhighlight %}
 
 Hmm. Definitely more `http://` and a little more `/` than there needs to be. It seems like `SERVER_NAME` should be set to something more like `localhost:5000`. Let's try.
 

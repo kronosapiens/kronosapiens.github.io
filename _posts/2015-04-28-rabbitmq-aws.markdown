@@ -49,14 +49,14 @@ Note that RabbitMQ does not actually *execute* tasks. Rather, it is the mechanis
 
 The first thing we will do is install RabbitMQ on our jobs instance. SSH into your instance and run the following:
 
-```bash
+{% highlight bash %}
 ubuntu@jobs:~$ sudo apt-get install rabbitmq-server
-```
+{% endhighlight %}
 
 
 Now, lets check to make sure that RabbitMQ is up and running:
 
-```bash
+{% highlight bash %}
 ubuntu@jobs:~$ sudo rabbitmqctl status
 Status of node 'rabbit@jobs' ...
 [{pid,1087},
@@ -94,7 +94,7 @@ Status of node 'rabbit@jobs' ...
  {run_queue,0},
  {uptime,2732}]
 ...done.
-```
+{% endhighlight %}
 
 Excellent.
 
@@ -102,34 +102,34 @@ Let's set up our user. RabbitMQ comes with a "guest" user out of the box, but th
 
 The easiest way to configure RabbitMQ to accept external requests is to create a new user. Go ahead and run the following (angle brackets denote user values):
 
-```bash
+{% highlight bash %}
 ubuntu@jobs:~$ sudo rabbitmqctl add_user <username> <password>
 ubuntu@jobs:~$ sudo rabbitmqctl set_permissions -p / <username> ".*" ".*" ".*"
-```
+{% endhighlight %}
 
 This will create a new user on the RabbitMQ server. We will use this username and password to configure the app-layer instance to send messages to Rabbit.
 
 Let's check to make sure the user was created correctly:
 
-```bash
+{% highlight bash %}
 ubuntu@jobs:~$ sudo rabbitmqctl list_users
 Listing users ...
 guest   [administrator]
 <username>  []
 ...done.
-```
+{% endhighlight %}
 
 Finally, let's start our first worker process. A RabbitMQ server is useless unless there are workers (processes) configured to consume its messages.
 
 Navigate to the root directory of your project (if you're not there already), and run the following:
 
-```bash
+{% highlight bash %}
 ubuntu@jobs:~$/you_proj$ celery -A <your_proj> worker -l INFO
-```
+{% endhighlight %}
 
 You should see an output like this:
 
-```bash
+{% highlight bash %}
  -------------- celery@jobs v3.1.17 (Cipater)
 ---- **** -----
 --- * ***  * -- Linux-3.13.0-24-generic-x86_64-with-Ubuntu-14.04-trusty
@@ -151,7 +151,7 @@ You should see an output like this:
 [2015-05-15 03:43:00,740: INFO/MainProcess] mingle: sync with no nodes
 [2015-05-15 03:43:00,740: INFO/MainProcess] mingle: sync complete
 [2015-05-15 03:43:00,785: WARNING/MainProcess] celery@jobs ready.
-```
+{% endhighlight %}
 
 This is the celery worker outputting to STDOUT. At this moment, any message received by the RabbitMQ server will be consumed by this worker, and the result printed to the screen. In production, you will wanto to run these workers in the background. You can background a task in a simple way by appending `&` to the command. For a more complete solution, it is worth using a tool such as [supervisor](http://supervisord.org/).
 
@@ -240,9 +240,9 @@ Now we turn away from AWS and back to our actual app.
 
 Let's crack open our `settings.py` file and add some Celery:
 
-```python
+{% highlight python %}
 BROKER_URL = 'amqp://username:password@jobs.yoursite.com:5762//'
-```
+{% endhighlight %}
 
 The final slash in that URI refers to a RabbitMQ virtual host. The default vhost is `/`, hence the `//`, but this could in theory be different for more advanced deployments. Don't worry about this right now, but remember it in case you come across something different in the future.
 
@@ -250,7 +250,7 @@ That's all you'll need to teach Celery to talk to Rabbit. The nice thing is that
 
 Celery itself will be defined in a file we'll call `your_app/celery.py`, which will look something like this:
 
-```python
+{% highlight python %}
 from __future__ import absolute_import
 import os
 
@@ -259,26 +259,27 @@ from celery import Celery
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_app.settings')
 app = Celery('your_app')
 app.config_from_object('django.conf:settings')
-```
+{% endhighlight %}
+
 Our Celery tasks themselves will be defined in a file called `tasks.py`:
 
-```python
+{% highlight python %}
 from your_app.celery import app as celery
 
 @celery.task
 def add(x, y):
     return x + y
-```
+{% endhighlight %}
 
 You can then call these tasks:
 
-```python
+{% highlight python %}
 >>> import tasks
 >>> tasks.add(3,5)
 8
 >>> tasks.delay.add(3,5)
 <AsyncResult: 2e031f3f-5284-48cb-bb57-fcef3638c746>
-```
+{% endhighlight %}
 
 What has happened here is that the `@celery.task` decorator has given `add` the `delay` property, a function which wraps the Celery API to allow for easy queuing of tasks. While calling `your_func.(*args, **kwargs)` will execute the task immediately, calling `your_func.delay(*args, **kwargs)` will queue the same task for later execution.
 
@@ -308,7 +309,7 @@ We want this system to be resilient to failure and to operator error, meaning we
 
 Fortunately, all of this can be accomplished via Chef recipes! Here are the two cookbooks we will be considering:
 
-```
+{% highlight java %}
 cookbooks/
 
   rabbitmq/
@@ -321,13 +322,13 @@ cookbooks/
     recipes/
       default.rb
       celery.rb
-```
+{% endhighlight %}
 
 First, let's consider the one-recipe cookbook for RabbitMQ:
 
 #### `cookbooks/rabbitmq/recipes/default.rb`
 
-```ruby
+{% highlight ruby %}
 package 'rabbitmq-server'
 
 service 'rabbitmq-server' do
@@ -358,7 +359,7 @@ end
 execute "set-permissions" do
    command 'sudo rabbitmqctl set_permissions -p / <username> ".*" ".*" ".*"'
 end
-```
+{% endhighlight %}
 
 Here we have four "resources" (the individual actions/goal-states that a recipe will take/bring about). These resources, do, in order:
 
@@ -374,7 +375,7 @@ Now, let's turn to the recipes for managing the Celery workers. Here, we seen ex
 
 Peeking into `cookbooks/supervisor/attributes/default.rb`, we discover a settings module used to store configuration for the entire cookbook:
 
-```ruby
+~~~ruby
 default['supervisor']['unix_http_server']['chmod'] = '700'
 default['supervisor']['unix_http_server']['chown'] = 'root:root'
 default['supervisor']['inet_port'] = nil
@@ -397,11 +398,11 @@ default['celery']['workdir'] = "<path/to/your_proj>"
 default['celery']['log_directory'] = "/var/log/celery"
 default['celery']['log_path'] = "/var/log/celery/worker.log"
 default['celery']['log_level'] = "INFO"
-```
+~~~
 
 Turning to `supervisor/recipes/celery.rb`, we see the specific resources controlling Celery:
 
-```ruby
+{% highlight ruby %}
 # Add the celery log folder
 directory node['celery']['log_directory'] do
   owner node[:user]
@@ -430,7 +431,7 @@ supervisor_service "celery2" do
   stdout_logfile "/var/log/celery/worker.log"
   stderr_logfile "/var/log/celery/worker.log"
 end
-```
+{% endhighlight %}
 
 This recipe, when run, will create the Celery log folder (if it does not exist), and start or restart two Celery workers process under Supervisor's control. Notice how `worker1` is set up to consume only from the `high` priority queue, while `worker2` is set up to consume from both `high` and `default` priority queues. Celery does not support explicit queue priority, but by allocating workers in this way, you can ensure that `high` priority tasks are completed faster than `default` priority tasks (as `high` priority tasks will always have one dedicated worker, plus a second worker splitting time between `high` and `default`).
 
@@ -454,43 +455,43 @@ There are a number of commands and tools you can use to help you get a view on t
 
 Worker statuses:
 
-```bash
+{% highlight bash %}
 ubuntu@jobs:/your_proj$ celery -A <your_proj> status
 celery@worker1: OK
 
 1 node online.
-```
+{% endhighlight %}
 
 Listing worker processes:
 
-```bash
+{% highlight bash %}
 ubuntu@jobs:/your_proj$ ps -aux | grep celery
 ubuntu    7493  0.1  1.5 156712 61144 ?        S    14:14   0:01 /usr/bin/python /usr/local/bin/celery -A <your_proj> worker -l INFO -n worker1
 ubuntu    9937  0.0  0.0  10460   932 pts/0    S+   14:32   0:00 grep --color=auto celery
-```
+{% endhighlight %}
 
 Listing queues, number of messages, and number of workers consuming from them:
 
-```
+{% highlight bash %}
 ubuntu@jobs:/your_proj$ sudo rabbitmqctl list_queues name messages consumers
 Listing queues ...
 default 0   1
 celery@worker1.celery.pidbox    0   1
 celeryev.d316d5d8-3a7c-4a35-9008-568844baec08   0   1
 ...done.
-```
+{% endhighlight %}
 
 Also highly recommended is "flower" (pronounced *flow*-er), a [web-based dashboard](http://celery.readthedocs.org/en/latest/userguide/monitoring.html#flower-real-time-celery-web-monitor) for reviewing workers, recent tasks, and performance metrics. To start flower, run the following command:
 
-```bash
+{% highlight bash %}
 ubuntu@jobs:/your_proj$ celery -A  <your_proj> flower --address=0.0.0.0 --port=5555
-```
+{% endhighlight %}
 
 Assuming you are running this command from an EC2 instance (and that the instance is able to receive external http requests), you can access flower (specifically, view the last 100 tasks) via a web browser via the following URI:
 
-```
+{% highlight bash %}
 http://<instance IP address>:5555/tasks?limit=100
-```
+{% endhighlight %}
 
 ## Final Thoughts
 

@@ -16,7 +16,7 @@ I have been having an embarassingly hard time getting a handle on package import
 
 First, let's start with a project I'm calling 'backend'. Here's the file structure:
 
-```
+{% highlight java %}
 backend/
 	backend/
 		__init__.py
@@ -24,14 +24,14 @@ backend/
 		tests/
 		__init__.py
 			test_analyzer.py
-```
+{% endhighlight %}
 
 And my `PYTHONPATH`:
 
-```
+{% highlight bash %}
 ƒ: echo $PYTHONPATH
 /Users/kronosapiens/Dropbox/Documents/Development/code/jobs/paragon/backend/:
-```
+{% endhighlight %}
 
 <!--more-->
 
@@ -39,122 +39,123 @@ So, my `PYTHONPATH` is pointing to the directory *containing* the backend packag
 
 Let's open up a terminal and play around:
 
-```python
+{% highlight python %}
 >>> import backend
 >>> backend
 <module 'backend' from 'backend/__init__.pyc'>
-```
+{% endhighlight %}
 
 Very cool. Now let's `cd` into the `backend` package and see if anything changes:
 
-```python
+{% highlight python %}
 >>> import backend
 >>> backend
 <module 'backend' from '/Users/kronosapiens/Dropbox/Documents/Development/code/jobs/paragon/backend/backend/__init__.pyc'>
-```
+{% endhighlight %}
 
 That's curious.
 
 Let's see what happens when we remove the path to the project from our `PYTHONPATH`.
 
-```
+{% highlight bash %}
 ƒ: echo $PYTHONPATH
+{% endhighlight %}
 
-```
 And into Python, from `backend/`:
 
-```python
+{% highlight python %}
 >>> import backend
 >>> backend
 <module 'backend' from 'backend/__init__.pyc'>
-```
+{% endhighlight %}
 
 And, from `backend/backend`:
 
-```
+{% highlight python %}
 >>> import backend
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ImportError: No module named backend
-```
+{% endhighlight %}
 
 Ah. Now we're getting somewhere. So you can import a package that is within your current working directory without having that package in your `PYTHONPATH`, as a local import. From anywhere else, you'll need your `PYTHONPATH` to point to it.
 
 To double-check, let's `cd` all the way to `/` and try to import:
 
-```
+{% highlight python %}
 >>> import backend
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ImportError: No module named backend
-```
+{% endhighlight %}
+
 So, a package must be *contained* in a directory on your `PYTHONPATH` to be able to import it from anywhere other than the directory immediately above it.
 
 To verify, let's try changing our `PYTHONPATH`:
 
-```
+{% highlight bash %}
 ƒ: echo $PYTHONPATH
 /Users/kronosapiens/Dropbox/Documents/Development/code/jobs/paragon/backend/backend:
-```
+{% endhighlight %}
 Here, we've pointed it to the package itself, not to the containing directory. Let's try importing it from `backend/`:
 
-```python
+{% highlight python %}
 >>> import backend
 >>> backend
 <module 'backend' from 'backend/__init__.pyc'>
-```
+{% endhighlight %}
 
 and from `backend/backend/`:
 
-```python
+{% highlight python %}
 >>> import backend
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ImportError: No module named backend
-```
+{% endhighlight %}
 
 and from `/`:
 
-```
+{% highlight python %}
 >>> import backend
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ImportError: No module named backend
-```
+{% endhighlight %}
 Makes sense. But what happens if we `cd` up one directory above `backend/`?
 
-```
+{% highlight bash %}
 ƒ: pwd
 /Users/kronosapiens/Dropbox/Documents/Development/code/jobs/paragon
-```
+{% endhighlight %}
 
-```
+{% highlight python %}
 >>> import backend
 >>> backend
 <module 'backend' from 'backend/__init__.pyc'>
-```
+{% endhighlight %}
 
 Strange. I would have expected this import to have failed, but it imported `backend` as though it were local. Let's go up one more directory:
 
-```
+{% highlight bash %}
 ƒ: pwd
 /Users/kronosapiens/Dropbox/Documents/Development/code/jobs
-```
+{% endhighlight %}
 
-```python
+{% highlight python %}
 >>> import backend
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ImportError: No module named backend
-```
+{% endhighlight %}
 And now it fails, as it should. My suspicion is that, since the `paragon` directory contained the `backend` directory which contained the `backend` package, python was able to look into the similarly-named directories. Let's try renaming the outer `backend` directory to `backend1`and see what happens.
 
-```python
+{% highlight python %}
 >>> import backend
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ImportError: No module named backend
-```
+{% endhighlight %}
 
 Ok, so that makes sense (note that renaming `backend` to `backend1` meant that the `PYTHONPATH` was no longer valid. Hence the failure meant that the local import wasn't working.)
 
@@ -162,28 +163,28 @@ We can verify this by playing a bit more with the `PYTHONPATH`:
 
 From `paragon/`
 
-```
+{% highlight bash %}
 ƒ: echo $PYTHONPATH
 /Users/kronosapiens/Dropbox/Documents/Development/code/jobs/paragon/backend1/:
-```
+{% endhighlight %}
 
-```python
+{% highlight python %}
 >>> import backend
 >>> backend
 <module 'backend' from '/Users/kronosapiens/Dropbox/Documents/Development/code/jobs/paragon/backend1/backend/__init__.pyc'>
-```
+{% endhighlight %}
 Note that we're doing an absolute import, not a relative import, because the name of the directory and the package are no longer the same. And now changing the directory name back to `backend`:
 
-```
+{% highlight bash %}
 ƒ: echo $PYTHONPATH
 /Users/kronosapiens/Dropbox/Documents/Development/code/jobs/paragon/backend/:
-```
+{% endhighlight %}
 
-```python
+{% highlight python %}
 >>> import backend
 >>> backend
 <module 'backend' from 'backend/__init__.pyc'>
-```
+{% endhighlight %}
 It goes back to importing locally. **Now I understand the convention of naming directories after the packages they contain.**
 
 ## Submodules
@@ -194,7 +195,7 @@ For a long time, I assumed that if you imported a package, you could automatical
 
 Let's play around and try importing the `analyzer` module inside the `backend` package.
 
-```python
+{% highlight python %}
 >>> import backend
 >>> backend
 <module 'backend' from 'backend/__init__.pyc'>
@@ -211,22 +212,22 @@ AttributeError: 'module' object has no attribute 'analyzer'
 <module 'backend.analyzer' from 'backend/analyzer.pyc'>
 >>> analyzer.clean
 <function clean at 0x10ffe5b90>
-```
+{% endhighlight %}
 Alright. So it seems that we have to explicitly import submodules inside a package. Once a module is imported, though, we can use all of the functions that module defines.
 
 What if we don't want to import things one-by-one? Can we use the `from module import *` on a package?
 
-```python
+{% highlight python %}
 >>> from backend import *
 >>> analyzer
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 NameError: name 'analyzer' is not defined
-```
+{% endhighlight %}
 
 Doesn't seem like it. But what about this?
 
-```python
+{% highlight python %}
 >>> from backend.analyzer import *
 >>> backend
 Traceback (most recent call last):
@@ -238,7 +239,7 @@ Traceback (most recent call last):
 NameError: name 'backend' is not defined
 >>> clean
 <function clean at 0x109ad5c08>
-```
+{% endhighlight %}
 
 Ah! Since `analyzer` is a module, we could import all of the functions from the module, *without* importing any of their wrapper files into the namespace. *Good to know.*
 
@@ -248,7 +249,7 @@ Now that that's a bit clear, let's take a look at running tests.
 
 For reference, this are the import statements in the test file:
 
-```python
+{% highlight python %}
 import math
 import pdb # pdb.set_trace()
 import unittest
@@ -257,24 +258,24 @@ import numpy as np
 from backend.analyzer import *
 from scripts import *
 from synth import *
-```
+{% endhighlight %}
 
 `scripts.py` and `synth.py` contain tools for generating synthetic data and mocks, feel free to ignore those for now.
 
 First, running the test file as a simple Python script:
 
-```
+{% highlight bash %}
 ƒ: python backend/tests/test_analyzer.py
 ...........................
 ----------------------------------------------------------------------
 Ran 27 tests in 14.084s
 
 OK
-```
+{% endhighlight %}
 
 Ok, that worked out. Now, though, we'll try running the test using the [pytest](http://pytest.org/latest/contents.html) framework:
 
-```
+{% highlight bash %}
 ƒ: py.test backend/tests/test_analyzer.py
 ============= test session starts ==============
 platform darwin -- Python 2.7.6 -- py-1.4.20 -- pytest-2.5.2
@@ -290,11 +291,11 @@ ______ERROR collecting backend/tests/test_analyzer.py ____________
 >   ???
 E   ImportError: No module named analyzer
 =========== 1 error in 1.66 seconds ============
-```
+{% endhighlight %}
 
 What is this? This is the bug that has been haunting me. Usually I just delete files and change paths at random until something starts to work. This time, I decided to delete the `__init__.py` from the `tests/` directory. Why? I have no idea. YOLO. I ran the tests again and got this:
 
-```
+{% highlight bash %}
 ƒ: py.test backend/tests/test_analyzer.py
 ============= test session starts ==============
 platform darwin -- Python 2.7.6 -- py-1.4.20 -- pytest-2.5.2
@@ -309,11 +310,11 @@ which is not the same as the test file we want to collect:
   /Users/kronosapiens/Dropbox/Documents/Development/code/jobs/paragon/backend/backend/tests/test_analyzer.py
 HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
 =========== 1 error in 3.16 seconds ============
-```
+{% endhighlight %}
 
 Well... something changed at least. Investigating the error, I notice that it suggests I delete the `__pycache__` folders that have been popping up in my projects. I've set my iPython interpreter not to generate these kinds of files, but I've been dropping into vanilla Python from time to time, so I guess that's where these came from. I go ahead and delete all of these files from the project, and try running the test again:
 
-```
+{% highlight bash %}
 ƒ: py.test backend/tests/test_analyzer.py
 ============= test session starts ==============
 platform darwin -- Python 2.7.6 -- py-1.4.20 -- pytest-2.5.2
@@ -322,11 +323,11 @@ collected 28 items
 backend/tests/test_analyzer.py ............................
 
 ========== 28 passed in 12.81 seconds ==========
-```
+{% endhighlight %}
 
 OH COME ON. Really? This isn't the first time that `.pyc` and `__pycache__` have caused me some pain. But this is good, this is progress. Let's run the whole shebang:
 
-```
+{% highlight bash %}
 ƒ: py.test
 ============= test session starts ==============
 platform darwin -- Python 2.7.6 -- py-1.4.20 -- pytest-2.5.2
@@ -340,18 +341,18 @@ backend/tests/test_subject.py .......................
 backend/tests/test_visualizer.py ..
 
 ========== 74 passed in 25.44 seconds ==========
-```
+{% endhighlight %}
 
 Alright! Let's try an experiment: moving the `tests/` directory one level up, so it's a *sibling* directory to the `backend` package, rather than a child. Typing this command: `mv backend/tests .` gives us this:
 
-```
+{% highlight java %}
 backend/
 	backend/
 		__init__.py
 		analyzer.py
 	tests/
 		test_analyzer.py
-```
+{% endhighlight %}
 
 Fingers crossed. `py.test`
 
@@ -367,29 +368,29 @@ Let's say you're working on a project but don't want to add it to your PYTHONPAT
 
 Let's consider another project, a webapp, with the following structure:
 
-```
+{% highlight java %}
 webapp/
 	webapp/
 		__init__.py
 		views.py
 	tests/
 		test_integration.py
-```
+{% endhighlight %}
 
 Note that this directory is *not* in my PYTHONPATH:*
 
-```
+{% highlight bash %}
 ƒ: pwd
 /Users/kronosapiens/Dropbox/Documents/Development/code/jobs/paragon/webapp
 ƒ: echo $PYTHONPATH
 /Users/kronosapiens/Dropbox/Documents/Development/code/jobs/paragon/backend/:
-```
+{% endhighlight %}
 
 **While writing this post, I read some articles advocating for keeping trailing slashes in your PATH variables. I thought it was a good idea, so I've changed my PYTHONPATH accordingly.*
 
 Let's try running `py.test` from `webapp/`:
 
-```
+{% highlight bash %}
 ƒ: py.test
 =============== test session starts ===============
 platform darwin -- Python 2.7.5 -- py-1.4.22 -- pytest-2.6.0
@@ -398,12 +399,12 @@ collected 5 items
 tests/test_integration.py ..
 
 =============== 2 passed in 1.89 seconds ===============
-```
+{% endhighlight %}
 Very cool. But what happens if we change directories?
 
 From `webapp/tests/`:
 
-```
+{% highlight bash %}
 ƒ: pwd
 /Users/kronosapiens/Dropbox/Documents/Development/code/jobs/paragon/webapp/tests
 (pm)[18:28:44] (master) tests
@@ -419,18 +420,18 @@ test_integration.py:6: in <module>
 E   ImportError: No module named webapp
 
 =============== 1 error in 0.05 seconds ===============
-```
+{% endhighlight %}
 
 Hmm. Can't find the package. Here are the import statements at the top of the test:
 
-```python
+{% highlight python %}
 import os
 import pdb # pdb.set_trace()
 import unittest
 import tempfile
 
 import webapp
-```
+{% endhighlight %}
 
 It seems like running `py.test` from the top of the project means that the test can look for local packages from that location. Running the tests from inside the test directory means that the package has to be imported via `PYTHONPATH`.
 

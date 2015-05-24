@@ -16,7 +16,7 @@ Relax. This is rspec_helper, or 'Specky' for short. You've met. In fact, you two
 
 <!--more-->
 
-```ruby
+{% highlight ruby %}
 ENV["SINATRA_ENV"] = "test"
 
 require_relative '../config/environment'
@@ -54,7 +54,7 @@ def app
 end
 
 Capybara.app = app
-```
+{% endhighlight %}
 
 In interests of peace and harmony, I thought it was high time to sit the two of you down for a little coeur-a-coeur. What, exactly, is Specky all about? Let's find out.
 <pre>ENV["SINATRA_ENV"] = "test"</pre>

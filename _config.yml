@@ -11,7 +11,7 @@ twitter_username: kronosapiens
 github_username:  kronosapiens
 
 # Build settings
-markdown: redcarpet
+markdown: kramdown
 
 redcarpet:
   extensions: ["smart", "tables"]
