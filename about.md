@@ -14,9 +14,9 @@ permalink: /about/
 
   Abacus is my technical blog, where I write about software, information, and my experiences navigating professional life. Here are three big lessons:
 
-  - Values matter
-  - Cultural fit matters
+  - Values and cultural fit matters
   - Never compromise quality or your principles
+  - Good feature extraction is challenging and important
 
   I keep a personal blog over at [kronosapiens.com](http://kronosapiens.com) where I engage with a broader range of topics.
 
