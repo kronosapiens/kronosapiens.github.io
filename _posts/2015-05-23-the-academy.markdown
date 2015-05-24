@@ -3,7 +3,7 @@ layout: post
 title:  "The Academy: A Machine Learning Framework"
 date:   2015-05-23 15:15:59
 comments: true
-categories: machine-learning
+categories: blog machine-learning
 tags: software personality
 ---
 

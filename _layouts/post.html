@@ -12,12 +12,10 @@ layout: default
     {{ content }}
   </article>
 
-
   {% if site.disqus_short_name %}
     <section>
       <h1>Comments</h1>
-      {% include disqus.html %}
-      <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
+      <div id="disqus_thread" aria-live="polite">{% include disqus.html %}</div>
     </section>
   {% endif %}
 

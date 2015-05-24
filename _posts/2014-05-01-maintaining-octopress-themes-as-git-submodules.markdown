@@ -5,7 +5,7 @@ date: 2014-05-01 13:04:35 -0400
 comments: true
 categories: blog
 tags:
-- development process
+- git
 
 ---
 
