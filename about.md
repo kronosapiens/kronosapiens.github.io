@@ -10,13 +10,13 @@ I've worked at two small startups and am now a full-time graduate student at Col
 
 I'm excited about what's going on with predictive analytics, natural language processing, computer vision, and machine learning in general. There are interesting implications for the future of work which will be increasingly felt over the next few decades, and I'd like to be a part of that.
 
-I wrote my first paper on artificial intelligence when I was 15, in a philosophy class at my local community college. It was probably not very good. I went on and did my undergrad at Berkeley, with a double in [Cognitive Science](http://cogsci.berkeley.edu/) and [Political Economy](http://iastp.berkeley.edu/pe), while also helping to run a [rather large non-profit](http://www.bsc.coop/). Some have called me "well rounded" and commented on my great "soft skills" and "management potential". YMMV. I like to listen more than talk. I'm pretty funny. I care about people. I'd do a good job running a company. That company should probably develop technology and be based in California.
+I wrote my first paper on artificial intelligence when I was 15, in a philosophy class at my local community college. It was probably bad. I went on and did my undergrad at Berkeley, with a double in [Cognitive Science](http://cogsci.berkeley.edu/) and [Political Economy](http://iastp.berkeley.edu/pe), while also helping to run a [the largest student housing cooperative in the country](http://www.bsc.coop/). Some have called me "well rounded" and commented on my great "soft skills" and "management potential". YMMV. I like to listen more than talk. I'm pretty funny. I care about people. I'm passionate. I'd do a good job running a company. That company should probably develop technology and be based in California.
 
 Abacus is my technical blog, where I write about software, information, and my experiences navigating professional life. Here are three big lessons:
 
 - Values matter. Cultural fit matters. Principles matter.
 - Most humans can only do one thing well at a time -- never compromise quality.
-- The dirtier the problem, the more important feature extraction becomes.
+- The dirtier the problem, the more important the feature extraction.
 
 I keep a personal blog over at [kronosapiens.com](http://kronosapiens.com) where I engage with a broader range of topics.
 
