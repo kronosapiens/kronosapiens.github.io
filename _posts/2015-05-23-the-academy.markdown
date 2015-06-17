@@ -41,7 +41,7 @@ The `models/` directory is where our different models live. To create a model, c
 ### Creating a model
 You have a lot of freedom in creating your model, provided that you conform to the following interface:
 
-1. Your model must inherit from the `BasePredictor` class, which can be imported from `question.prediction.models`
+1. Your model must inherit from the `BasePredictor` class, which can be imported from `prediction.models`
 2. On initialization, your model must accept a `pandas.DataFrame` object as the first argument. It can accept an arbitrary number of keyword arguments, which can serve as the parameters to your model. The parameters are model-dependent -- you can make them anything you want, or have none at all.
 3. Your model must implement a `predict()` method, which will return a `pandas.DataFrame`, with scores for all of the member's traits. pandas is a very powerful and popular library for doing data analysis. You can read more about it [here](http://pandas.pydata.org/)
 
@@ -50,8 +50,8 @@ That's it! As long as your model exposes the interface described, you can implem
 There is a PreProcessor class which will help you prepare the data. Here's how the model should work:
 
 {% highlight python %}
->>> from question.prediction.models import hofstadter
->>> from question.prediction import PreProcessor
+>>> from prediction.models import hofstadter
+>>> from prediction import PreProcessor
 
 >>> pp = PreProcessor()
 >>> M = pp.get_scores() # M is the DataFrame of personality scores.
@@ -69,8 +69,8 @@ After developing a model, it is important that you test it. Only by testing mode
 To test a model, use the `PredictionTest` class:
 
 {% highlight python %}
->>> from question.models import PredictionTest
->>> from question.prediction.models import pirsig
+>>> from models import PredictionTest
+>>> from prediction.models import pirsig
 
 >>> PredictionTest.objects.prep_data()
 >>> PredictionTest.objects.run_test(pirsig.Predictor, params={'alpha': 0.5, 'kind': 'ridge', 'numq': 12, 'st': 2})
@@ -80,11 +80,11 @@ To test a model, use the `PredictionTest` class:
 Your model will be tested against the data using a technique called "[K-Fold Cross Validation](http://en.wikipedia.org/wiki/Cross-validation_%28statistics%29)", and the results will be stored in the `question_predictiontest` table:
 
 {% highlight sql %}
-+----+---------------------+----------- -------------------------------------------+------------------------------------------------------+------+-------------------+---------+-------+
-| id | timestamp           | model                                                 | parameters                                           | n    | error             | runtime | notes |
-+----+---------------------+----------- -------------------------------------------+------------------------------------------------------+------+-------------------+---------+-------+
-|  1 | 2015-04-13 22:24:30 | <class 'question.prediction.models.pirsig.Predictor'> | {'alpha': 0.5, 'kind': 'ridge', 'numq': 12, 'st': 2} | 1000 | 0.272384680982066 |   83550 | NULL  |
-+----+---------------------+----------- -------------------------------------------+------------------------------------------------------+------+-------------------+---------+-------+
++----+---------------------+----------------------------------------------+------------------------------------------------------+------+-------------------+---------+-------+
+| id | timestamp           | model                                        | parameters                                           | n    | error             | runtime | notes |
++----+---------------------+----------------------------------------------+------------------------------------------------------+------+-------------------+---------+-------+
+|  1 | 2015-04-13 22:24:30 | <class 'prediction.models.pirsig.Predictor'> | {'alpha': 0.5, 'kind': 'ridge', 'numq': 12, 'st': 2} | 1000 | 0.272384680982066 |   83550 | NULL  |
++----+---------------------+----------------------------------------------+------------------------------------------------------+------+-------------------+---------+-------+
 {% endhighlight %}
 
 The test will store information about the model and parameters that were used in the test, as well as the accuracy and the runtime of your algorithm. Accuracy is calculated using a technique called "[Root Mean Square Error](https://www.kaggle.com/wiki/RootMeanSquaredError)".
