@@ -281,7 +281,7 @@ You can then call these tasks:
 <AsyncResult: 2e031f3f-5284-48cb-bb57-fcef3638c746>
 {% endhighlight %}
 
-What has happened here is that the `@celery.task` decorator has given `add` the `delay` property, a function which wraps the Celery API to allow for easy queuing of tasks. While calling `your_func.(*args, **kwargs)` will execute the task immediately, calling `your_func.delay(*args, **kwargs)` will queue the same task for later execution.
+What has happened here is that the `@celery.task` decorator has given `add` the `delay` property, a function which wraps the Celery API to allow for easy queuing of tasks. While calling `your_func(*args, **kwargs)` will execute the task immediately, calling `your_func.delay(*args, **kwargs)` will queue the same task for later execution.
 
 Thinking about the last couple of steps, consider how we:
 1. Communicated to the Django project the location of the RabbitMQ server, and how to communicate with it.
@@ -291,7 +291,7 @@ Thinking about the last couple of steps, consider how we:
 
 And with that, the system is complete!
 
-## Step 5: OpsWorks
+## Step 4: OpsWorks
 
 Amazon OpsWorks is an invaluable tool for managing infrastructure requiring the coordination of multiple independent servers, or "nodes". One of the great features of OpsWorks is the ability to upload Chef "recipes" to any stack and configure them to be run at various points in the [lifecycle](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-events.html) of the instances in that stack.
 
@@ -449,7 +449,7 @@ In our case, we will add the `rabbitmq::default` recipe to the `Setup` stage, an
 
 With these two recipes, we have set up our `jobs` layer to be able to correctly launch and configure an instance, without requiring any manual intervention. This means we can easily scale up our queue system to two, four, or a dozen instances without any additional work. The combination of the load balancer and our recipes will cause the work to be distributed evenly across all instances. If an instance were ever to fail, it would automatically be removed from the load balancer, and we can easily launch another instance to take its place.
 
-## Step 4: Inspecting
+## Step 5: Inspecting
 
 There are a number of commands and tools you can use to help you get a view on the behavior of your queue system.
 
