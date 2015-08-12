@@ -113,7 +113,7 @@ Note the support for lambda (λ)!
 
 #### Inheritance
 
-Ruby handles inheritance via the `<` operator, like so: `class Dog < Mammal`, while Python has the parent class passed on as an argument, like so: `class Dog(mammal):`
+Ruby handles inheritance via the `<` operator, like so: `class Dog < Mammal`, while Python has the parent class passed on as an argument, like so: `class Dog(Mammal):`
 
 In Ruby, we access overridden methods of the parent class by simply calling `super` within the overriding method. In Python, the syntax is slightly more complicated:
 
@@ -245,4 +245,4 @@ There are many tiny differences between the languages, but the concepts being im
 
 Good luck! Python has been a pleasure to use so far.
 
-For more information on moving to Python from another language, you might want to check out [this guide](https://wiki.python.org/moin/MovingToPythonFromOtherLanguages)
+For more information on moving to Python from another language, you might want to check out [this guide](https://wiki.python.org/moin/MovingToPythonFromOtherLanguages).

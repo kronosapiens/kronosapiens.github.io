@@ -35,7 +35,7 @@ Version 0.1 went up, and it was time to begin 0.2. If 0.1 was about understandin
 
 I believe very strongly in building methodically on solid foundations. Now that Thena 0.1 was out the door, it was time to stop, breathe, and learn how to properly configure a system.
 
-By this point, I had a working knowledge of users and permissions in [unix-like systems](https://en.wikipedia.org/wiki/File_system_permissions), having developed applications on machines running both OSX and Ubuntu. I knew about root users and general users, file ownership and permissions, and process control. What I lacked was a general theory on how to structure ownership and control in the deployment of a web application. Given that I was going to be using Chef to manage Thena moving forward, I wanted to create a cookbook (a set of files defining a server setup) that would set things up properly, and which would work in a variety of as-yet-unknown environments.
+By this point, I had a working knowledge of users and permissions in [Unix-like systems](https://en.wikipedia.org/wiki/File_system_permissions), having developed applications on machines running both OSX and Ubuntu. I knew about root users and general users, file ownership and permissions, and process control. What I lacked was a general theory on how to structure ownership and control in the deployment of a web application. Given that I was going to be using Chef to manage Thena moving forward, I wanted to create a cookbook (a set of files defining a server setup) that would set things up properly, and which would work in a variety of as-yet-unknown environments.
 
 ### 2. Goals and Questions
 
@@ -81,7 +81,7 @@ vagrant@default-ubuntu-1404:~$ ls -l /etc
 ...
 {% endhighlight %}
 
-From this, we learn an important fact about files in unix-like systems: they are owned by a `user` and placed in a `group`. This means that by adding users to various pre-defined groups, those users (who may not themselves own any files) will have special access to files they do not personally own. From this we can infer some design principles in these systems:
+From this, we learn an important fact about files in Unix-like systems: they are owned by a `user` and placed in a `group`. This means that by adding users to various pre-defined groups, those users (who may not themselves own any files) will have special access to files they do not personally own. From this we can infer some design principles in these systems:
 
 - A individual user account has principal responsibility for a file, and will enjoy the greatest control over the file.
 - Generic users will have equal or less access to the file than the owner. In cases of critical, sensitive files, they may not be able to access them at all.
@@ -187,7 +187,7 @@ total 4
 
 What happened this time? I used the `chmod` command with `sudo` to modify the permissions of the `/etc/lvm/archive/` directory. First, I gave myself `read` permission, which allowed me to see just the **name** of the one file in the directory. Then, I added the `execute` permission, which allowed me to see additional details about the file.
 
-`sudo` is an important command that we haven't seen yet, but is about to become important. Last note: unliked some other systems, permissions in unix-like systems **are not inherited**. It is possible for a file in a directory to be more or less restricted than the directory itself.
+`sudo` is an important command that we haven't seen yet, but is about to become important. Last note: unliked some other systems, permissions in Unix-like systems **are not inherited**. It is possible for a file in a directory to be more or less restricted than the directory itself.
 
 Finally, you'll note that I passed a number (`704`, `705`) to `chmod`, rather than a mode like `-rwxrwxrwx`. These numbers, known as "numeric notation" or "octal notation" for mode, represent the same information. The three numbers map to the three triads, and each number represents permissions as follows:
 
@@ -232,7 +232,7 @@ The all important `sudo` command is controlled in two ways: by editing the file 
 To add a user to the `sudo` group, execute either of the following:
 
 {% highlight bash %}
-gpasswd -a <username> sudo # From the group perspective
+$ gpasswd -a <username> sudo # From the group perspective
 
 # or
 
@@ -302,6 +302,8 @@ vagrant@default-ubuntu-1404:~$ /usr/bin/passwd
 -bash: /usr/bin/passwd: Permission denied
 {% endhighlight %}
 
+Note how the numerical argument to `chmod` was four digits instead of the usual three. The first character represents the new setting -- 4 represents `setuid`, while 2 would represent `setgid`. As with the other digits, a 6 would have activated both `setuid` and `setgid`. As an aside, you can always provide a four-digit argument to `chmod` -- if you don't, the first digit is taken as 0.
+
 Let's restore execute permission and try executing the file [output edited for clarity]:
 
 {% highlight bash %}
@@ -365,8 +367,10 @@ So how do we run `uwsgi`? The question to ask ourselves, then, is what permissio
 
 That's not all, though. We are going to configure `uwsgi` to read and write to an [internal socket](https://en.wikipedia.org/wiki/Unix_domain_socket), which will be created and owned by the process (and thus by the user which began the process). `nginx` is going to need access to this socket in order to communicate with `uwsgi`. We enable this by setting `uwsgi` to run in the `www-data` **group**. Remember, the `www-data` user is (probably) the only member of the `www-data` group. Placing `uwsgi` into that group is then tantamount to saying that the `www-data` user has access to that process and the files it creates; in this case, allowing the `www-data` user (and thus the `nginx` processes) to read and write to the shared socket file.
 
+The underlying principle here is that while perfect security may be impossible (or maybe not?), it is always wise to present "the smallest possible surface" to an attacker. Rather than have five processes at risk of being compromised, let's have just one. If a permission isn't strictly necessary, take it away.
+
 ### 5. Conclusion
 
-We've covered a lot of ground so far, and there's a lot left to do. In this post, we did a deep dive into unix-style user and file management, and are feeling pretty comfortable with how users, files, and permissions work on a server.
+We've covered a lot of ground so far, and there's a lot left to do. In this post, we did a deep dive into Unix-style user and file management, and are feeling pretty comfortable with how users, files, and permissions work on a server.
 
 In part II of this series, we'll take a look at Chef and how to incorporate users, files, and permissions into a rock-solid piece of automated infrastructure.

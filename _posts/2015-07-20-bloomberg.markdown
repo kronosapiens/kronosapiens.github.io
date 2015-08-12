@@ -47,7 +47,7 @@ I like this answer very much. I've often joked with friends that success is stri
 
 Eventually, MB wraps up and leaves the stage. The agenda takes us to the small-group portion of the evening, where we gather around small tables for a social exercise, lathered in a rich sauce of tech humor.
 
-The goal: develop a new ice breaker, beta test it, and "ship it" to an adjacent table.
+**The goal: develop a new ice breaker, beta test it, and "ship it" to an adjacent table.**
 
 I am at a table with a number of intriguing people: a woman in communications at Bloomberg, a number of tech executives (including the head of engineering for LinkedIn in New York), and a few people in their twenties with sparkles in their eye. We begin tossing out ideas. I offer my pet icebreaker, "If you could be born into any society has has ever existed, which would it be, and who would you have been?". I am immediately labeled "the graduate student", which I don't mind.
 
