@@ -21,7 +21,7 @@ So the year was rough. I dropped into a calculus-based statistics course without
 
 Signed up for Data Visualization in the Spring. Only one class, plus a chill once-weekly seminar. Should be good. Went in to DataViz the first day, realized that class was not worth the money, and transferred into Machine Learning. I only had a few semesters of grad school, and I wasn't going to be wasting time.
 
-My company was becoming midly frustrated with my academic activities. I didn't think it was their business what I did after hours. I was exchanging 50+ diligent hours a week of my labor for an 80k salary, which I thought that was very fair. They did not invest in my professional development. They wanted me to start coming in on weekends. They are not making a strong case.
+My company was losing patience with my academic activities. I didn't think it was their business what I did after hours. I was exchanging 50+ diligent hours a week of my labor for an 80k salary, which I thought was fair. They do not invest in my professional development. They are not interested in my thoughts on the product. They wanted me to start coming in on weekends. I know I have the smallest equity stake out of anyone there. They are not making a strong case.
 
 I missed the first ML lecture, due to aforementioned scheduling issues. I walk in fifteen minutes late to the second lecture, having gotten lost trying to find the room. I take a seat near the back, finding a spot next to this rebellious-looking kid wearing a colorful Brooklyn-esque button-up. I get out my notebook (the extra-large unlined Moleskins, which I'd adopted as my learning instrument of choice), and get out my pencil.
 
@@ -39,17 +39,17 @@ I decided that I wanted all of it. I had taken 1A as a freshman, driven by a cer
 
 I get to it. I plan to go to school full-time in the September. It is late May. I have about three months. I want to build a foundation; to learn the basics. I was not interested in paying for undergraduate classes. A formal course would also be far too slow. I'm familiar with the internet, and I'm very motivated.
 
-I start at Khan Academy. Their automated assessment suggests I review some precalculus. I am disheartened but resolved. I had copied my friend Stephen's math homework all throughout 11th grade. Khan Academy is correct.
+I start at [Khan Academy](https://www.khanacademy.org/). Their automated assessment suggests I review some precalculus. I am disheartened but resolved. I had copied my friend Stephen's math homework all throughout 11th grade. Khan Academy is correct.
 
-Salman Khan walks me from the Unit Sphere all the way through Integration by Parts. Sinusoids, Taylor series, implicit derivation, solids of integration, complex numbers, the whole thing. I am embarassed at first -- I am learning material being taught to high schoolers ten year my junior. But this is the path. I take every test, answer ever pop quiz that comes my way. I admit to skipping past a single section -- L'Hospital's rule -- on the grounds that I had already taken differential calculus at Berkeley, and therefore that particular section was just a review.
+Salman Khan walks me from the Unit Sphere all the way through Integral Calculus. Sinusoids, taylor series, implicit derivation, integration by parts, complex numbers, the whole thing. I am embarassed at first -- I am learning material being taught to high schoolers ten years my junior. But this is the path, and there are no shortcuts. I take every test, answer ever pop quiz that comes my way. I admit to skipping past a single section -- L'Hospital's rule -- on the grounds that I had already taken differential calculus at Berkeley, and therefore that particular section was *just* a review.
 
 Thanks, Salman.
 
 ![Khan Academy](https://s3.amazonaws.com/kronosapiens.github.io/images/khan.png)
 
-The whole thing takes about a month. I finish single-variable calculus in late June. I decide to start multivariable. I begin looking at Khan Academy's offerings, but find them undeveloped. Understandable -- their priority is high-school education. I decide it is time to move on to something more old-school. Enter MIT OpenCourseWare.
+The whole thing takes about a month. I finish single-variable calculus in late June. I decide to start multivariable. I begin looking at Khan Academy's offerings, but find them undeveloped. Understandable -- their priority is high-school education. I decide it is time to move on to something more old-school. Enter [MIT OpenCourseWare](http://ocw.mit.edu/index.htm).
 
-MIT foresaw the MOOC revolution at least ten years early, having started putting lectures and course materials online since 1999. Browsing the web for multivariable calculus courses, I find a series of videos of the entire set of lectures of MIT 16.02, Multivariable Calculus, taught in Spring 2006 by Denis Auroux. This is right.
+MIT foresaw the MOOC revolution at least ten years early, having started putting lectures and course materials online since 1999. Browsing the web for multivariable calculus courses, I find a series of videos of the entire set of lectures of MIT 18.02, Multivariable Calculus, taught in Fall 2007 by Denis Auroux. This is right.
 
 I am able to work through 2-3 lectures per day. A 50-minute lecture takes me about 2-3 hours to digest. I do not skip days, although on weekends I go a bit easy. I am very happy about multivariable calculus. Vectors make sense, as do their gradients. Level sets. Divergence. Flux. Curl. I get used to drawing in three dimensions. I do a lot of integrals. All of a sudden there are theorems. I draw a lot of shapes. I like the way the pencil sounds against the notebook when I am solving equations quickly. I develop certain flourishes. I like theorems. Denis Auroux is a funny lecturer.
 
@@ -65,7 +65,7 @@ I love linear algebra. I love Gilbert Strang. I felt transported to that classro
 
 I continue to process 2-3 lectures per day. In early August, I fly back to California for five weeks: Three in Santa Monica, two in Oakland, one in Black Rock City. Not a bad itinerary. My time in Santa Monica is spent riding my bike, eating good food, and finding eigenvectors. It is exceedingly pleasant. Gilbert Strang is an amazing lecturer. I multiply a lot of matrices. "Again. Again. Again."
 
-By the time I get to Oakland, I have only three lectures and the final left to take. I find it markedly more difficult to focus once I arrive -- the excitement, reunions with friends, the adventure of being back in the Bay, proves distracting. I struggle to focus, but eventually do power through and finish. I spend six hours on the final, sitting in a coffee shop on Telegraph.
+By the time I get to Oakland, I have only three lectures and the final left to take. I find it markedly more difficult to focus once I arrive -- the excitement, reunions with friends, the adventure of being back in the Bay, proves distracting. I struggle to focus, but eventually do power through and finish. I spend six hours on the final, sitting in a coffee shop on Telegraph. Again, I do well.
 
 Thanks, Gilbert.
 
@@ -73,7 +73,7 @@ Thanks, Gilbert.
 
 I want to take a moment and acknowledge the debt owed to these three men, and the teams which organized and published their content. I feel a closeness to them, as though I had truly been a student to them. If I ever meet them, I will thank them.
 
-I get back to Brooklyn just in time for the second day of school. My first class is Advanced Machine Learning. The first lecture: a "calibration quiz" meant to prune the class down to size. I am anxious. This class is important to me. I get in.
+I get back to Brooklyn just in time for the second day of school. My first class is [Advanced Machine Learning](http://www.cs.columbia.edu/~djhsu/coms4772-f15/). The first lecture: a "calibration quiz" meant to prune the class down to size. I am anxious. This class is important to me. I get in.
 
  The next chapter begins.
 
