@@ -95,7 +95,7 @@ Moving on.
 
 Looking at the mode, we see that it consists of ten characters: a leading hyphen, followed by three triads ([codons](https://en.wikipedia.org/wiki/DNA_codon_table)??).
 
-The leading hyphen (`-`) tells us the [file type](https://en.wikipedia.org/wiki/Unix_file_types) of the file. In the case of `yourfile.txt`, the type is simply a file, known as a "normal" file. Other kinds of files, known as "special" files, include directories (`d`), links (`l`), named pipes (`p`), sockets (`s`), device files (`c` or `b`), and doors (`D`). Most of the files we'll be working with will be normal files, but it's good to know that other kinds of files can be manipulated the same way.
+In Unix, "[everything is a file](https://en.wikipedia.org/wiki/Everything_is_a_file)". As such, the leading hyphen (`-`) tells us the [file type](https://en.wikipedia.org/wiki/Unix_file_types) of the file. In the case of `yourfile.txt`, the type is simply a file, known as a "normal" file. Other kinds of files, known as "special" files, include directories (`d`), links (`l`), named pipes (`p`), sockets (`s`), device files (`c` or `b`), and doors (`D`). Most of the files we'll be working with will be normal files, but it's good to know that other kinds of files can be manipulated the same way.
 
 The next nine characters (the three triads) represent the kinds of ways that different people can use the file. Each triad represents a different role in the system:
 
@@ -247,11 +247,11 @@ The `umask` command is used to adjust these defaults to something more secure. T
 
 # Process Permissions
 
-The last topic of our general learning will be process permissions. We now understand how permissions are assigned to **files**. What we have yet to discuss is how permission are assigned to **processes**.
+The last topic of our general learning will be process permissions. We now understand how permissions are assigned to **files**. What we have yet to discuss is how permissions are assigned to **processes**.
 
 A process is created when a user executes a file. This obviously requires that user to have execute permission, which has been discussed at length above. When the process is created, it itself acquires certain permissions, which allow the process to interact with other files in the system.
 
-By default, the process inherits permissions from the user which began the process. As such, running a command as `root` or with `sudo` gives the resulting process greater power to change the system than if it was run as a regular user. Certain commands require additional privileges, while others do not. As an exercise, let's use the `ps -aux` command to view our currently-running processes:
+By default, the process inherits permissions from the user which began ("spawned") the process. As such, running a command as `root` or with `sudo` gives the resulting process greater power to change the system than if it was run as a regular user. Certain commands require additional privileges, while others do not. As an exercise, let's use the `ps -aux` command to view some of our currently-running processes:
 
 {% highlight bash %}
 vagrant@default-ubuntu-1404:~$ ps -aux | head
@@ -296,7 +296,7 @@ Here we see that the first triad appears `rws`, instead of the usual `rwx`. This
 vagrant@default-ubuntu-1404:~$ sudo chmod 4754 /usr/bin/passwd # The leading 4 corresponds to turning setuid on.
 
 vagrant@default-ubuntu-1404:~$ ls -l /usr/bin/passwd
--rwsr-xr-- 1 root root 47032 Feb 17  2014 /usr/bin/passwd
+-rwsr-xr-- 1 root root 47032 Feb 17  2014 /usr/bin/passwd # Note how the last x was dropped
 
 vagrant@default-ubuntu-1404:~$ /usr/bin/passwd
 -bash: /usr/bin/passwd: Permission denied
@@ -351,10 +351,9 @@ www-data 11147  0.0  0.4  86240  1792 ?        S    15:29   0:00 nginx: worker p
 www-data 11148  0.0  0.4  86240  1792 ?        S    15:29   0:00 nginx: worker process
 www-data 11149  0.0  0.4  86240  1792 ?        S    15:29   0:00 nginx: worker process
 www-data 11150  0.0  0.4  86240  1792 ?        S    15:29   0:00 nginx: worker process
-vagrant  11362  0.0  0.2  11744   920 pts/0    S+   18:08   0:00 grep --color=auto nginx
 {% endhighlight %}
 
-Observe how there are five `nginx` processes running. The first one is the master process, run as `root`. This process [spawned](https://en.wikipedia.org/wiki/Fork_%28system_call%29) four worker processes, being run as the restricted user `www-data`. Generally, only `root` processes can listen on ports below 1024. Given that HTTP uses port 80 and HTTPS uses port 443, it is necessary that `nginx` have some root access. The child processes are then run with reduced access for security. [Some people on the internet](http://unix.stackexchange.com/questions/134301/why-does-nginx-starts-process-as-root) are of the opinion that this is not a problem, because `nginx` itself does not process requests, merely passes them to other processes (in our case, `uwsgi`), which makes sense to me.
+Observe how there are five `nginx` processes running. The first one is the master process, run as `root`. This process [spawned](https://en.wikipedia.org/wiki/Fork_%28system_call%29) four worker processes, being run as the restricted user `www-data`. Generally, only `root` processes can listen on ports below 1024. Given that HTTP uses port 80 and HTTPS uses port 443, it is necessary that `nginx` have some root access. The child processes are then run with reduced access for security. [Some people on the internet](http://unix.stackexchange.com/questions/134301/why-does-nginx-starts-process-as-root) are of the opinion that this is not a problem, because `nginx` itself does not actually handle the requests, merely passes them to other processes (in our case, `uwsgi`), which makes sense to me.
 
 **UWSGI**
 The [uWSGI docs](http://uwsgi-docs.readthedocs.org/en/latest/ThingsToKnow.html) explicitly warn us:
@@ -363,11 +362,11 @@ The [uWSGI docs](http://uwsgi-docs.readthedocs.org/en/latest/ThingsToKnow.html) 
 
 Why is this? uWSGI (the main webserver process) is receiving requests from the internet. This makes the uWSGI process a potential vulnerability and source of attack: if a malicious agent were able to gain control of the uWSGI process via a malformed request, that agent could then act against your system, limited only by the permissions given to the uWSGI process, which are the permissions held by the user which began the process.
 
-So how do we run `uwsgi`? The question to ask ourselves, then, is what permissions does that process (and its children) need? Given that `uwsgi` is the process which is executing the source code of our Flask app, then at a minimum it needs to be able to read (and execute) the source code. From here we can make a case that `uwsgi` should be run as the same user we use to ssh into the server.
+So how do we run `uwsgi`? The question to ask ourselves, then, is what permissions does that process (and its children) need? Given that `uwsgi` is the process which is executing the source code of our Flask app, then at a minimum it needs to be able to read (and execute) the source code. From here we can make a case that `uwsgi` should be run as the same user who owns the app's source code.
 
-That's not all, though. We are going to configure `uwsgi` to read and write to an [internal socket](https://en.wikipedia.org/wiki/Unix_domain_socket), which will be created and owned by the process (and thus by the user which began the process). `nginx` is going to need access to this socket in order to communicate with `uwsgi`. We enable this by setting `uwsgi` to run in the `www-data` **group**. Remember, the `www-data` user is (probably) the only member of the `www-data` group. Placing `uwsgi` into that group is then tantamount to saying that the `www-data` user has access to that process and the files it creates; in this case, allowing the `www-data` user (and thus the `nginx` processes) to read and write to the shared socket file.
+That's not all, though. We are going to configure `uwsgi` to read and write to an [internal socket](https://en.wikipedia.org/wiki/Unix_domain_socket), which will be created and owned by the process (and thus by the user which began the process). `nginx` is going to need access to this socket in order to communicate with `uwsgi`. We enable this by setting `uwsgi` to run in the `www-data` **group**. Remember, the `www-data` user is (probably) the only member of the `www-data` group. Placing `uwsgi` into that group is then tantamount to saying that the `www-data` user has access to that process and the files it creates; in this case, allowing the `www-data` user (and thus the `nginx` processes) to read and write to the shared socket file owned by `uwsgi`'s owner.
 
-The underlying principle here is that while perfect security may be impossible (or maybe not?), it is always wise to present "the smallest possible surface" to an attacker. Rather than have five processes at risk of being compromised, let's have just one. If a permission isn't strictly necessary, take it away.
+The underlying principle here is that while perfect security may be impossible (or maybe it is?), it is always wise to present "the smallest possible surface" to an attacker. Rather than have five processes at risk of being compromised, let's have just one. If a permission isn't strictly necessary, take it away.
 
 ### 5. Conclusion
 
