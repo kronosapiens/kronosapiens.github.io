@@ -33,7 +33,7 @@ I look at the board and the first thing I see is some sort of upside-down triang
 
 I stick it out. I basically understand what is going on. The professor is very good. I can visualize shapes in three-dimensional space. I know how to square things. I calm down. The kid next to me is funny and interesting.
 
-I end up really liking Machine Learning. It was like being in wizard school. I learned so many interesting ways to turn data into different data that is overall more actionable. I could use special symbols to magically make knowledge appear. I was very pleased about the whole thing.
+I end up really liking Machine Learning. It was like being in wizard school. I learn so many interesting ways to turn data into different data that is overall more actionable. I use special symbols to magically make knowledge appear. Hyperplanes. Kernels. Boosting. Prediction. I am very pleased about the whole thing.
 
 I get another A. I am heartened. Thanks, Paisley.
 
