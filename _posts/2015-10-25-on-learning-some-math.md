@@ -17,7 +17,7 @@ I was also starting out as a part-time student in Columbia's QMSS program, in th
 
 I am occasionally naive.
 
-The year was rough. 80-hour-weeks-every-week rough. I dropped into a calculus-based statistics course without really knowing that much calculus. I'm pretty sure that the first time I had to atually solve an integral, it was a double. Things were coming at us pretty fast. The midterm average is less than 40%. I contemplate the aesthetics of the letter "F". I hustle and struggle and put in the time. Random variables, probability distributions. Independence, expectation. Samples, confidence, hypotheses. I get good at breaking big problems into smaller ones. Things come together. Everything starts to make sense. I get an A. It was encouraging.
+The year was rough. 80-hour-weeks-every-week rough. I drop into a calculus-based statistics course without really knowing that much calculus. I'm pretty sure that the first time I had to actually solve an integral, it was a double. Things are coming at us pretty fast. The midterm average is less than 40%. I contemplate the aesthetics of the letter "F". I hustle and struggle and put in the time. Random variables, probability distributions. Independence, expectation. Samples, confidence, hypotheses. I get good at breaking big problems into smaller ones. Things come together. Everything starts to make sense. I get an A. It was encouraging.
 
 Thanks, Professor Cunningham.
 
