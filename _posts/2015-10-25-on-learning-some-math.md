@@ -17,13 +17,13 @@ I was also starting out as a part-time student in Columbia's QMSS program, in th
 
 I am occasionally naive.
 
-The year was rough. 80-hour weeks every week rough. I dropped into a calculus-based statistics course without really knowing that much calculus. I'm pretty sure that the first time I had to atually solve an integral, it was a double. At several points I wondered how I was going to react emotionally to my first academic F. But I hustled and struggled and put in the time and inevitably everything came together and made sense and was profound and wonderful. Got an A. It was encouraging.
+The year was rough. 80-hour-weeks-every-week rough. I dropped into a calculus-based statistics course without really knowing that much calculus. I'm pretty sure that the first time I had to atually solve an integral, it was a double. Random variables, probability distributions. Independence, expectation. Samples, confidence, hypotheses. Things were coming at us pretty fast. The midterm average is less than 40%. At a few points I started emotionally preparing for my first academic F. But I hustled and struggled and put in the time. Inevitably everything came together and made sense and was profound and wonderful. I get an A. It was encouraging.
 
 Thanks, Professor Cunningham.
 
-I didn't like the Theories and Methods course, mostly because the professor thought he was too important to bother preparing his lectures. Walked out with an A-. By one point. An immature part of me was disappointed. Social science was starting to step into the background for me anyway.
+I didn't like the Theories and Methods course. Mostly because the professor thought he was too important to bother preparing his lectures. I match his effort. Get an A-. By a point. I decide that's fair. Social science is stepping into the background for me anyway.
 
-Signed up for Data Visualization in the Spring. Only one class, plus a relaxed once-weekly seminar. Hoping to have a slightly more relaxed semester. Went in to data visualization the first day and immediately realized that class was not worth the money. I only had a few semesters of grad school, and I wasn't going to be wasting time. I transfer into Machine Learning. The semester will be slightly less relaxed.
+Signed up for Data Visualization in the Spring. Only one class, plus a relaxed once-weekly seminar. I am hoping for a slightly more relaxed semester. Went in to data visualization the first day and immediately realized that class was not worth the money. I only had a few semesters of grad school, and I wasn't going to be wasting time. I transfer into Machine Learning. It seems the semester will be slightly less relaxed.
 
 My company was losing patience with my academic activities. I didn't particularly think it was their business what I did after hours. I was exchanging a diligent 50+ hours a week of honest labor for an 80k salary, which I thought was actually pretty fair. I am pulling a lot of weight. They do not invest in my professional development. They are not interested in my thoughts on the product. They wanted me to start coming in on weekends. I know I have the smallest equity stake out of anyone there. They are not making a strong case. I am wondering what lessons I should be taking away from this.
 
