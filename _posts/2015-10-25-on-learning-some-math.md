@@ -13,7 +13,7 @@ In late May, I left my startup job to study math.
 
 I had been working at the startup for the past eighth months, having started in mid-September of the year before. I was one of their two backend engineers, teaming up with a remote developer in China to build out the backend for the company's product, an iPhone game. They hired me because I aced their coding test, and I ended up being directly responsible for the majority of the company's client-serving backend. It was demanding, it pushed me, I liked it.
 
-I was also starting out as a part-time student in Columbia's QMSS program, in their data science concentration. It was supposed to be a challenging track -- I was warned that most students drop out. It sounded exciting. I knew my math background was relatively weak -- one semester of calculus, plus discrete math. I had been fully out of school for two years at that point, so I thought I'd take it slowly and sign up for two classes. Plus the new startup job, and the non-profit I help run. Probability and Statistics. Social Science Theory and Methods. Nothing could go wrong with this plan.
+I was also starting out as a part-time student in Columbia's QMSS program, in their data science concentration. It was supposed to be a challenging track -- I was warned that most students drop out. It sounded exciting. I knew my math background was relatively weak -- one semester of calculus, plus discrete math. I had been fully out of school for two years at that point, so I thought I'd take it slowly and sign up for two classes. Probability and Statistics. Social Science Theory and Methods. Plus the new startup job, and the non-profit I help run. Nothing could go wrong with this plan.
 
 I am occasionally naive.
 
