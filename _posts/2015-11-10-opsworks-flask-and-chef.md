@@ -110,7 +110,9 @@ The cookbook works!
 
 We've developed a cookbook which runs great locally. Now we need to get that cookbook onto AWS OpsWorks, and to update the cookbook to pull the application code from GitHub and serve that (instead of serving the generic message).
 
-The first step will be to learn how to upload cookbooks to AWS OpsWorks. This ended up being a bit tricky, since the repository structure [that AWS expects](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-installingcustom-repo.html) is different from the one [Chef uses](https://docs.chef.io/chef_repo.html) for its enterprise server product. Specifically, AWS expects:
+The first step will be to learn how to upload cookbooks to AWS OpsWorks. This ended up being a bit tricky, since the repository structure [that AWS expects](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-installingcustom-repo.html) is different from the one [Chef uses](https://docs.chef.io/chef_repo.html) for its enterprise server product.
+
+Specifically, AWS expects:
 
 ```
 chef-repo/
@@ -144,7 +146,7 @@ With this, AWS OpsWorks now has the cookbook.
 
 Now comes time to test OpsWorks' ability to pull code from GitHub. OpsWorks provides some code you can use in your recipes to pull code from GitHub, using configuration from OpsWorks itself (which you set via the AWS Console). This isn't something that can easily be tested using Test Kitchen, so from here on out we're testing directly in OpsWorks, on our actual EC2 instance. OpsWorks makes it pretty easy to execute specific recipes via the console interface, which is what we'll be doing.
 
-For reference, here's the boilerplate from AWS:
+For reference, here's the boilerplate from AWS, meant to be copy-pasted directly into a deploy recipe.
 
 {% highlight python %}
 include_recipe 'deploy'
@@ -169,7 +171,7 @@ Before going further, let's take a moment to discuss how OpsWorks uses Chef. Che
 
 Executing the cookbook for the first time yields an error in accessing GitHub. I look online and see that someone has managed to circumvent the error by telling OpsWorks to download the repo using HTTPS instead of SSH. I make the change and the code downloads without a problem. I'm planning on circling back around to this later -- I anticipate the problem was that OpsWorks was trying to SSH to github as the `deploy` user, which hasn't set up a public key on GitHub.
 
-I run the cookbook again. Another error -- uWSGI isn't being restarted. I look at the logs and realize that Chef is trying to start uWSGI with `init`. I'm planning on using [Upstart](http://upstart.ubuntu.com/) to manage the uWSGI process, so I add [a line to the resource](https://docs.chef.io/resource_service.html) specifying Upstart as the provider.
+I run the cookbook again. Another error -- uWSGI isn't being restarted. I look at the logs and realize that Chef is trying to start uWSGI with `init`, the [default provider](https://docs.chef.io/resource_service.html) for the service resrouce. I'm planning on using [Upstart](http://upstart.ubuntu.com/) to manage the uWSGI process, so I add [a line to the resource](https://github.com/kronosapiens/chef-repo/blob/master/thena-infra/recipes/deploy.rb#L45) specifying Upstart as the provider.
 
 I run the cookbook again. No errors!
 
@@ -242,13 +244,13 @@ So, the database is coming from the environment. I check the environmental varia
 
 I do some experiments, and realize that `DATABASE_URL` is defined for the `ubuntu` user, but **not** for `root`. I suspect that when Chef restarts the uWSGI process, it is running the command as `root` and therefore `DATABASE_URL` is not defined in that environment. I check this by hard-coding the database url in `config.py` and restarting uWSGI.
 
-The site works! I am relieved. Now the challenge is to figure out an elegant way to pass the database info to uWSGI. Hardcoding it is not an option. It must come from the environment in some way. There should be as small a gap as possible between introducing the variable and starting the uWSGI process, to minimize the chance of the bug returning due to some minor unrelated change. I do a search on "environment variables uwsgi" and learn that you can specify environmental variables in a `.ini` file. I read the OpsWorks documentation and realize that environmental variables defined inside the OpsWorks console are available as attributes for Chef. My solution is to add the following line to my template `thena-uwsgi.ini.erb`:
+The site works! I am relieved. Now the challenge is to figure out an elegant way to pass the database info to uWSGI. Hard-coding it into `config.py` is not an option, for security reasons. It must come from the environment in some way. There should be as small a gap as possible between introducing the variable and starting the uWSGI process, to minimize the chance of the bug returning due to some minor unrelated change. I do a search on "environment variables uwsgi" and learn that you can specify environmental variables in a `.ini` file. I read the OpsWorks documentation and realize that environmental variables defined inside the OpsWorks console are available as attributes for Chef. My solution is to add the following line to my template `thena-uwsgi.ini.erb`:
 
 {% highlight ruby %}
 env DATABASE_URL="<%= node['deploy']['thena']['environment_variables']['DATABASE_URL'] %>"
 {% endhighlight %}
 
-Seems like a good solution. Since we are always going to be starting uWSGI through Upstart, adding the variable to the Upstart script seems like the perfect location. It will be hardcoded in the file, meaning the variable will be available to uWSGI *regardless* of what user is actually starting uWSGI.
+Seems like a good solution. Since we are always going to be starting uWSGI through Upstart, adding the variable to the Upstart script seems like the perfect location. It will be hard-coded in the file (but *not* in the cookbook), meaning the variable will be available to uWSGI *regardless* of what user is actually starting uWSGI.
 
 I update the cookbook and re-deploy. It works! Hooray.
 
@@ -295,11 +297,11 @@ I google the error and learn that this is a well-known bug when using uWSGI, Fla
 
 When uWSGI starts, it begins as a master process, and then forks off into some number of child processes (in my case, 5). As a memory-saving optimization, uWSGI will write the application to memory once, and then spin off child processes which all read from one shared version of the app. Only when the child process needs to actually *write* some information (as opposed to read) does it take its own space in memory. This feature saves memory by ensuring that parts of the application which are static and read-only are not duplicated unecessarily.
 
-The bug was due to the fact that the database threadpool (a fixed number of connections to the database, which are requested and relinquished as needed) was being created once and then shared by all of the child uWSGI processes. I am uncertain as to the specific failure, but this sharing is unintentional and was causing these requests to trip on each other. The answer was to update the `thena-uwsgi.ini` to add `lazy-apps = true`. This setting causes each child process to load the entire app from scratch, ensuring each process as a dedicated threadpool. Slightly less memory-efficient, but more stable.
-
 From the uWSGI docs themselves:
 
 > uWSGI tries to (ab)use the Copy On Write semantics of the fork() call whenever possible. By default it will fork after having loaded your applications to share as much of their memory as possible. If this behavior is undesirable for some reason, use the lazy-apps option. This will instruct uWSGI to load the applications after each worker’s fork().
+
+The bug was due to the fact that the database threadpool (a fixed number of connections to the database, which are requested and relinquished as needed) was being created once and then shared by all of the child uWSGI processes. I am uncertain as to the specific failure, but this sharing is unintentional and was causing these requests to trip on each other. The answer was to update the `thena-uwsgi.ini` to add `lazy-apps = true`. This setting causes each child process to load the entire app from scratch, ensuring each process as a dedicated threadpool. Slightly less memory-efficient, but more stable.
 
 I update the cookbook and re-deploy. Everything works great again!
 
@@ -318,5 +320,7 @@ Open questions:
 1. Why was OpsWorks unable to fetch the repo from GitHub using SSH? The HTTPS workaround will be sufficient as long as we are fetching public repositories. If we ever have to serve a private repo, we'll need SSH access.
 
 2. Why was nginx returning a 502 error when uWSGI was returning a 500? Seems peculiar.
+
+3. Is it possible to set up `chef-repo` to have a per-cookbook Berksfile, rather than a single shared Berksfile?
 
 **You can see the full cookbook in all its glory [here](https://github.com/kronosapiens/chef-repo/tree/master/thena-infra).**
