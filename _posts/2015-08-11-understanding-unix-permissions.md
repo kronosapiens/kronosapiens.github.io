@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Permissions and Chef, part I"
+title: "Understanding Unix Permissions"
 comments: true
 categories: blog
 tags:
