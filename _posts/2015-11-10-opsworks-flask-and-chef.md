@@ -22,7 +22,7 @@ Let us consider the pieces in play:
 1. Thena, a [Flask](http://flask.pocoo.org/)-based web application.
 2. [AWS OpsWorks](https://aws.amazon.com/opsworks/), an "application management service".
 3. [Chef](https://www.chef.io/), a configuration mangement tool.
-4. All necessary infrastructure for Thena, call it $$ \theta $$.
+4. The correct environment and infrastructure for Thena, call it $$ \theta $$.
 5. A micro EC2 instance backed by a small Postgres database.
 
 Our goal is to configure the EC2 instance to be able to serve the app, and to automate all infrastructure such that new features can be deployed in real-time.
@@ -45,7 +45,7 @@ Steps 1-5 are known as the "Configure" phase. Steps 6-9 are known as the "Deploy
 
 ## Enter the Kitchen
 
-We use the Chef process to execute steps 1-9, both the Configure and the Deploy phases. Chef is a tool which uses "cookbooks" to learn how to bring nodes (in this case, EC2 instances) into proper alignment. In order to configure Chef, we first had to write a cookbook.
+We use the Chef process to execute steps 1-9, both the Configure and the Deploy phases. Chef is a tool which uses "cookbooks" to learn how to bring nodes (in this case, EC2 instances) into proper alignment (formally, to create state-of-affairs $$ \theta $$). In order to configure Chef, we first have to write a cookbook.
 
 Our cookbook, `thena-infra` is structured as follows:
 
@@ -285,6 +285,8 @@ Traceback (most recent call last):
     cursor.execute(statement, parameters)
 sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) SSL SYSCALL error: EOF detected
  [SQL: 'SELECT count(*) AS count_1 \nFROM (SELECT arcs.id AS arcs_id, arcs.created_at AS arcs_created_at, arcs.updated_at AS arcs_updated_at, arcs.user_id AS arcs_user_id, arcs.tail AS arcs_tail, arcs.head AS arcs_head, arcs.tail_url AS arcs_tail_url, arcs.head_url AS arcs_head_url \nFROM arcs) AS anon_1']
+ [pid: 29957|app: 0|req: 33/225] 184.152.70.185 () {44 vars in 955 bytes} [Wed Nov 11 23:55:21 2015] GET / => generated 0 bytes in 9 msecs (HTTP/1.1 500) 0 headers in 0 bytes (0 switches on core 0)
+
 ```
 
 I google the error and learn that this is a well-known bug when using uWSGI, Flask, and psycopg2 (the Postgres python driver), involving a feature called ["Copy on Write"](https://en.wikipedia.org/wiki/Copy-on-write).
@@ -292,6 +294,10 @@ I google the error and learn that this is a well-known bug when using uWSGI, Fla
 When uWSGI starts, it begins as a master process, and then forks off into some number of child processes (in my case, 5). As a memory-saving optimization, uWSGI will write the application to memory once, and then spin off child processes which all read from one shared version of the app. Only when the child process needs to actually *write* some information (as opposed to read) does it take its own space in memory. This feature saves memory by ensuring that parts of the application which are static and read-only are not duplicated unecessarily.
 
 The bug was due to the fact that the database threadpool (a fixed number of connections to the database, which are requested and relinquished as needed) was being created once and then shared by all of the child uWSGI processes. I am uncertain as to the specific failure, but this sharing is unintentional and was causing these requests to trip on each other. The answer was to update the `thena-uwsgi.ini` to add `lazy-apps = true`. This setting causes each child process to load the entire app from scratch, ensuring each process as a dedicated threadpool. Slightly less memory-efficient, but more stable.
+
+From the uWSGI docs themselves:
+
+> uWSGI tries to (ab)use the Copy On Write semantics of the fork() call whenever possible. By default it will fork after having loaded your applications to share as much of their memory as possible. If this behavior is undesirable for some reason, use the lazy-apps option. This will instruct uWSGI to load the applications after each worker’s fork().
 
 I update the cookbook and re-deploy. Everything works great again!
 
@@ -301,8 +307,14 @@ We can now configure and deploy an EC2 instance to serve Thena at the touch of a
 
 GitHub has an [integrations](https://github.com/integrations) feature which makes this easy. We go to the [Thena repository](https://github.com/kronosapiens/thena), and under settings, we set up an integration with OpsWorks. It's pretty simple: you plug in the OpsWorks "stack" and "app" IDs, which you can find in the descriptions of the stack and app, respectively. Then you pass in an AWS access code and secret access code (which you can generate via [AWS identity management](https://console.aws.amazon.com/iam/home?#security_credential). That's it! Every time you push to the repository, GitHub will ping OpsWorks and start a deploy.
 
-And with that, we have built **a full automatic deployment pipeline**, using a minimal Chef cookbook that we wrote ourselves, in which we understand the purpose of every setting. This is the level of control and reliability that can serve as a solid foundation for whatever comes next. We are able to focus 100% of our attention now to the development of Thena, confident in our knowledge that the site keep itself up and running.
+And with that, we have built **a full automatic deployment pipeline**, using a minimal Chef cookbook that we wrote ourselves, in which we understand the purpose of every setting. This is the level of control and reliability that can serve as a solid and extensible foundation for whatever comes next. We are able to focus 100% of our attention now to the development of Thena, confident in our knowledge that the site keep itself up and running.
 
 What an adventure this has been!
 
-You can see the full cookbook [here](https://github.com/kronosapiens/chef-repo/tree/master/thena-infra).
+Open questions:
+
+1. Why was OpsWorks unable to fetch the repo from GitHub using SSH? The HTTPS workaround will be sufficient as long as we are fetching public repositories. If we ever have to serve a private repo, we'll need SSH access.
+
+2. Why was nginx returning a 502 error when uWSGI was returning a 500? Seems peculiar.
+
+**You can see the full cookbook in all its glory [here](https://github.com/kronosapiens/chef-repo/tree/master/thena-infra).**
