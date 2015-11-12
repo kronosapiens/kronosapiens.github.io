@@ -11,6 +11,8 @@ tags:
 
 ---
 
+*This post is part one of a two-part series about deploying a Flask app on an Amazon EC2 instance running Ubuntu. You can read part one [here](http://kronosapiens.github.io/blog/2015/11/10/opsworks-flask-and-chef.html)*.
+
 Enough.
 
 {% highlight bash %}

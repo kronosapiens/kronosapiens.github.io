@@ -11,6 +11,8 @@ tags:
 
 ---
 
+*This post is part two of a two-part series about deploying a Flask app on an Amazon EC2 instance running Ubuntu. You can read part one [here](http://kronosapiens.github.io/blog/2015/08/11/understanding-unix-permissions.html)*.
+
 Today we conquered the kitchen.
 
 We have used AWS OpsWorks and Chef to successfully configure and deploy a Flask app, and to redeploy the app after every GitHub commit. Now [Thena](http://thena.io) can develop at significantly higher speeds.
