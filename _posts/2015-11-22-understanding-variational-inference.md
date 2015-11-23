@@ -341,7 +341,7 @@ a = a_0 + \frac{1}{2}
 $$
 
 $$
-b_k = b_0 + \frac{1}{2} E_{q(w)}[ww^T]_{jj}
+b_k = b_0 + \frac{1}{2} E_{q(w)}[ww^T]_{kk}
 $$
 
 Finally, we give the expectations:
