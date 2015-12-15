@@ -34,7 +34,7 @@ $$
 
 $$
 \underbrace{
-p(\theta | x) = \frac{p(x, \theta)p(\theta)}{p(x)}
+p(\theta | x) = \frac{p(x | \theta)p(\theta)}{p(x)}
 }_{\text{Bayes Theorem}}
 $$
 
