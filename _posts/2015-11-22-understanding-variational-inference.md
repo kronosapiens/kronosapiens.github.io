@@ -113,9 +113,11 @@ $$
 
 Let's take a moment to understand what was just derived. We have shown that the log probability of the random variable $$x$$ is equal to the involved-looking equation on the right-hand side. This right-hand term is the sum of two terms. The first, which we call $$L$$, we will refer to as the "Variational Objective Function". The second is the equation of something known as the [Kullback–Leibler](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence) divergence, or KL divergence for short.
 
-Recall that our goal is to learn $$p(\theta \| x)$$.
+Recall that our goal is to learn
 
-*Note: The LaTeX engine I'm using doesn't doesn't support the single pipe \| for some reason when rendering inline math (probably due to a conflict with the Markdown parsing. I'll use the double pipe when I'm writing inline to represent conditional distributions. Apologies.*
+$$
+p(\theta | x)
+$$
 
 We see that this term appears in the KL divergence, next to this new distribution we are calling $$q(\theta)$$. Conveniently, the KL divergence is a measure of the difference between two distributions. When the distributions are equal, the KL divergence equals 0. The more the distributions differ, the larger the term becomes. We're not sure what this $$q$$ distribution is, but let's assume that we can control it. The closer it comes to approximating the posterior, the smaller the KL divergence will become.
 
