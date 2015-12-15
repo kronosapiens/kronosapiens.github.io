@@ -479,5 +479,3 @@ We have presented Variational Inference, in a hopefully accessible manner. It is
 Earlier, we mentioned that we wanted to encourage sparsity in $$w$$. This can be accomplished (so I am told), by setting the priors on $$\alpha_k$$ to $$a_0, b_{0k} = 10^{-16}$$. Tiny priors here will limit the dimensions of $$w$$ which are signicantly non-zero. I'm not entirely sure why (something I still need to look into), but I can assure you that my model was super sparse :).
 
 Variational Inference is a fairly sophisticated technique (the most complex algorithm I have encountered, but that might not count for much), and allows for the formal definition and learning of complex posteriors otherwise intractable using normal Bayesian methods.
-
-If you're curious, you can see [my implementation](https://github.com/kronosapiens/bayesian-models/blob/master/models.py#L184) of the algorithm described above on GitHub. The [full derivations](https://github.com/kronosapiens/bayesian-models/blob/master/HW03/hw3.pdf) are here, along with measurements of the performance of my model.
