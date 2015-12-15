@@ -11,7 +11,7 @@ tags:
 
 ---
 
-In one of my courses this semester, [Bayesian Models for Machine Learning](http://www.columbia.edu/~jwp2128/Teaching/E6892/E6892Fall2015.html), we've been spending quite a bit of time on a technique called "[Variational Inference](https://en.wikipedia.org/wiki/Variational_Bayesian_methods)". I've spent the last few days working on an assigment using this technique, so I thought this would be a good occasion to test knoweledge by attempting to describe the method.
+In one of my courses this semester, [Bayesian Models for Machine Learning](http://www.columbia.edu/~jwp2128/Teaching/E6892/E6892Fall2015.html), we've been spending quite a bit of time on a technique called "[Variational Inference](https://en.wikipedia.org/wiki/Variational_Bayesian_methods)". I've spent the last few days working on an assigment using this technique, so I thought this would be a good occasion to test knowledge by attempting to describe the method. Much credit to [John Paisley](http://www.columbia.edu/~jwp2128/) for teaching me all this in the first place. The Columbia faculty are really top-notch.
 
 ## High-level Overview
 
