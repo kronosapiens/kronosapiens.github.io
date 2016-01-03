@@ -8,7 +8,7 @@ I'm **Daniel Kronovet**, a first-year data scientist living in New York City.
 
 I've worked as a backend engineer at two small startups, and am now a full-time graduate student at Columbia, studying a mix of statistics and computer science (aka "data science", "machine learning", or "sorcery"). My program is called [Quantitative Methods in the Social Sciences](http://qmss.columbia.edu/) and I'll graduate in a year.
 
-I'm excited about what's going on with predictive analytics, natural language processing, computer vision, and machine learning in general. There are interesting implications for the future of work, healthcare, and capital which will be increasingly felt over the next few decades, and I'd like to be a part of that.
+I'm excited about what's going on with predictive analytics, natural language processing, computer vision, and machine learning in general. There are interesting implications for the future of work, healthcare, and capital which will be increasingly felt over the next few decades, and I'd like to be a part of that. I'm extremely junior in this field, but I believe in its value and am willing to put in the time it takes to excel.
 
 I did my undergrad at Berkeley, with a double in [Cognitive Science](http://cogsci.berkeley.edu/) and [Political Economy](http://iastp.berkeley.edu/pe), while also helping to run a [a very large housing cooperative](http://www.bsc.coop/). After that I spent a year [going around the world](http://www.huffingtonpost.com/daniel-kronovet/), before landing in New York and discovering technology.
 
