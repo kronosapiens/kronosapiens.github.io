@@ -57,7 +57,7 @@ The Talmud, its properties, and role in Jewish life provides a crucial case stud
 
 Recently, we have seen the emergence of technology which shares this property. The Blockchain, first described in the 2008 paper "[Bitcon: A Peer to Peer Electronic Cash System](https://bitcoin.org/bitcoin.pdf)", is in essence a decentralized public ledger, in which anything can be recorded and made publically available. The principal mechanic of the Blockchain is that future entries must build upon past entries, and that any entry in the chain, once accepted, can never be deleted. In the words of the author, Satoshi Nakamoto:
 
-> The only way to confirm the absence of a transaction is to be aware of all transactions. In the mint based model, the mint was aware of all transactions and decided which arrived first. To accomplish this without a trusted party, transactions must be publicly announced, and we need a system for participants to agree on a single history of the order in which they were received.
+> The only way to confirm the absence of a transaction [is to be aware of all transactions](http://www.econlib.org/library/Essays/hykKnw1.html). In the mint based model, the mint was aware of all transactions and decided which arrived first. To accomplish this without a trusted party, transactions must be publicly announced, and we need a system for participants to agree on a single history of the order in which they were received.
 
 The Blockchain is thus a decentralized authority in which all new changes must be a continuation of past work. As such, the example of the Talmud suggests that such a tool could be used for the effective decentralized coordination of large groups of people across time and space, without the need for a central authority or any force.
 
