@@ -36,7 +36,9 @@ First, let's take a look at the **application context**.
 
 An excerpt from the Flask [docs](http://flask.pocoo.org/docs/):
 
->One of the design ideas behind Flask is that there are two different “states” in which code is executed. The application setup state in which the application implicitly is on the module level. It starts when the Flask object is instantiated, and it implicitly ends when the first request comes in. While the application is in this state a few assumptions are true:
+>One of the design ideas behind Flask is that there are two different “states” in which code is executed.
+
+>The application setup state in which the application implicitly is on the module level. It starts when the Flask object is instantiated, and it implicitly ends when the first request comes in. While the application is in this state a few assumptions are true:
 
 > - the programmer can modify the application object safely.
 - no request handling happened so far
@@ -328,9 +330,9 @@ A bit more strangeness. Flask gives you a helper function, `url_for()`, which ta
 
 I tried to switch my test suite away from hard-coded URLs and towards `url_for()`, but got the following error:
 
-{% highlight python %}
+```
 RuntimeError: Application was not able to create a URL adapter for request independent URL generation. You might be able to fix this by setting the SERVER_NAME config variable.
-{% endhighlight %}
+```
 
 I pop on over to the Flask [config docs](http://flask.pocoo.org/docs/config/), and see this, under the description of the `SERVER_NAME` variable:
 
