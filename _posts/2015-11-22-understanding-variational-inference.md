@@ -98,7 +98,7 @@ $$
 And reorganize:
 
 $$
-lnp(x) = \int q(\theta) (lnp(x, \theta) - q(\theta))d\theta - \int q(\theta) (lnp(\theta | x) - lnq(\theta)) d\theta
+lnp(x) = \int q(\theta) (lnp(x, \theta) - lnq(\theta))d\theta - \int q(\theta) (lnp(\theta | x) - lnq(\theta)) d\theta
 $$
 
 $$
