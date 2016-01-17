@@ -163,7 +163,7 @@ And the log joint probability is as follows:
 
 $$
 lnp(x,y,w, \lambda, \alpha)
-= \sum_{i=1}^n p(y_i | x_i, w, \lambda) + p(\lambda | e_0, f_0) + p(w | \alpha) + \sum_{k=1}^dp(\alpha_k| a_0, b_0)
+= \sum_{i=1}^n lnp(y_i | x_i, w, \lambda) + lnp(\lambda | e_0, f_0) + lnp(w | \alpha) + \sum_{k=1}^d lnp(\alpha_k| a_0, b_0)
 $$
 
 We model the $$q$$ distribution as a joint probability of independent distributions, one per variable:
@@ -253,26 +253,26 @@ $$
 Recalling the log joint probability we derived earlier:
 
 $$
-E_{-q(w)}[\sum_{i=1}^n p(y_i | x_i, w, \lambda)
-+ p(\lambda | e_0, f_0)
-+ p(w | \alpha)
-+ \sum_{k=1}^dp(\alpha_k| a_0, b_0)]
+E_{-q(w)}[\sum_{i=1}^n lnp(y_i | x_i, w, \lambda)
++ lnp(\lambda | e_0, f_0)
++ lnp(w | \alpha)
++ \sum_{k=1}^d lnp(\alpha_k| a_0, b_0)]
 $$
 
 $$
-p(\lambda | e_0, f_0) + \sum_{k=1}^dp(\alpha_k| a_0, b_0)
-+ E_{-q(w)}[\sum_{i=1}^n p(y_i | x_i, w, \lambda) + p(w | \alpha)]
+lnp(\lambda | e_0, f_0) + \sum_{k=1}^d lnp(\alpha_k| a_0, b_0)
++ E_{-q(w)}[\sum_{i=1}^n lnp(y_i | x_i, w, \lambda) + lnp(w | \alpha)]
 $$
 
 Putting this back into context, we can rewrite the distribution:
 
 $$
 \frac{
-e^{p(\lambda | e_0, f_0) + \sum_{k=1}^dp(\alpha_k| a_0, b_0)}
-e^{E_{-q(w)}[\sum_{i=1}^n p(y_i | x_i, w, \lambda) + p(w | \alpha)]}
+e^{lnp(\lambda | e_0, f_0) + \sum_{k=1}^dlnp(\alpha_k| a_0, b_0)}
+e^{E_{-q(w)}[\sum_{i=1}^n lnp(y_i | x_i, w, \lambda) + lnp(w | \alpha)]}
 }{
-\int e^{p(\lambda | e_0, f_0) + \sum_{k=1}^dp(\alpha_k| a_0, b_0)}
-e^{E_{-q(w)}[\sum_{i=1}^n p(y_i | x_i, w, \lambda) + p(w | \alpha)]} dw
+\int e^{lnp(\lambda | e_0, f_0) + \sum_{k=1}^dlnp(\alpha_k| a_0, b_0)}
+e^{E_{-q(w)}[\sum_{i=1}^n lnp(y_i | x_i, w, \lambda) + lnp(w | \alpha)]} dw
 }
 $$
 
@@ -280,11 +280,11 @@ Bringing outside of the integral all terms constant with respect to $$w$$:
 
 $$
 \frac{
-e^{p(\lambda | e_0, f_0) + \sum_{k=1}^dp(\alpha_k| a_0, b_0)}
-e^{E_{-q(w)}[\sum_{i=1}^n p(y_i | x_i, w, \lambda) + p(w | \alpha)]}
+e^{lnp(\lambda | e_0, f_0) + \sum_{k=1}^dlnp(\alpha_k| a_0, b_0)}
+e^{E_{-q(w)}[\sum_{i=1}^n lnp(y_i | x_i, w, \lambda) + lnp(w | \alpha)]}
 }{
-e^{p(\lambda | e_0, f_0) + \sum_{k=1}^dp(\alpha_k| a_0, b_0)}
-\int e^{E_{-q(w)}[\sum_{i=1}^n p(y_i | x_i, w, \lambda) + p(w | \alpha)]} dw
+e^{lnp(\lambda | e_0, f_0) + \sum_{k=1}^dlnp(\alpha_k| a_0, b_0)}
+\int e^{E_{-q(w)}[\sum_{i=1}^n lnp(y_i | x_i, w, \lambda) + lnp(w | \alpha)]} dw
 }
 $$
 
@@ -292,16 +292,16 @@ And then cancelling:
 
 $$
 \frac{
-e^{E_{-q(w)}[\sum_{i=1}^n p(y_i | x_i, w, \lambda) + p(w | \alpha)]}
+e^{E_{-q(w)}[\sum_{i=1}^n lnp(y_i | x_i, w, \lambda) + lnp(w | \alpha)]}
 }{
-\int e^{E_{-q(w)}[\sum_{i=1}^n p(y_i | x_i, w, \lambda) + p(w | \alpha)]} dw
+\int e^{E_{-q(w)}[\sum_{i=1}^n lnp(y_i | x_i, w, \lambda) + lnp(w | \alpha)]} dw
 }
 $$
 
 All that is left to do is to evaluate the expression
 
 $$
-e^{E_{-q(w)}[\sum_{i=1}^n p(y_i | x_i, w, \lambda) + p(w | \alpha)]}
+e^{E_{-q(w)}[\sum_{i=1}^n lnp(y_i | x_i, w, \lambda) + lnp(w | \alpha)]}
 $$
 
 to learn the distribution. We will not go through the specific derivation here, which involves evaluating the expectation of the log of the distributions on $$y_i$$ and $$w$$; instead we will skip to the final result and claim that:
@@ -414,10 +414,10 @@ Which breaks down as follows:
 
 $$
 L =
-\sum_{i=1}^n E_{q(w, \lambda)}[p(y_i | x_i, w, \lambda)]
-+ E_{q(\lambda)}[p(\lambda | e_0, f_0)]
-+ E_{q(w, \alpha)}[p(w | \alpha)]
-+ \sum_{k=1}^d E_{q(\alpha)}[p(\alpha_k| a_0, b_0)]
+\sum_{i=1}^n E_{q(w, \lambda)}[lnp(y_i | x_i, w, \lambda)]
++ E_{q(\lambda)}[lnp(\lambda | e_0, f_0)]
++ E_{q(w, \alpha)}[lnp(w | \alpha)]
++ \sum_{k=1}^d E_{q(\alpha)}[lnp(\alpha_k| a_0, b_0)]
 $$
 
 $$
