@@ -78,3 +78,17 @@ Given the earlier discussion of Democracy, it does not seem at this time that th
 One could point to other self-selecting communities with rough consensus-based decision-making processes, and observe that they succeed while employing very different decision-making systems. The Python community, with BDFL and a PEP-based system of improvement, has been pretty effective. Yet a series of disconnected proposals is ontologically dissimilar to an unbroken chain of decisions. The importance of this dissimilarity is to be determined.
 
 It would be very exciting to be a part of such a community.
+
+# Update (Feb 1)
+
+I shared this post with a few friends of mine with relevant domain knowledge. They gave valuable feedback and raised additional questions. Their responses are replicated below.
+
+**From a Professor of Political Economy:**
+
+> Interesting read--but I wonder about practicality. The beauty of many societies is being able to effect rapid change. The way you lay this out, suggests that this may be a lot more difficult. It may be a way to insure calmer legislation, etc. But it doesn't move really seem to me to lead to faster movement of anything.
+
+**From a Rabbi:**
+
+> This was fascinating. Thanks for sharing.
+> You know, I think the question I'm sitting with is, given decentralized systems of law or commerce, what role does the organizer or covener have, and how much authority is in that role. The Talmud, for example, is a collection of many voices, but someone did the collecting. The work of that someone, the editor (or likely, editors) is what academics are particularly fascinated with these days. So, too, with any wiki. There is someone who hosts it. How much control do they have? And I imagine that there are also decisionmakers with a Blockchain. What does it mean, then, to be at the center of a decentralizes system?
+
