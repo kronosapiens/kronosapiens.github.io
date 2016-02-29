@@ -196,7 +196,7 @@ L = \int q(w) q(\lambda)q(\alpha) ln p(x,y,w, \lambda, \alpha) d\lambda d\alpha 
 - \text{const w.r.t } w
 $$
 
-Observe next that we can interpret the first integral as an expectation, where $$-q(w) = q(\lambda)q(\alpha)$$.
+Observe next that we can interpret the first integral as an expectation, where $$E_{-q(w)} = E_{q(\lambda)q(\alpha)}$$, the expectation over all other variables.
 
 $$
 L = \int q(w) E_{-q(w)}[ln p(x,y,w, \lambda, \alpha)] dw
@@ -218,7 +218,7 @@ $$
 Z = \int e^{E_{-q(w)}[ln p(x,y,w, \lambda, \alpha)]} dw
 $$
 
-Here, Z can be interpreted as the normalizing constant for the distribution $$e^{E_{-q(w)}[ln p(x,y,w, \lambda, \alpha)]}$$. By adding and subtracting $$lnZ$$, we witness some more slick math:
+Here, Z can be interpreted as the normalizing constant for the distribution $$e^{E_{-q(w)}[ln p(x,y,w, \lambda, \alpha)]}$$. By adding and subtracting $$lnZ$$, which is constant with respect to $$w$$, we witness some more slick math:
 
 $$
 L = \int q(w) ln \frac{e^{E_{-q(w)}[ln p(x,y,w, \lambda, \alpha)]}}{q(w)} dw
