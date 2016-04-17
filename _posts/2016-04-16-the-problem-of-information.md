@@ -31,7 +31,7 @@ $$
 I(\hat{X};X) \leq I(Y;X)
 $$
 
-The measure $$I(a,b)$$ is known as the [mutual information](https://en.wikipedia.org/wiki/Mutual_information), a measure of how much information one variable gives us about another.
+The measure $$I(A,B)$$ is known as the [mutual information](https://en.wikipedia.org/wiki/Mutual_information), a measure of how much information one variable gives us about another.
 
 What this says is that the information $$\hat{X}$$ tells us about $$X$$ cannot be more than the information we already had from $$Y$$. In other words, that **processing** data adds no new information.
 
@@ -49,7 +49,7 @@ $$
 I(\hat{\text{your analysis}};\text{the world}) \leq I(\text{some measurements};\text{the world})
 $$
 
-In other words, analysis doesn't tell you anything new. What it **does** do, though, is make the information you already have more easily digestible. It puts it in forms you can work with. Think averages and odds.
+In other words, analysis doesn't tell you anything new. What it **does** do, though, is make the information you already have more easily digestible. It puts it in forms you can work with. Think averages and odds. Think dashboards. Less information, but more actionable.
 
 #### 3
 
@@ -77,7 +77,7 @@ $$
 = H(X) - H(X|\hat{X})
 $$
 
-Conditining reduces entropy:
+Conditioning reduces entropy:
 
 $$
 \leq H(X) - H(X|\hat{X}, Y)
@@ -93,4 +93,10 @@ Voila:
 
 $$
 = I(X,Y)
+$$
+
+**Note:** $$H(A)$$ denotes the **[entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory))** of the random variable $$A$$, a measure of uncertainty in $$A$$. Given that more information can't hurt, the following is always true:
+
+$$
+H(A|B) \leq H(A)
 $$
