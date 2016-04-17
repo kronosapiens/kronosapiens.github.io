@@ -11,7 +11,13 @@ tags:
 
 #### 1
 
-The Data Processing Inequality is one of the first results in information theory. It goes as follows: No transformation of measurements of the world can increase the amount of information available about that world. In formal language, it goes like this:
+The Data Processing Inequality is one of the first results in information theory.
+
+It can be stated as follows:
+
+*No transformation of measurements of the world can increase the amount of information available about that world.*
+
+In formal language, it goes like this:
 
 Given a first-order Markov chain
 
