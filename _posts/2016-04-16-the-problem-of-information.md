@@ -53,17 +53,37 @@ In other words, analysis doesn't tell you anything new. What it **does** do, tho
 
 #### 3
 
+Let's take this a bit further. Think of your analysis as a function, $$G$$, of your data. This gives us:
+
+$$
+X \rightarrow Y \rightarrow G(Y)
+$$
+
+We can then formulate the learning problem as a search over the space of possible functions $$G$$. In order to assess the quality of one $$G$$ over another, we must use some sort of measure of "expressiveness". Call this $$E$$, such that $$E[G(Y)]$$ is some measurement of the expressiveness of the analysis $$G(Y)$$.
+
+Our goal becomes finding an optimal function $$G^*$$ such that:
+
+$$
+E[G^*(Y)] \geq E[G(Y)], \forall G
+$$
+
+In other words, that $$G^*$$ maximizes the expressive power of the data $$Y$$. Our choice of $$E$$ drives the exploration of the space of possible $$G$$.
+
+This is the general formulation. To see how this general formulation maps to practice, let's take $$G$$ to be some sort of classification or regression model and $$E$$ to be the log likelihood or squared error. Note how we have described the typical machine learning setting. To see how this formulation helps frame different problems, let's take $$G$$ to be a causal graph -- what then should $$E$$ be? How could one select an $$E$$ to drive exploration of the space of causal graphs?
+
+#### 4
+
 If our goal is to understand the world, then it would seem as though we have two opportunities for growth.
 
 First, in our measurements. The world is of infinite dimension, and any measurement is a finite reflection. Measurements are choices, and the dimensions along which we choose to measure will place the upper bound on our usable knowledge.
 
-Second, in our analysis. Given a finite set of measurements, $$Y$$, our goal is to transform this into a different representation that expresses the information necessary to a given task, with "expressiveness" itself given by some measure. If that task is prediction or classification (fundamental and profound endeavors), then the measure will almost certainly be either likelihood of the analysis or the smallness of the error. But there can be other tasks and other measures of expression.
+Second, in our analysis. Given a finite set of measurements, $$Y$$, our goal is to transform this into a different representation that expresses the information necessary to a given task, with "expressiveness" itself given by some measure. If that task is prediction or classification (core learning problems), then expressiveness will almost certainly be measured either via the likelihood of the analysis or the smallness of the error. But there can be other tasks and other measures of expression.
 
 Which, at this time, is our limiting factor? Are we limited by our analysis, unable to make sense of what we know? Or are we limited by our measurements, trying to navigate with skewed vision?
 
 Do you know?
 
-#### 4
+#### 5
 
 **Proof:**
 
