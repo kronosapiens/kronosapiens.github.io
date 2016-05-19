@@ -14,10 +14,24 @@ tags:
 In Part I, we established the data processing inequality and used it to conclude that no analysis of data can increase the amount of information we have about the world, beyond the information provided by the data itself:
 
 $$
-X \rightarrow Y \rightarrow \hat{X} \Rightarrow I(\hat{X};X) \leq I(Y;X)
+X \rightarrow Y \rightarrow \hat{X}
 $$
 
-Using more ideas from information theory, we can extend this further.
+$$
+\Rightarrow
+$$
+
+$$
+I(\hat{X};X) \leq I(Y;X)
+$$
+
+We're not quite done. The fundamental problem is not simply *learning about the world*, but rather *human learning about the world*. The full model might look something like this:
+
+$$
+\text{world} \rightarrow \text{measurements} \rightarrow \text{analysis} \rightarrow [perception] \rightarrow \text{understanding}
+$$
+
+Incorporating the human element requires a larger model and additional tools.
 
 #### 2
 
