@@ -8,7 +8,7 @@ I'm **Daniel Kronovet**, a data scientist living in New York City.
 
 I am currently at Columbia, finishing up an M.A. in Quantitative Methods in the Social Sciences, with an emphasis on the core math and computer science underlying modern machine learning.
 
-I spent the past summer interning at Foursquare, joining their data science team to develop new models for stop detection.
+I've worked at a handful of startups, in engineering and data roles.
 
 I'm interested in the future of machine learning, especially as it pertains to questions of production, distribution, and management. I am interested in more abstract questions of measurement and representation. I believe in the importance of direct personal experience as a path toward knowledge.
 
