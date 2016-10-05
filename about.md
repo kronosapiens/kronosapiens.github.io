@@ -4,12 +4,16 @@ title: About
 permalink: /about/
 ---
 
-I'm **Daniel Kronovet**, a first-year data scientist living in New York City.
+I'm **Daniel Kronovet**, a data scientist living in New York City.
 
-I've worked as a backend engineer at two small startups, and am now a full-time graduate student at Columbia, studying a mix of statistics and computer science (aka "data science", "machine learning", or "sorcery"). My program is called [Quantitative Methods in the Social Sciences](http://qmss.columbia.edu/) and I'll graduate in a year.
+I am currently at Columbia, finishing up an M.A. in Quantitative Methods in the Social Sciences, with an emphasis on the core math and computer science underlying modern machine learning.
 
-I'm excited about what's going on with machine learning, distributed systems, and processing data at scale. There are interesting implications for the future of work, healthcare, and capital which will be increasingly felt over the next few decades, and I'd like to be a part of that.
+I spent the past summer interning at Foursquare, joining their data science team to develop new models for stop detection.
 
-I wrote my first paper on artificial intelligence when I was 15, in a philosophy course at my local community college. It was probably pretty bad. I went on and did my undergrad at Berkeley, with a double in [Cognitive Science](http://cogsci.berkeley.edu/) and [Political Economy](http://iastp.berkeley.edu/pe), while also helping to run a [a very large housing cooperative](http://www.bsc.coop/). After that I spent a year [going around the world](http://www.huffingtonpost.com/daniel-kronovet/), before landing in New York and discovering technology.
+I'm interested in the future of machine learning, especially as it pertains to questions of production, distribution, and management. I am interested in more abstract questions of measurement and representation. I believe in the importance of direct personal experience as a path toward knowledge.
 
-Abacus is my technical blog, where I write about software, information, and my experiences navigating professional life. I keep a personal blog over at [kronosapiens.com](http://kronosapiens.com) where I engage with a broader range of topics.
+In past lives, I worked on a kibbutz in Israel, lived in a Buddhist monastery in Thailand, and taught science in Mumbai.
+
+I did my undergrad at UC Berkeley, as a double major in Cognitive Science and Political Economy. While there, I was actively involved in the leadership of the Berkeley Student Cooperative.
+
+I grew up in Santa Monica, California, where I was on my high school's drumline and became an Eagle Scout.
