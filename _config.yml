@@ -2,9 +2,7 @@
 title: Abacus
 email: kronovet@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  I'm Daniel Kronovet, a first-year data scientist living in New York City.
-  This is my technical blog, where I write about software, information,
-  and my experiences navigating professional life.
+  I'm Daniel Kronovet, a data scientist living in New York City.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://kronosapiens.github.io" # the base hostname & protocol for your site
 twitter_username: kronosapiens
