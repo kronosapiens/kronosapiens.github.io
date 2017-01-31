@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-**Note: I am currently looking for full-time work. You can reach me at kronovet -at- gmail -dot- com**
+**Note: I am currently looking for full-time work.**
 
 I'm **Daniel Kronovet**, a data scientist living in New York City.
 
