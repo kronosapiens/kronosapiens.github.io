@@ -4,9 +4,11 @@ title: About
 permalink: /about/
 ---
 
+**Note: I am currently looking for full-time work. You can reach me at kronovet -at- gmail -dot- com**
+
 I'm **Daniel Kronovet**, a data scientist living in New York City.
 
-I am currently at Columbia, finishing up an M.A. in Quantitative Methods in the Social Sciences, with an emphasis on the core math and computer science underlying modern machine learning.
+I recently graduated from Columbia, with M.A. in [QMSS](http://www.qmss.columbia.edu/), emphasizing the core math and computer science underlying modern machine learning.
 
 I've worked at a handful of startups, as an engineer and a data scientist.
 
