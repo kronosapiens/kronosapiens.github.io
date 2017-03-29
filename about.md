@@ -4,9 +4,7 @@ title: About
 permalink: /about/
 ---
 
-**Note: I am currently looking for full-time work.**
-
-I'm **Daniel Kronovet**, a data scientist living in New York City.
+I'm **Daniel Kronovet**, a data scientist living in New York City. I work at [Foursquare](https://foursquare.com/), helping to improve the quality of their location intelligence.
 
 I recently graduated from Columbia, with M.A. in [QMSS](http://www.qmss.columbia.edu/), emphasizing the core math and computer science underlying modern machine learning.
 
