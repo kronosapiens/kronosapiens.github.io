@@ -150,3 +150,5 @@ We conclude at least a rough equivalence between complexity and uncertainty.
 Returning to the teaching example, we can now speak in terms of complexity of the material instead of randomness of the source. If material is too complex for the student ($$C < H(X)$$), then the material cannot be taught to that student (yet).
 
 Observe that the channel (the student) is not fixed, but is able to handle increasingly complex subjects over time.
+
+... to be continued?
