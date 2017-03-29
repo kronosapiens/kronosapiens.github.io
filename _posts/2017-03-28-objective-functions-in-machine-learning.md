@@ -119,9 +119,9 @@ $$
 \frac{\sum x_i}{n} = p
 $$
 
-And so again, the optimal value for the probability p of heads is the ratio of observed heads to total observations. We see how our intuition ("the average!") is made rigorous by the formalism.
+And so again, the optimal value for the probability p of heads is, for this particular definition of optimal, the ratio of observed heads to total observations. We see how our intuition ("the average!") is made rigorous by the formalism.
 
-This example is a model of a simple object. More advanced objects (such as a graph of interdependent events) require more advanced models (such as a Hidden Markov Model), for which the optimal solution involves many variables and as a consequence more elaborate calculations. In some cases, as with the logistic regression, the exact answer cannot ever be known, only iteratively approached.
+This example is a model of a simple object. More advanced objects (such as a constellation of interdependent events) require more advanced models (such as a Hidden Markov Model), for which the optimal solution involves many variables and as a consequence more elaborate calculations. In some cases, as with the logistic regression, the exact answer cannot ever be known, only [iteratively approached](http://kronosapiens.github.io/blog/2015/11/22/understanding-variational-inference.html).
 
 In all of these cases, however, the log of the likelihood function remains an essential tool for the analysis. We can use it to calculate a measure of quality for an arbitrary combination of parameters, as well as use it (in a variety of ways) to attempt to find optimal parameters in a computationally efficient way. Further, while the examples given above are possibly the two simplest non-trivial examples of these concepts, they capture patterns of derivation which recur in more complex models.
 
