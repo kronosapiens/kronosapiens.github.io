@@ -46,7 +46,7 @@ $$
 
 And so. We see that the value which minimizes the squared error is, in fact, the mean. This elementary example may seem trite, but it is important to see how something as simple as an average can be interpreted as a problem of optimization. Note how the value of the average changes with the objective function: the mean is the value which minimizes the sum of squared error, but it is the median which minimizes the sum of *absolute error*.
 
-In this example, the problem could be solved analytically: we were able to find the exact answer, and calculate it in linear time. For other problems, the objective function does not permit an analytic solution. Consider the logistic regression, a classification algorithm whose simplicity, flexibility, and robustness has made it a workhorse of data teams. This algorithm iterates over many possible classification boundaries, each iteration yielding a more discriminant classifier.
+In this example, the problem could be solved analytically: we were able to find the exact answer, and calculate it in linear time. For other problems, the objective function does not permit an analytic or linear-time solution. Consider the logistic regression, a classification algorithm whose simplicity, flexibility, and robustness has made it a workhorse of data teams. This algorithm iterates over many possible classification boundaries, each iteration yielding a more discriminant classifier. Yet, the true optimum is never found: the algorithm simply terminates once the solution has reached relative stability.
 
 There are other types of objective functions that we might consider. In particular, we can conceive of the *maximizing of a probability*.
 
