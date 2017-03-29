@@ -52,7 +52,7 @@ There are other types of objective functions that we might consider. In particul
 
 Part of the power of probability theory is the way in which it allows one to reason formally (with mathematics) about that which is fundamentally uncertain (the world). The rules of probability are simple: events are assigned a probability, and the probabilties must all add to one, because *something* has to happen. The way we represent these probabilities, however, is somewhat arbitrary -- a list of real numbers summing to 1 will do. In many cases, we use functions.
 
-Consider flipping a coin. There are two possible outcomes: heads and tails. The odds of heads and the odds of tails must add to 1, because one of them must come up. We can represent this situation with the following equation:
+Consider flipping a coin. There are two possible outcomes: heads and tails. The odds of heads and the odds of tails must add to 1, because one of them must come up. We can represent this situation with the following [equation](https://en.wikipedia.org/wiki/Bernoulli_distribution):
 
 $$
 p^x(1-p)^{1-x}
@@ -70,7 +70,7 @@ $$
 P(x) = \prod_{i=1}^n p^{x_i}(1-p)^{1-x_i}
 $$
 
-The thing to note here is that the probability of two what we call *independent* events (i.e. one does not give us knowledge about the other) is the product of the probability of the events separately. In this case, the coin flips are *conditionally independent* given heads probability p.
+The thing to note here is that the probability of two what we call *independent* events (i.e. one does not give us knowledge about the other) is the product of the probability of the events separately. In this case, the coin flips are *conditionally independent* given heads probability p. One consequence is that $$P(x) \in (0, 1)$$, and generally much closer to 0 than 1.
 
 The *logarithm* is a remarkable function. When introduced in high school, the logarithm is often presented as "the function which tells you the power you would need to raise a number to to get back the original argument", or put more succintly, the degree to which you would need to exponentiate a base. This exposition obscures the key applications of the logarithm:
 
