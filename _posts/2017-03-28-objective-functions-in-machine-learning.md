@@ -112,11 +112,11 @@ $$
 $$
 
 $$
-\frac{\sum_{i=1}^n x_i}{p} = n
+\frac{\sum x_i}{p} = n
 $$
 
 $$
-\frac{\sum_{i=1}^n x_i}{n} = p
+\frac{\sum x_i}{n} = p
 $$
 
 And so again, the optimal value for the probability p of heads is the ratio of observed heads to total observations. We see how our intuition ("the average!") is made rigorous by the formalism.
