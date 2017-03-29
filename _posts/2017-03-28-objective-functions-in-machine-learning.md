@@ -41,7 +41,7 @@ $$
 $$
 
 $$
-\frac{\sum_{i=1}^n x_i}{n} = \mu
+\frac{\sum x_i}{n} = \mu
 $$
 
 And so. We see that the value which minimizes the squared error is, in fact, the mean. This elementary example may seem trite, but it is important to see how something as simple as an average can be interpreted as a problem of optimization. Note how the value of the average changes with the objective function: the mean is the value which minimizes the sum of squared error, but it is the median which minimizes the sum of absolute error.
@@ -58,7 +58,7 @@ $$
 p^x(1-p)^{1-x}
 $$
 
-Here $$x$$ is the coin and $$x = 1$$ means heads and $$x = 0$$ if tails, and $$p$$ is the odds of coming up heads. We see that if the coin is heads, the value is $$p$$, the odds of heads. If the coin is tails, the value is $$1-p$$, which by necessity is the chance of heads. We call this equation $$P(x)$$, and it is a probability distribution, telling us the probability of various outcomes.
+Here $$x$$ is the coin and $$x = 1$$ means heads and $$x = 0$$ if tails, and $$p$$ is the odds of coming up heads. We see that if the coin is heads, the value is $$p$$, the chance of heads. If the coin is tails, the value is $$1-p$$, which by necessity is the chance of tails. We call this equation $$P(x)$$, and it is a probability distribution, telling us the probability of various outcomes.
 
 Now, not all coins are fair (meaning that $$p = 1-p = 0.5$$). Some may be unfair -- with heads, perhaps, coming up more often. Say we flipped a coin a few times, and we were curious as to whether the coin was biased. How might we discover this? Via the likelihood equation. Intuitively, we seek a value of p which gives the *maximum likelihood* to the coin flips we saw.
 
