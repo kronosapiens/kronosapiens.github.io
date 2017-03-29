@@ -44,7 +44,7 @@ $$
 \frac{\sum_{i=1}^n x_i}{n} = \mu
 $$
 
-And so. We see that the value which minimizes the squared error is, in fact, the mean. This elementary example may seem trite, but it is important to see how something as simple as an average can be interpreted as a problem of optimization. Note how the value of the average changes with the objective function: the value which minimizes the *mean absolute error* is not the mean, but the median.
+And so. We see that the value which minimizes the squared error is, in fact, the mean. This elementary example may seem trite, but it is important to see how something as simple as an average can be interpreted as a problem of optimization. Note how the value of the average changes with the objective function: the mean is the value which minimizes the sum of squared error, but it is the median which minimizes the sum of absolute error.
 
 In this example, the problem could be solved analytically: we were able to find the exact answer, and calculate it in constant time. For other problems, the objective function does not permit an analytic solution. Consider the logistic regression, a classification algorithm whose simplicity, flexibility, and robustness has made it a workhorse of data teams. This algorithm iterates over many possible classification boundaries, each iteration yielding a more discriminant classifier.
 
