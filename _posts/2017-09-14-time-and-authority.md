@@ -12,17 +12,26 @@ tags:
 
 I.
 
-Some ideas have staying power. For whatever reason, ideas about good and evil,
-right conduct, and so on have been around for millenia. Other ideas are newer.
-Notions of individual freedom, equal rights, have been around for centuries,
-or merely decades. Ideas come in and out of fashion; some last longer than
-others.
+Living together, humans exchange ideas.
 
-On the other hand, we have people who are constantly changing their mind.
-Especially in politics, where we are often frustrated by individuals
-flip-flopping on issues to suit their immediate needs.
+Some of those ideas have staying power. Views concerning
+good and evil and right conduct have been around for millenia.
+Notions of individual freedom and equal rights have been around for centuries.
+Concepts of gender and racial equality, decades.
 
-Is there something to be said for an idea that lasts?
+Ideas come in and out of fashion; some last longer than
+others. Not all of them are good, and sometimes we have to let them go.
+
+Still, we expect people to stick to their beliefs: especially our leaders and
+people we depend on. It is destructive when leaders renege on
+important issues to suit their immediate needs.
+
+At the same time, we don't want people to feel like they must perform
+their beliefs under external pressure. As we change, our attitudes change,
+and our expression of those attitudes should be free to change with them.
+
+We want freedom. We want stability. How do we balance self and society?
+If something is good, will it last? If something lasts, is it good?
 
 II.
 
@@ -32,55 +41,48 @@ yesteryear. An idea which has been passed on for hundreds of years is
 of the same value as one freshly conceived that morning; it is our
 intellect, and nothing else, that arbitrates between them.
 
-The discovery of deconstruction was a cultural breakthrough, but has
-left us both highly sensitive to dialectical tensions and ill-equipped
-to resolve them. As an example, consider the recent headlines
-concerning trigger warnings on college campuses.
+The deconstruction was a cultural breakthrough, but has
+left us more sensitive to dialectical tensions yet [poorly-equipped](https://www.theatlantic.com/politics/archive/2016/05/the-peril-of-writing-a-provocative-email-at-yale/484418/)
+to resolve them.
 
-It is our position that the postmodern paradigm has been a gift and a curse,
-and that we ultimately must find a way to balance both flexiblity of thought
-and the value of tradition. The ideal balance is one which allows someone
-to change their mind, while at the same time giving preference to those
-who hang on to their beliefs.
+Ultimately, the postmodern vision has been a gift and a curse. We cannot hold
+ourselves right *a priori* and we must ultimately find a way to balance
+flexiblity of thought with a valuing of tradition. The ideal balance is one
+that allows an individual to change their mind, while at the same time
+creating some incentive to stick to one's beliefs. We must find a way to
+embrace change without fearing destruction.
 
-Further, we would like put this balance into practice, specifically as
-an exension of the theory of preference graphs developed in
-[this thesis](http://nbviewer.jupyter.org/github/kronosapiens/thesis/blob/master/tex/thesis.pdf).
-
-We will describe this mechanic, and identify a number of unanticipated benefits.
+It is easy to speak in generalities; it is hard to put things into action.
+In an attempt at the latter, we will bring this balance into practice,
+as a demonstration and extension of [this theory](http://nbviewer.jupyter.org/github/kronosapiens/thesis/blob/master/tex/thesis.pdf) of preference graphs.
 
 III.
 
-To review the language of preference graphs, we have individuals $$e$$ with
-preferences, expressed as $$(b,a)$$ when $$e$$ prefers $$a$$ over $$b$$. We can
-imagine $$(b,a)$$ as an arrow, or edge, pointing from $$b$$ to $$a$$.
+To review the language of preference graphs, we an individual $$e$$, who has
+preferences written as $$(b,a)$$ when $$e$$ prefers $$a$$ over $$b$$. We can
+imagine $$(b,a)$$ as a preference, or arrow, from from $$b$$ to $$a$$.
 
 Thusfar when aggregating preferences, all preferences are given a weight of 1.
 Now we introduce a new dimension to preferences: the *authority* of a
-preference, defined as some function of the time since $$e$$ first expressed the
-preference $$(b,a)$$. If $$p$$ is an arbitrary preference and $$t$$ is the time
-(in seconds) since that preference was expressed, then the authority of
-$$p$$ can be defined as:
+preference, a variable weight defined as some function of the time $$t$$ since
+$$e$$ first expressed the preference $$p = (b,a)$$.If $$p$$ is an arbitrary
+preference and $$t_p$$ is the time since that preference was first expressed,
+then the authority of $$p$$ can be defined as:
 
 $$
-auth(p) \triangleq f(t)
+auth(p) \triangleq f(t_p)
 $$
 
 The authority function is intentionally general; any function will do, and
-the choice of function will determine the way that the authority of a
-preference increases (or potentially decreases) over time. That said, we
-feel that the logarithm, $$log(t)$$, is a reasonable place to start.
-
-When performing aggregations and analyses of group preferences, the units
-will become units of authority, rather than simple counts.
-
-As we will see, incorporating the time dimension will have some interesting
-consequences.
+the choice of function will shape our intereptation of the "authority."
+Using a monotonically-increasing function, like the logarithm, creates an
+authority curve which is intuitive and useful.
 
 IV.
 
-What happens when we incorporate time? Assuming a monotonically-increasing
-authority function, we can predict the following:
+What happens when we incorporate time into applications of preference graphs?
+Assuming a monotonically-increasing authority function and rational,
+self-interested participants, we might expect the following.
 
 1. Individuals are incentivized to register their preferences as early as
 possible. Assume that individuals would like their views to have the
@@ -103,5 +105,6 @@ In summary, the addition of a time dimension to a preference-aggregation
 platform creates powerful incentives to both adopt the platform and to
 behave responsibly once on the platform. It is especially worth noting that
 the additional computational complexity associated with incorporating the
-time dimension is small: $O(n)$.
+time dimension is small: $$O(n)$$. That so many positive effects emerge
+from a simple computation is highly suggestive.
 
