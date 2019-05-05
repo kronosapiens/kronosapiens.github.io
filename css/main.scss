@@ -27,8 +27,6 @@ $content-width:    800px;
 $on-palm:          600px;
 $on-laptop:        800px;
 
-
-
 // Using media queries with like this:
 // @include media-query($on-palm) {
 //     .wrapper {
@@ -42,11 +40,22 @@ $on-laptop:        800px;
     }
 }
 
-
-
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
         "base",
         "layout",
         "syntax-highlighting"
 ;
+
+// Hack to help the tables render nicely
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+table th,
+table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
