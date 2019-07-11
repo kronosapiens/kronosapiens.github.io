@@ -12,6 +12,8 @@ tags:
 
 *In which we compare and contrast the essential approaches of four significant Ethereum DAO projects.*
 
+Update: this essay has been expanded into a talk ([video](https://youtu.be/RkN7-UcpC4A), [slides]({{site.baseurl}}/talks/dao-slides.pdf)), and translated into [Chinese](https://mp.weixin.qq.com/s/V3oGvd453J9gvbFJffV3TA).
+
 ## Prelude
 
 What is a DAO? Here, we take as an ([imperfect](https://blog.ethereum.org/2014/05/06/daos-dacs-das-and-more-an-incomplete-terminology-guide/)) definition something simple: "a censorship-resistant means to coordinate the deployment of shared resources towards a shared objective". The simplest DAO, by this definition, would be a multi-sig wallet, in which individual members can withdraw paltry sums and many members together can withdraw significant sums.
