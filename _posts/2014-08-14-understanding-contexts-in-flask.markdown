@@ -25,7 +25,7 @@ Before getting into the details, let's establish the purpose of contexts. From M
 
 >The obvious way in which Flask could give a view function access to the request object is by sending it as an argument, but that would require every single view function in the application to have an extra argument. ...
 
->To avoid cluttering view functions with lots of arguments that may or may not be neded, Flask uses *contexts* to temporarily make certain objects globally accessible.
+>To avoid cluttering view functions with lots of arguments that may or may not be needed, Flask uses *contexts* to temporarily make certain objects globally accessible.
 
 
 Alright, so it seems that contexts are used to control the presence or absence of various *global variables*, so that you, the developer, can simply assume that the correct variables will be available when you need them. Given that an application can be running in multiple threads and serving multiple clients at once, I assume that this kind of context management will prove very helpful in keeping things organized.
