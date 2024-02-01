@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Strange Loops and Blockchains"
+title: "Blockchain Governance"
 comments: true
 categories: blog
 tags:
