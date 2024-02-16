@@ -4,7 +4,7 @@ title: Talks
 permalink: /talks/
 ---
 
-A selection of talks from over the years:
+**A selection of talks from over the years:**
 
 [**The Return of Cybernetics: The computer in a world of change**]({{site.baseurl}}/talks/cybernetics-slides.pdf)
 
