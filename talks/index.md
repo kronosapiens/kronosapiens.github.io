@@ -6,6 +6,10 @@ permalink: /talks/
 
 **A selection of talks from over the years:**
 
+[**Structures and Cultures: Computational self-regulation in a non-hierarchical coliving house**](https://docs.google.com/presentation/d/1wVkrGnqsFK0giQ2rLlYnySwLrtw9ogf2TxcipMdy0D4/edit?usp=sharing)
+
+Delivered in-person at the WOW7 conference at Indiana University, Bloomington, June 2024
+
 [**The Return of Cybernetics: The computer in a world of change**]({{site.baseurl}}/talks/cybernetics-slides.pdf)
 
 Delivered virtually to the Blockchain Gaming Alliance, May 2020
