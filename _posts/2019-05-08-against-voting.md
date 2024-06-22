@@ -19,7 +19,7 @@ We open by introducing a visual metaphor for describing the behavior of complex 
 In counter-cultural icon Stewart Brand's 1999 book *The Clock Of The Long Now*, we find a useful image innocuously titled "Pace Layering":
 
 <p align="center">
-  <img src="http://d3ct8f39dj9jhs.cloudfront.net/wp-content/uploads/2013/09/pace_layering.jpg">
+  <img src="https://s3.amazonaws.com/kronosapiens.github.io/images/pace-layering.png">
 </p>
 
 This image's thesis is that complex systems can be seen as a "layering" of multiple sub-systems, with "lower" systems (the more foundational) simultaneously enabling an environment and setting the boundaries within which the "higher" systems (the more discretionary) can operate. Lower systems are more critical, in that disruptions in lower systems require recalibrations of all higher systems, and are thus ideally slower to change than the more discretionary systems built on top of them.
@@ -103,7 +103,7 @@ Here is a table which summarizes a number of popular "input mechanisms", as well
   <tr><td><a href="https://en.wikipedia.org/wiki/Instant-runoff_voting">IRV</a></td><td>Electing</td><td>Multivariate Discrete</td><td>Computational</td></tr>
   <tr><td><a href="https://en.wikipedia.org/wiki/Score_voting">Score</a></td><td>Electing</td><td>Multivariate Real</td><td>Cognitive</td></tr>
   <tr><td><a href="https://en.wikipedia.org/wiki/Dot-voting">Dot</a></td><td>Budgeting</td><td>Multivariate Real</td><td>Cognitive</td></tr>
-  <tr><td><a href="https://en.wikipedia.org/wiki/Power_iteration">Spectral</a></td><td>Budgeting</td><td>Multivariate Real</td><td>Computational</td></tr>
+  <tr><td><a href="https://en.wikipedia.org/wiki/Power_iteration">Power</a></td><td>Budgeting</td><td>Multivariate Real</td><td>Computational</td></tr>
 </table>
 
 <br />
@@ -121,7 +121,7 @@ We have inherited a categorical error in our collective handling of finances. Ou
 
 Phrased differently, we can move from "simple inputs on complex objects" (cognitive complexity) to "complex inputs on simple objects" (computational complexity). A national budget is a complex object, but a relative choice between "infrastructure" and "education" is a simple one. By providing more complex inputs, such as a multivariate real describing percentage allocations, or a series of pairwise decisions bits (the simplest unit of relative information), we can shift the processing burden from cognition to computation, and by extension, change the *experience* of budgeting entirely.
 
-Specifically, both Dot Voting and Spectral Budgeting represent alternatives to conventional proposal-based budgeting processes. The former asks participants to allocate percentages among various items, with the constraints that the sum of percentages must not exceed one. The latter asks participants to submit a sequence of explicitly pairwise preferences between items ("is A more important than B"), and then converts them into budgets using well-established mathematical techniques. In both cases, inputs are submitted under *relative constraint* (as with the Quadratic Voting example), which renders them more information-rich than when inputs are made without contraints, as in the case of score voting or Likert scales.
+Specifically, both Dot Voting and Power Budgeting represent alternatives to conventional proposal-based budgeting processes. The former asks participants to allocate percentages among various items, with the constraints that the sum of percentages must not exceed one. The latter asks participants to submit a sequence of explicitly pairwise preferences between items ("is A more important than B"), and then converts them into budgets using well-established mathematical techniques. In both cases, inputs are submitted under *relative constraint* (as with the Quadratic Voting example), which renders them more information-rich than when inputs are made without contraints, as in the case of score voting or Likert scales.
 
 As an aside, it's not clear how it ever became acceptable to have people provide input using unconstrained numeric scales. It would be as informative and more honest to ask people to compose haikus describing their affect towards the item in question.
 
