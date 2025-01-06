@@ -6,7 +6,7 @@ permalink: /papers/
 
 **My most notable publications**
 
-[**(2024) Structures and Cultures: Computational self-regulation in a non-hierarchical coliving house**]({{site.baseurl}}/papers/structures.pdf)
+[**(2024) Structures and Cultures: Cybernetic governance in a coliving house**]({{site.baseurl}}/papers/structures.pdf)
 
 Daniel Kronovet, Seth Frey, Joseph DeSimone
 
