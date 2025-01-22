@@ -6,7 +6,7 @@ permalink: /talks/
 
 **A selection of talks from over the years:**
 
-[**Structures and Cultures: Cybernetic governance in a coliving house**](https://docs.google.com/presentation/d/1wVkrGnqsFK0giQ2rLlYnySwLrtw9ogf2TxcipMdy0D4/edit?usp=sharing)
+[**Cybernetic Governance in a Coliving House**](https://docs.google.com/presentation/d/1wVkrGnqsFK0giQ2rLlYnySwLrtw9ogf2TxcipMdy0D4/edit?usp=sharing)
 
 Delivered in-person at the WOW7 conference at Indiana University, Bloomington, June 2024
 
