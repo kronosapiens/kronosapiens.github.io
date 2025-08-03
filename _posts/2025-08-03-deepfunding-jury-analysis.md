@@ -11,6 +11,8 @@ tags:
 
 ---
 
+DRAFT
+
 This analysis explores **611 pairwise judgments** from **51 jurors** evaluating Ethereum dependencies through the Deep Funding experiment.
 
 **Key findings:**
@@ -51,6 +53,7 @@ Our analysis will proceed in three steps:
 - **Third**, we will look at the specific relationship between thinking times and juror judgments, looking to understand whether more time spent per-pair produced better results.
 
 *[Analysis code can be found here.](https://github.com/kronosapiens/notebooks/tree/main/notebooks)*
+*The data itself are not yet public.*
 
 ### Preliminaries
 
