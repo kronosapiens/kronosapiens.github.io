@@ -42,10 +42,15 @@ On a personal note, I have been enthusiastic about these methods [for years](htt
 
 ## II. Data Analysis
 
-Our analysis will proceed in three steps.
-**First**, we will discuss the basics of the data set and our metrics of interest.
-**Second**, we will explore the judgments overall, looking at the degree to which jurors could distinguish between projects as well as the agreement among jurors.
-**Third**, we will look at the specific relationship between thinking times and juror judgments, looking to understand whether more time spent per-pair produced better results.
+Our analysis will proceed in three steps:
+
+- **First**, we will discuss the basics of the data set and our metrics of interest.
+
+- **Second**, we will explore the judgments overall, looking at the degree to which jurors could distinguish between projects as well as the agreement among jurors.
+
+- **Third**, we will look at the specific relationship between thinking times and juror judgments, looking to understand whether more time spent per-pair produced better results.
+
+*[Analysis code can be found here.](https://github.com/kronosapiens/notebooks/tree/main/notebooks)*
 
 ### Preliminaries
 
