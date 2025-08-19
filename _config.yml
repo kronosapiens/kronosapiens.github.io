@@ -1,8 +1,8 @@
 # Site settings
 
 title: Kronosapiens Labs
-email: kronovet@gmail.com
-description: A technology company
+email: kronovet at gmail dot com
+description: Building socio-technical infrastructure
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://kronosapiens.github.io" # the base hostname & protocol for your site
 twitter_username: kronosapiens
