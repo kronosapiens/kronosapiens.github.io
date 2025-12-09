@@ -22,7 +22,7 @@ In attempting to distill subjective reality into objective votes, information is
 In the end, the best we can do is design _task-specific_ voting systems in which the gap between subjective experience and objective input is as small as possible, minimizing the scope of conflict and increasing the utility and legitimacy of these systems.
 
 Several years ago [I speculated that]({% post_url 2019-05-08-against-voting %}), at least among the web3 governance community, the limitations of pass-fail voting would shift interest away from proposal-based decision-making and towards distributed capital allocation.
-Over the last five years, that prediction has been born out: instead of _voting on policy_, governance innovation has increasingly come to revolve around _giving out money_.
+Over the last five years, that prediction has been borne out: instead of _voting on policy_, governance innovation has increasingly come to revolve around _giving out money_.
 The shift from _discrete policy outcomes_ (you win, I lose) to _continuous financial outcomes_ ($10 to you, $5 to me) opens up a rich design space of contemporary social choice.
 
 Within the domain of decentralized capital allocation, several classes of techniques have been explored:
@@ -111,7 +111,7 @@ $
 Unlike the other algorithms discussed, which generate weights using _all_ of the observed preference data, Elo is an _online_ algorithm, meaning that the rankings are updated after every match -- and thus that rankings are dependent on the sequence of the matches.
 In addition, with Elo, the data are understood as the result of a matchup _between_ two items -- _not_ as a vote on a pair of items by an independent observer.
 
-**Ontology**, Elo models interactions as ocurring _in a specific sequence, between the entities themselves_, with the entities themselves being changed as a result of these encounters.
+**Ontology**, Elo models interactions as occurring _in a specific sequence, between the entities themselves_, with the entities themselves being changed as a result of these encounters.
 
 **Computationally**, Elo is $O(n)$ in the _number of matchups_ $n$ , with every matchup resulting in one constant-time ($O(1)$) update, with no minimum number of observations.
 
@@ -149,7 +149,7 @@ $
 
 We can interpret this as the "direction" to which the _whole graph points_, and can be seen as a type of summary or "center" of the data.
 
-To find this center, we can imagine having energy "flow" through of the connections of the graph, until it reaches a "steady state" in which the energy stops moveing ([see visualization](https://en.wikipedia.org/wiki/PageRank#/media/File:Page_rank_animation.gif)).
+To find this center, we can imagine having energy "flow" through of the connections of the graph, until it reaches a "steady state" in which the energy stops moving ([see visualization](https://en.wikipedia.org/wiki/PageRank#/media/File:Page_rank_animation.gif)).
 Techniques for decomposing a graph into these components are known as "spectral methods" after the "spectrum" of latent values they reveal (as when white light is divided into components of the color).
 Spectral methods for ranking and scoring have a history dating at least back to [Keener (1993)](https://www2.math.upenn.edu/~kazdan/312S14/Notes/Perron-Frobenius-football-SIAM1993.pdf), but were theoretically underdeveloped relative to Bradley-Terry until the [2015 Rank Centrality paper](https://arxiv.org/pdf/1209.1688) demonstrated both their statistical equivalence and computational advantages.
 
@@ -158,7 +158,7 @@ Spectral methods for ranking and scoring have a history dating at least back to 
 **Computationally**, spectral methods are $O(k^3 + n)$ in the _number of items_ $k$ and the _number of matchups_ $n$, requiring $O(k^2)$ observations.
 That the computation grows with the number of items, not with the number of votes, makes this technique shine in settings where many votes are cast on a small number of items, i.e. $k << n$.
 
-Ultiamtely, Bradley-Terry and spectral methods are more similar than they are different: they answer similar questions and produce similar results on similar data -- but there are subtle differences in how they operate.
+Ultimately, Bradley-Terry and spectral methods are more similar than they are different: they answer similar questions and produce similar results on similar data -- but there are subtle differences in how they operate.
 Perhaps the most important is that spectral methods model relationships _globally_, enabling them to infer transitive relationships not explicitly observed -- if A beats B, and B beats C, then the spectral method can infer that A would likely beat C.
 This propagation of signal creates more complex interactions, but also allows these methods to produce better results with less data.
 Spectral methods are also robust against cycles and other intransitive relationships, for which they produce ties, not contradictions.
@@ -281,7 +281,7 @@ Here we see a number of key design elements:
 - The ability to revisit a previous vote
 
 These elements form the foundation of an effective decision process.
-The metrics enable immediate, quantitative contrast between thewo items, while the text summary gives the voter deeper context on individual items.
+The metrics enable immediate, quantitative contrast between the two items, while the text summary gives the voter deeper context on individual items.
 Letting the voter skip pairs reduces the incidence of bad data, in cases where a voter genuinely cannot differentiate between two items.
 
 Further, this approach lets funding bodies incorporate both _metrics_ and _AI judgment_ in their process, leaving the final decision in the hands of human voters.
@@ -302,7 +302,7 @@ It is, of course, not so simple, and the question of cardinality vs ordinality c
 [Another recent study](https://pmc.ncbi.nlm.nih.gov/articles/PMC9586273/pdf/pnas.202210412.pdf) found that over long periods of time, cardinal measures of personal wellbeing were correlated with objective outcomes (such as moving to a new neighborhood if unhappy where you live), suggesting that cardinal judgments are not always noisy or idiosyncratic.
 
 The question of cardinal vs ordinal judgments is far from settled, and much depends on the specifics of the problem and the audience.
-However, it does seems that in the setting of decentralized capital allocation by a large and heterogenous group of voters, that cardinal judgments should be -- at the very least -- the default.
+However, it does seems that in the setting of decentralized capital allocation by a large and heterogenous group of voters, that ordinal judgments should be -- at the very least -- the default.
 
 ## Audience Selection
 
@@ -327,143 +327,155 @@ Communicating the behavior of the system, and making the end-to-end process legi
 ## Item Discovery and Strategic Resistance
 
 USV's Albert Wenger [recently argued](https://open.spotify.com/episode/6XJOXe3whWTCm3TkuvAWQq?si=e51a8b5f558e43be) that "capital allocation is often downstream from attention allocation."
-As society increasingly recognizes that attention is now its scarcest resource, attentional analysis of social choice becomes increasingly important.
+As society increasingly frames attention as its scarcest resource, analyzing social choice schemes from the perspective of attention becomes increasingly important.
 
-Compared to voting methods in which items are evaluated individually, pairwise methods more naturally spread attention across items by presenting them in (pseudorandom) pairs.
-This pairwise approach builds in item discovery as a first-class construct, as even voters with strong preferences for individual projects will be asked to evaluate items for which they are unfamiliar.
-By spreading voter attention more uniformly, it becomes more difficult to vote strategically and more difficult for projects to gain advantage through hype or marketing.
-For this reason, pairwise methods are more robust than QF-style approaches, which often reduce to "beauty contests" among projects better able to build hype and draw limited voter attention.
+A common critique of Quadratic Funding is that it leads to "beauty contests" in which projects with marketing muscle grab all of the attention, drawing large amounts of funding at the expense of valuable, but more subtle, alternatives.
+This critique can be seen as a problem of attention in the paradigm of individual evaluation.
+
+Pairwise methods, on the other hand, more naturally spread attention by presenting items in random pairs.
+This pairwise approach builds _item discovery_ into the process as a first-class construct, as voters are inevitably presented with items with which they are unfamiliar.
+This reduces the need (and benefit) for projects to market themselves, freeing effort for driving engagement with _the system as a whole_.
+
+The pairwise process also adds obstacles to strategic voting.
+By spreading voter attention more uniformly, strategic voting becomes more costly, as strategic voters will be presented with many pairs for which they have no strategic interest.
 
 ## Continuous Funding
 
-To-date, most public goods funding takes place via "rounds."
-Every round is a distinct event, featuring a slightly different set of projects and, crucially, requiring an entirely new set of votes.
-This reproduction of voter labor in every round is highly inefficient, as most voters will maintain similar opinions from round to round.
-Unfortunately, porting vote information between rounds is theoretically challenging, as individual judgments are implicitly a function of the entire item set.
-If we assume roughly that 90% of voter preferences are the same between rounds, then the epoch-based approach is converting attention to information at a rate of only 10%.
+Possibly the most significant application of the pairwise paradigm is what is known as "continuous funding."
 
-In contrast, pairwise methods naturally lend themselves to _continuous processes_ in which an always-on voting interface can be used to continuously monitor and update ongoing funding flows in response to new information -- converting attention to information at 100% efficiency.
-Rather than replicate work in every round, individual preferences can be continuously aggregated into a single "source of truth" trivially capable of incorporating new items or removing those no longer relevant.
+Historically, most public goods funding takes place via "rounds."
+Every round is a discrete event, featuring a slightly different set of projects and requiring an entirely new set of votes.
 
-Taken together, we can imagine a single always-on funding process, continuously allocating funding in response to new information, with a minimum of operational overhead or wasted attention.
+This reproduction of voter labor in every round is inefficient, both because most projects will not change much between rounds, and because voters will maintain similar opinions from round to round.
+If we assume -- speculatively -- that a typical ecosystem evolves by about 20% between rounds, then this approach wastes a staggering 80% of voter attention.
 
-Continuous funding systems introduce new considerations.
-We'll discuss a few of them here:
+One might propose transferring votes from round to round, so that a voter does not need to submit potentially redundant new votes.
+This transferring of vote information between rounds is theoretically challenging, however, as individual item judgments are _implicitly_ a function of the entire item set -- perhaps I give a project A $10, but if B had been an option, I might have only given $5.
 
-### Stale Data
+On the other hand, the self-contained, "atomic" nature of pairwise judgments lend themselves more naturally to _continuous processes_ in which always-on voting interfaces can be used to _continuously_ monitor and update _ongoing_ funding flows in response to new information.
+Rather than perform redundant work in every round, individual preferences can be continuously aggregated into a single "source of truth" able to both incorporate new items and remove those no longer relevant.
+By gathering new inputs only as-needed, voter attention is converted into useful information at 100% efficiency.
 
-While in theory a vote between two pairs is valid in perpetuity, in practice we should be wary of relying too much on stale data.
-A practical design seek to leverage all available data, while preferring recent data over older and potentially out-of-date information.
-This can be implemented through a decay process in which votes lose their impact over time -- for example, decaying to zero over a two-year period.
+Continuous funding systems introduce new considerations, which we explore in the following sections:
+
+### Stale Voting Data
+
+As previously mentioned, one of the advantages of pairwise votes is that they can be meaningfully re-used between rounds.
+However, while in theory a vote between two pairs is perpetually valid, _in practice_ we should be wary of relying on stale data.
+In reality, projects are always evolving, and a preference for A over B may become increasingly inaccurate if A stagnates while B thrives.
+
+One approach to balancing this trade-off is through a decay process in which votes lose their impact slowly over time, perhaps decaying to zero over a two-year period.
+By incorporating a "vote decay" we extend the life of voting data relative, while minimizing the potential impact of stale data.
 
 ### Permissionless Entry
 
-The ideal continuous-funding system would be largely permissionless.
-Projects would be able to add themselves to the pool and would over time "reach their level" as incoming votes position the project at the correct weighting.
-Under an active ranking process, a new project would be frequently surfaced (with few prior votes giving it a high variance).
-A fraudulent project would quickly find itself downranked to zero, and effectively disappear from the pool.
+Most public goods funding rounds have high overheads, with staff needed to screen projects, run communication, and ensure performance.
+A continuous-funding system could be made fully permissionless, enabling efficient capital allocation at lower cost.
 
-A potential extension would be to require a stake for submitted projects, slashed in case the project weight falls below some threshold.
+A fully permissionless system would let projects add themselves to the pool, potentially requiring them to put up a stake.
+Once entered, the active ranking process would quickly surface the high-variance new project, allowing it to quickly "find its level" of funding.
+Projects that performs poorly -- say, more than three standard deviations below the mean -- would be evicted from the pool, forfeiting their stake.
 
 ### Process Tempo
 
-The funding process can be made truly continuous, in which votes update the weights as soon as they come in, and funding is distributed among the items at a per-second interval.
-In practice, a practitioner might want to establish more well-defined tempos to meet the preferences of the community.
+Even a truly continuous process might benefit from a periodic tempo of participation.
+By organizing participation in "sprints," it becomes easier to command a community's attention, who might otherwise forget about a process which is "always on."
 
 One could imagine running "campaigns" to encourage people to vote, where leaderboards and other activations spur a wave of data-collection and keeps the data fresh.
-This would be qualitatively similar to a conventional round-based process, but running on a continuous substrate.
+One could also imagine making payouts on a monthly or quarterly basis, or conditioning payouts on milestones determined by a separate governance process.
 
-One could also imagine making payouts on a monthly or quarterly basis, or even conditioning payouts on milestones determined by a separate governance process.
-Again, this would allow for a "product" qualitatively similar to other grant programs, running on a continuous substrate.
+This the end experience be _qualitatively_ similar to a conventional round-based process, but one running on a continuous substrate in which allocations both update and distribute in real-time.
+
+### Funding Rates
+
+In a continuous process, one must answer the question of "how fast should I distribute the money?"
+
+One approach would be to give it out at a _constant_ rate over some period of time, let's say four years.
+This approach would give out 50% of the funds after two years, and 100% after four years, at which point the process would end (assuming no new funds).
+
+Another approach, proposed by the Colony team in their whitepaper, would be to distribute funds at an _exponenentially decaying_ rate, such that funds are distributed according to a "half life" of (let's say) one year.
+This approach would give out half the funds in the first year, and then half of the remaining half in the second year, and so on.
+The benefit of this approach is that the funding process never truly ends, but rather continues indefinitely at decreasing levels.
+
+In both cases, more funds should continue to be raised, extending the funding process indefinitely.
+The topic of fundraising, however, is beyond the scope of this argument.
 
 # IV: Conclusion
 
 ## Challenges and Limitations
 
-Pairwise methods have limits.
-In settings where participants expect a high degree of control over the output, these methods will be frustrating to use.
+While compelling in many ways, pairwise methods have limits.
 
-Pairwise methods also provide no innate sybil protection, requiring similar solutions to those used by other methods.
-<!-- TODO: Expand sybil discussion. This is too dismissive of an important issue. What solutions work? (identity verification, staking, reputation systems?) Are there unique considerations for pairwise vs other methods? Does the pairwise structure make sybil attacks easier or harder? -->
+### Sybil Protection
 
-There are other challenges specific to pairwise methods that are worth mentioning:
+As with most non-token-based voting systems, pairwise methods need some form of sybil protection -- namely, some form of identity or reputation -- to prevent manipulation.
 
-### Independence of Irrelevant Alternatives
+Identity and reputation are deep fields, and as pairwise methods introduce no _specific_ challenges compared to other voting methods, we will not explore them in detail here.
+Suffice to say that there are many valid approaches to sybil resistance, ranging from identity passports to webs-of-trust reputation systems.
+Choosing the right solution will again be a function of problem and audience.
 
-The "independence of irrelevant alternatives" (IIA) is a foundational concept in social choice.
+### The Independence of Irrelevant Alternatives
+
+The "independence of irrelevant alternatives" (IIA) is a key concept in social choice.
 The principle of IIA says that the relative ranking of two options must never depend on a third (the "irrelevant alternative").
+In practice, almost every voting system violates this ideal in some way; the question becomes why and to what degree.
 
 Some pairwise algorithms, such as spectral ranking, _intentionally_ draw in that third option to enable richer comparisons with less data.
-This produces results which reflect a more global perspective, incorporating more data, but also increases the likelihood of unexpected interactions.
-Violating the IIA principle does not make these algorithms _wrong_, but does require clarifying the advantages and disadvantages of the decision.
+This produces results which reflect a global perspective, incorporating more data, but increases the likelihood of unexpected interactions.
+This unapologetic rejection of IIA is acceptable in the setting of capital allocation, where the goal is to distribute resources across an entire ecosystem.
 
-Relaxing IIA is acceptable in the setting of capital allocation, where the goal is to distribute resources across an entire ecosystem.
-In single-winner settings like elections, relaxing IIA risks potential loss of legitimacy due to unexpected interactions among the candidates.
-For these higher stakes, one-off settings, a Condorcet methods with strong guarantees is likely preferrable.
+In high-stakes, single-winner settings like elections, however, these complex and non-linear interactions might undermine the perceived legitimacy of the process.
+In those settings, a Condorcet method with stronger guarantees would almost certainly be preferrable.
 
-NOTE: IIA in votes vs in results. With QF, items are not independnet. With pairs, they are.
-
-### Intransitivity
-
-Closely related to IIA is the idea of _intransitivity_ of preferences.
-
+> Note: Individual pairwise votes _are_ in fact independent of alternatives; it is the final result which is not.
 
 ### Dealing with Heterogeneity
 
-One of the few prerequisites to using pairwise techniques is ensuring that the items being compared are meaningfully comparable.
-One can meaningfully ask whether someone would prefer an apple or an orange; one cannot meaningfully ask whether freedom is more important than the color red.
+One of the few prerequisites to using pairwise techniques is making sure that the items being compared are meaningfully comparable.
+While this may sound tautological, it is by no means guaranteed.
+To give an example, one can meaningfully ask whether someone would prefer an apple or an orange; one cannot meaningfully ask whether freedom is more important than the color red.
 
-Part of the practitioner's skill of problem selection is ensuring that the items being considered are part of a meaningful set.
+Part of the practitioner's skill is ensuring that the items being considered are part of a semantically coherent set.
 This meaning can come from both grouping like items together, or by framing the comparison in a way which makes sense for the given set.
 
-Techniques like star grouping can be used to help subdivide a heterogenous set, shifting some of the labor from those deploying the process to those participating in it.
+When dealing with a potentially heterogenous set, techniques like star grouping can be used to help subdivide the items, adding a level of robustness to the process.
 
-## Putting it Together
+## Putting it all Together
 
-As mentioned in the introduction, pairwise should be understood not as a single technique or mechanism, but as a complete _paradigm_ of social choice.
-This is because pairwise methods go beyond a single technique, but rather encompass a suite of mechanisms, interfaces, and practices which work together to generate pro-social outcomes.
+As argued in the introduction, pairwise methods should be understood not as a single technique or mechanism, but as a _paradigm_ of social choice.
+Having introduced the various pieces of this paradigm, we can begin puting them together, and begin to estimate the actual attention requirements for public goods funding processes.
 
-Having introduced the pieces of this paradigm, we can begin to put them all together to produce estimates of the attentional requirements for public goods funding
-Assuming _30 seconds per vote_ and _10 votes per item_, pairwise methods can produce an allocation over a set of items at a fixed cost of _5 minutes_ per item.
-For 600 items, this means _50 total hours_ of voter attention.
-If we assume each voter commits 20 minutes to the process, then we need only 150 voters to produce a good result -- a fairly easy lift.
+Assuming _30 seconds per vote_ and _10 votes per item_, pairwise methods can produce allocations at an attentional cost of  _5 minutes_ per item.
+For a set of 600 items, this means _50 hours_ of total voter attention.
+If we assume each voter contributes four five-minute sessions (20 minutes), then we need only 150 voters to produce a good result -- a relatively easy lift.
 
-Things become even better when we think about a continuous process.
-If we assume that only ~10% of the items undergo meaningful change in a given 3-month period, then we can sustain a continuous funding distribution _indefinitely_ with an ongoing attention cost of _2 minutes per item per year_ ((5 min / 10) * 4).
+As a continuous process, things get even better.
+If we assume that only ~20% of the items undergo meaningful change in a given quarter, we can sustain a continuous funding process _indefinitely_ with an attention cost of _4 minutes per item per year_ (5 min * 20% * 4 quarters).
+
+The idea of sustaining a complex public goods funding ecosystem with such little effort might seem implausible.
+The continued development of these techniques will almost certainly surface new challenges and limitations.
+And yet, the arguments have been laid out, and these are the conclusions we've drawn.
+
+We invite the public goods funding community to refine these estimates... by putting the methods into practice.
 
 ## Final Thoughts
 
 There is no perfect voting system.
-The most we can hope for in this life is to be able to choose from many tools the one which best fits our circumstances.
+The best we can do in this life is to choose from among many tools the one which best fits our circumstance.
 
-Arrow's theorem showed specifically the limits of ranked-choice systems for producing discrete, ordered results.
-Shifting to the capital-allocation setting of _continuous outcomes_ opens up significant space for algorithmic exploration -- in which the complex perturbations of weights is not a bug, but a feature.
+Arrow's theorem showed the limits of ranked-choice systems for producing discrete, ordered results.
+Shifting to the capital-allocation setting of _continuous outcomes_ opens up meaningful space for algorithmic exploration, in which complex interactions are not a bug, but a feature.
 
-We have tried to show that pairwise methods, seen not as one-off techniques but as the foundation of a _paradigm_ for social choice, offers a compelling toolkit for solving one of the most challenging, and urgent, problems of our day.
+The task of helping large groups of people effectively manage shared resources is one of the critical problems of our day.
+We have tried to show that pairwise methods, seen not as isolated techniques but as part of a _paradigm_ of social choice, offers a compelling toolkit for solving exactly this problem.
 
-Many of the basic tools already exist.
+The building blocks already exist.
 [Pairwise.vote](https://www.pairwise.vote/) offers a full-featured client for running pairwise voting processes.
-As an open-source project, it would be straightforward to extend it with support for techniques like active ranking.
+As an open-source project, it can be easily extended to support supplemental techniques like active ranking.
 
-There is a growing record of practice, but it is still emerging.
-More organizations should experiment with pairwise methods for resource allocation -- from awarding prizes to hackathon winners, to supporting critical infrastructure, to guiding corporate budgets.
-If you believe your organization would benefit from a more robust process for allocating resources, reach out.
+There is a growing, albeit emerging, culture of practice.
+More organizations should experiment with pairwise methods: awarding prizes to hackathon winners, supporting critical infrastructure, or guiding corporate budgets.
+If you believe your organization would benefit from a more robust process for resource allocation, please reach out.
 
 Relative to other techniques and to their underlying potential, pairwise methods remain underexplored.
-By articulating this "pairwise paradigm" we hope to reveal a little bit more of the road ahead.
-
-## Appendix: Comparison of Public Goods Funding Approaches
-
-The table below compares four major approaches to public goods funding across key dimensions.
-Pairwise methods show particular strength in strategic resistance, attention distribution, and Goodhart vulnerability, while requiring moderate voter engagement and computational resources.
-
-<!-- TODO: Consider highlighting cells where pairwise methods have clear advantages, or adding a summary row at the bottom. -->
-
-| Dimension | Quadratic Funding | Pairwise Methods | Metrics-Based | AI-Augmented |
-| --- | --- | --- | --- | --- |
-| Attention efficiency | High-visibility projects soak up attention, leaving long tails thinly reviewed. | Pseudorandom pairings concentrate attention exactly where comparisons are needed. | Depends on curators defining metrics; voters focus on abstractions instead of projects. | Automation triages attention but depends on prompt and model quality. |
-| Strategic resistance | Sybil-resistant funding curves blunt collusion but can be gamed with coordinated donations. | Harder to game because preferences are relative and pair selection can be randomized. | Metric gaming is endemic once KPIs become targets. | Vulnerable to prompt attacks, model poisoning, and opaque biases. |
-| Data requirements | Needs donation history. | Requires many pairwise ballots; can use active ranking to reduce load. | Requires trusted, frequently refreshed quantitative metrics. | Needs large labeled corpora and governance-ready evaluation datasets. |
-| Scalability | Matching pool computation is cheap but human attention scales poorly. | Computationally tractable yet human voting grows near-quadratically without optimizations. | Scales if metrics pipeline is automated; bottlenecks arise in data verification. | Scales compute-wise but oversight cost grows with model sophistication. |
-| Goodhart vulnerability | Moderate: quadratic matching discourages lopsided signals but still rewards hype. | Low: binary comparisons make it harder to optimize toward a single metric. | High: once a metric is known it becomes the target. | High: models optimize whatever objective they are given, often misaligned. |
-| Voter engagement | Needs broad participation to unlock matching, favoring grassroots campaigns. | Needs fewer voters but they must stay engaged through many comparisons. | Limited voter role; engagement shifts to metric designers and auditors. | Minimal direct voters; trust shifts to jurors who audit AI outputs. |
+By articulating the "pairwise paradigm," we hope to chart the way.
