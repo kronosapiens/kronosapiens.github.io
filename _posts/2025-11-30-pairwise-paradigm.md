@@ -46,17 +46,18 @@ Each has its own strengths and weaknesses:
 
 The rest of this essay will focus on **pairwise preferences** and describe the _design space_ in which they operate.
 We will argue that pairwise methods should not be understood as isolated mechanisms, but as part of a larger _paradigm_ of decision-making involving various interrelated techniques.
-By approaching pairwise methods in this way, it becomes easier to see how the pieces fit together and offer a compelling approach for allocating shared resources.
+By approaching pairwise methods in this way, it becomes easier to see how the pieces combine into a compelling system for allocating shared resources.
 
 Most of this essay will focus on the use-case of "public goods funding," in which communities come together to fund critical infrastructure, as this is the domain with the most activity and the richest basis for analysis.
 The scope of these methods, however, is much broader.
 Instead of funding public goods, we could just as easily apply these methods to problems as grand as the setting of federal budgets, or as mundane as judging hackathons or [prioritizing chores in a coliving house](https://www.zaratan.world/chorewheel).
-As such getting this right will be an enormous unlock in our ability to coordinate at scale.
+As such, getting this right will be an enormous unlock in our ability to coordinate at scale.
 
 # II. Why Pairwise
 
 A **pairwise preference** is simply a relative choice between two options: A or B.
-Pairwise preferences can be seen as "atoms" of human subjectivity: the simplest possible distinction, running on the "phenomenological bare metal" of human perception.
+Pairwise preferences are the atoms of human subjectivity: the simplest distinction we can make, running on the "phenomenological bare metal" of perception.
+
 This simplicity makes them robust (they mean what they say they mean), accessible (anybody can make a relative distinction), general (many decisions can be framed in relative terms), and flexible (pairwise preferences can be aggregated in many different ways).
 
 In addition, the atomic nature of pairwise decisions makes these methods well adapted to environments of scarce attention, as participants are able to provide quality inputs in small amounts of time.
@@ -67,7 +68,7 @@ Pairwise preferences would go on to find many applications in the ranking and or
 This dual heritage, as both a technique for subjective measurement _and_ for allocating weights among items, suggests that these techniques have much to offer the practice of distributed capital allocation, which solves exactly these problems.
 
 Despite these favorable qualities, pairwise methods have remained niche among distributed capital allocators.
-They have seen some use, as a part of Optimism's RetroPGF program (helping to allocate $20mm in funding) as well in this year's [Deep Funding](http://deepfunding.org/) initiative, but have yet to capture the enthusiasm as the other techniques discussed.
+They have seen some use, as a part of Optimism's RetroPGF program (helping to allocate $20mm in funding) as well in this year's [Deep Funding](http://deepfunding.org/) initiative, but have yet to capture the enthusiasm of the other techniques discussed.
 
 I believe that this is due at least in part to there being several key gaps in pairwise practice, and the lack of an overarching vision.
 These gaps, which will be discussed below, make the technique difficult to use and difficult to communicate.
@@ -97,7 +98,7 @@ The choice of algorithm has major implications for what kind of output gets crea
 
 This section will discuss several algorithmic options and their properties, with a focus on the _ontology_ and _computational complexity_ of each algorithm -- how each algorithm models reality, and how effectively it processes information relative to that model.
 
-In all cases, we begin with a sequence of pairwise observations $[(a, b, x), ...]$, and want to produce a set of weights $w = [w_a, w_b, ...]$ telling us how to divide a fixed pool of capital among the items.
+In all cases, we begin with a sequence of pairwise observations $[(a, b, x), ...]$ with $x$ presenting the pairwise vote, and want to produce a set of weights $w = [w_a, w_b, ...]$ telling us how to divide a fixed pool of capital among the items.
 
 > Note: Throughout this section, we will use standard mathematical notation to describe properties of these algorithms, specifically the ["Big-O" notation](https://en.wikipedia.org/wiki/Big_O_notation) for describing computational complexity (the amount of energy and data an algorithm needs)
 
@@ -174,7 +175,7 @@ Ultimately, Bradley-Terry and spectral methods are more similar than they are di
 Perhaps the most important is that spectral methods model relationships _globally_, enabling them to infer transitive relationships not explicitly observed -- if A beats B, and B beats C, then the spectral method can infer that A would likely beat C.
 This propagation of signal creates more complex interactions, but also allows these methods to produce better results with less data.
 Spectral methods are also robust against cycles and other intransitive relationships, for which they produce ties, not contradictions.
-For these reasons, we believe spectral methods are the _best choice_ for capital allocation, where we care about modelling relationships across an entire ecosystem.
+For these reasons, we believe spectral methods are often the _best choice_ for capital allocation, where we care about modelling relationships across an entire ecosystem.
 
 Historically, spectral methods were most commonly used for judging tournaments and competitions, in which the "votes" emerge _endogenously_ from interactions among the items themselves (i.e. two teams competing _with each other_, two websites linking _to each other_).
 In 2018, my colleagues at Colony and I [extended these techniques to the domain of social choice](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3317445), modeling votes as emerging _exogenously_ as the judgments of external voters (a voter votes on two items; the items themselves do not interact).
@@ -184,9 +185,12 @@ This work would inspire the development of [Pairwise.vote](https://www.pairwise.
 ### Deep Funding
 
 Both Bradley-Terry and spectral methods have a major drawback: they are data-hungry, requiring votes on the order of $O(k^2)$, the square of the number of items $k$.
-This heavy data requirements makes pairwise methods difficult to use in practice, as it complicates data-gathering.
+These heavy data requirements makes pairwise methods difficult to use in practice, as it complicates data-gathering.
 
 Deep Funding is a more recent technique proposed by Vitalik Buterin in late 2024, in which pairwise judgments are not used to generate weights directly, but rather to score competing weight _proposals_, which are produced externally.
+
+> Note: this initiative is unrelated to [SingularityNET's Deep Funding](https://deepfunding.ai/) program.
+
 Under the slogan of "[AI as the engine, humans as the steering wheel](https://vitalik.eth.limo/general/2025/02/28/aihumans.html)," Buterin introduces a model of social choice in which the weight proposals are produced _at scale_ by machines, with a small amount of human input being used to score proposals.
 This reframing of the problem -- and of the role of human inputs -- aims to produce better results with less human input.
 
@@ -250,7 +254,7 @@ Calculating these distributions can be done iteratively, with the relevant distr
 > The final weight production remains a _batch_ process, occurring all-at-once using the available data.
 
 Compared to star grouping, active ranking has several advantages.
-First, active ranking permits $O(n)$ comparisons in total, while star grouping requires $O(n^2)$ votes per sub-group.
+First, active ranking permits $O(k)$ comparisons _total_, while star grouping implies $O(k^2)$ votes _per tier_.
 Second, active ranking can be run passively, while star grouping requires an explicit voting step.
 Third, active ranking allows for all projects to be compared, whereas star grouping precludes comparison between groups.
 Overall, active ranking lets the process capture and express _more information_ than does star grouping.
@@ -258,7 +262,7 @@ Overall, active ranking lets the process capture and express _more information_ 
 ## UI Development
 
 Another key consideration is _the design of the voting interface_.
-A data analysis pipeline is only as good as the quality of the data is analyzes.
+A data analysis pipeline is only as good as the quality of the data it analyzes.
 And more so than with other methods, the UI of a pairwise process has major implications for the quality of the data being collected.
 
 To illustrate this, imagine a hypothetical "bad" interface -- one which only shows the name of the items being compared, and no other information.
@@ -302,7 +306,7 @@ The metrics enable immediate, quantitative contrast between the two items, while
 Letting the voter skip pairs reduces the incidence of bad data, in cases where a voter genuinely cannot differentiate between two items.
 
 Further, this approach lets funding bodies incorporate both _metrics_ and _AI judgment_ in their process, leaving the final decision in the hands of human voters.
-The advantage here is that while the metrics and summaries may be the same for every project, each individual voter _qualitatively_ integrates the information differently, yielding richer results would be possible by allocating funds by metric or AI judgment _directly_.
+The advantage here is that while the metrics and summaries may be the same for every project, each individual voter _qualitatively_ integrates the information differently, yielding richer results than would be possible by allocating funds by metric or AI judgment _directly_.
 This makes pairwise methods more robust to [Goodhart's Law](https://en.wikipedia.org/wiki/Goodhart%27s_law)-style failures common among metric and AI-based approaches, in which projects learn to "game the system" by optimizing their self-representation towards more narrow and mechanical decision criteria.
 
 ### Input Format
@@ -333,7 +337,7 @@ In this example, we see how for participants who have _already performed_ the co
 
 It is also possible to have an audience which lacks a minimum baseline of context, such that even with an efficient UI they are unable to make meaningful distinctions between items.
 
-The ideal audience, then, is a _large and diverse group of people with at least some domain knowledge_, able to make a distinction on a never-before-seen pair after about 30 seconds of absorbing new information.
+The ideal audience, then, is a _large and diverse group of people with at least some domain knowledge_, able to make a judgment on a never-before-seen pair in about 30 seconds.
 This group will be able to provide the most information, in terms of both _quantity_ and _quality_ of inputs.
 It is worth noting that even an "ideal audience" will not show up for free; participation will need to carry at least some incentives -- either relational (status), financial, or both.
 
@@ -373,26 +377,36 @@ One might propose transferring votes from round to round, so that a voter does n
 This transferring of vote information between rounds is theoretically challenging, however, as individual item judgments are _implicitly_ a function of the entire item set -- perhaps I give a project A $10, but if B had been an option, I might have only given $5.
 
 On the other hand, the self-contained, "atomic" nature of pairwise judgments lend themselves more naturally to _continuous processes_ in which always-on voting interfaces can be used to _continuously_ monitor and update _ongoing_ funding flows in response to new information.
-Rather than perform redundant work in every round, individual preferences can be continuously aggregated into a single "source of truth" able to both incorporate new items and remove those no longer relevant.
+Rather than repeating redundant work each round, preferences can be continuously aggregated into a single "source of truth" that incorporates new items and retires old ones.
 By gathering new inputs only as-needed, voter attention is converted into useful information at high efficiency.
 
 Continuous funding systems introduce new considerations, which we explore in the following sections:
 
+### Cybernetic Allocation
+
+With most prize and grant programs, there is an expectation that the organizers will "get it right" the first time.
+These are labor-intensive, high-stakes processes on which much depends.
+
+Continuous funding processes allow for a more relaxed attitude towards "correctness," as the opportunity to course-correct is built right in.
+It becomes more acceptable to "throw something out there" with the confidence that allocations will be updated in response to new information, and that over time the resources will be directed to where they are highest leverage.
+
+This "cybernetic" approach to capital allocation -- focusing less on specific "point" solutions and more on dynamic _processes_ -- promises to be more robust and resilient compared to intensive, round-based approaches.
+
 ### Stale Voting Data
 
-As previously mentioned, one of the advantages of pairwise votes is that they can be meaningfully re-used between rounds.
+As previously mentioned, one of the advantages of pairwise judgments is that they can be meaningfully re-used between rounds.
 However, while in theory a vote between two pairs is perpetually valid, _in practice_ we should be wary of relying on stale data.
 In reality, projects are always evolving, and a preference for A over B may become increasingly inaccurate if A stagnates while B thrives.
 
 One approach to balancing this trade-off is through a decay process in which votes lose their impact slowly over time, perhaps decaying to zero over a two-year period.
 Many types of decay curves are possible, all reflecting different assessments of how fast this particular reality changes.
 
-By incorporating a "vote decay" we extend the life of voting data relative, while minimizing the potential impact of stale data.
+By incorporating a "vote decay" we extend the life of voting data while minimizing the potential impact of stale data.
 
 ### Permissionless Entry
 
 Most public goods funding rounds have high overheads, with staff needed to screen projects, run communication, and ensure performance.
-A continuous-funding system could be made fully permissionless, enabling efficient capital allocation at lower cost.
+A continuous funding system could be made fully permissionless, enabling efficient capital allocation at lower cost.
 
 A fully permissionless system would let projects add themselves to the pool, potentially requiring them to put up a stake.
 Once entered, the active ranking process would quickly surface the high-variance new project, allowing it to quickly "find its level" of funding.
@@ -403,7 +417,7 @@ Projects that perform poorly -- say, more than three standard deviations below t
 Even a truly continuous process might benefit from a periodic tempo of participation.
 By organizing participation in "sprints," it becomes easier to command a community's attention, who might otherwise forget about a process which is "always on."
 
-One could imagine running "campaigns" to encourage people to vote, where leaderboards and other activations spur a wave of data-collection and keeps the data fresh.
+One could imagine running "campaigns" to encourage people to vote, where leaderboards and other activations spur a wave of data-collection and keep the data fresh.
 One could also imagine making payouts on a monthly or quarterly basis, or conditioning payouts on milestones determined by a separate governance process.
 
 The user experience could be made _qualitatively_ similar to a conventional round-based process, but running on a continuous substrate in which allocations both update and distribute in real-time.
@@ -421,16 +435,6 @@ The benefit of this approach is that the funding process never truly ends, but r
 
 In both cases, more funds should continue to be raised, extending the funding process indefinitely.
 The topic of fundraising, however, is beyond the scope of this argument.
-
-### Cybernetic Allocation
-
-With most prize and grant programs, there is an expectation that the organizers will "get it right" the first time.
-These are labor-intensive, high-stakes processes on which much depends.
-
-Continuous funding processes allow for a more relaxed attitude towards "correctness," as the opportunity to course-correct is built right in.
-It becomes more acceptable to "throw something out there" with the confidence that allocations will be updated in response to new information, and that over time the resources will be directed to where they are highest leverage.
-
-This "cybernetic" approach to capital allocation -- focusing less on specific "point" solutions and more on dynamic _processes_ -- promises to be more robust and resilient compared to intensive, round-based approaches.
 
 # IV: Conclusion
 
@@ -459,7 +463,7 @@ This unapologetic rejection of IIA is acceptable in the setting of capital alloc
 In high-stakes, single-winner settings like elections, however, these complex and non-linear interactions might undermine the perceived legitimacy of the process.
 In those settings, a Condorcet method with stronger guarantees would almost certainly be preferable.
 
-> Note: Individual pairwise votes _are_ in fact independent of alternatives; it is the final result which is not.
+> Note: Individual pairwise judgments _are_ in fact independent of alternatives; it is the final result which is not.
 
 ### Intransitivity of Preferences
 
@@ -467,14 +471,14 @@ Related to IIA in the social choice literature is the idea of cycles and of the 
 To prefer otherwise creates what is known as a "cycle" of _intransitive preferences_.
 For some voting methods, including Condorcet methods, cycles represent _contradictions_ and are seen as inherent flaws.
 
-Spectral methods, on the other hand, handle intransitive preferences naturally.
+Spectral methods, on the other hand, handle intransitive preferences naturally -- they are not contradictions, but information.
 Cycles are interpreted simply as ties, which pose problems for single-winner settings like elections, but not for capital allocation in which funds are simply given out equally.
 
 Further, pairwise spectral methods allow for a different interpretation of intransitivity.
 Unlike Bradley-Terry, which models every item as having a latent value, and thus interprets intransitivity as measurement error, spectral methods model intransitivity as a normal part of reality.
 
 To give an example, imagine items A and B, each having qualities X and Y.
-If we conceptualize voters as making pairwise decisions based on _subjective integrations_ of the presented data, one voter might integrate X and Y and choose A, while another might, filtered through the lens of their own personal beliefs and live experience, would choose B.
+If we conceptualize voters as making pairwise decisions based on _subjective integrations_ of the presented data, one voter might integrate X and Y and choose A, while another, filtering through the lens of their own personal beliefs and live experience, might choose B.
 Over hundreds or thousands of voters, the pairwise graph becomes a rich field of relationships with substantial cyclical and intransitive behaviors.
 Taking this graph as the only knowable ground truth, we then produce weights as an _actionable synthesis_ of that rich data.
 
