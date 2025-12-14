@@ -11,8 +11,6 @@ tags:
 
 ---
 
-DRAFT
-
 This analysis explores **611 pairwise judgments** from **51 jurors** evaluating Ethereum dependencies through the Deep Funding experiment.
 
 **Key findings:**
