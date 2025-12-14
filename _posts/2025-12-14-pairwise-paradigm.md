@@ -347,7 +347,7 @@ For audiences unfamiliar with this process, "giving up control" of the final wei
 After Optimism's RetroPGF 4, for example, General Magic [interviewed participants](https://gov.optimism.io/t/pairwise-retrospective-and-proposed-spec-for-retropgf-4/7479) and found that while many participants found the system fun and engaging and an aid to discovery, they also struggled with expectation shift of not setting weights directly.
 Communicating the behavior of the system, and making the end-to-end process legible for participants, will be important to earning widespread acceptance of these methods.
 
-## Item Discovery and Strategic Resistance
+## Item Discovery
 
 USV's Albert Wenger [recently argued](https://open.spotify.com/episode/6XJOXe3whWTCm3TkuvAWQq?si=e51a8b5f558e43be) that "capital allocation is often downstream from attention allocation."
 As society increasingly frames attention as its scarcest resource, analyzing social choice schemes from the perspective of attention becomes increasingly important.
