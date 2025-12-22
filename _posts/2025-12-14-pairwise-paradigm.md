@@ -31,7 +31,7 @@ At its core, the problem stems from attempting to measure complex social reality
 In attempting to distill _subjective_ reality into _objective_ votes, information is lost, and the measurement process itself becomes an arena for power contestation.
 In the end, the best we can do is design _task-specific_ systems in which the gap between subjective experience and objective input is as small as possible, decreasing the scope of conflict and increasing both the utility and legitimacy of these systems.
 
-Several years ago [I speculated that]({% post_url 2019-05-08-against-voting %}), at least within the web3 governance community, the limitations of pass-fail voting would shift interest away from proposal-based decision-making towards distributed capital allocation.
+[In 2019 I speculated that]({% post_url 2019-05-08-against-voting %}), at least within the web3 governance community, the limitations of pass-fail voting would shift interest away from proposal-based decision-making towards distributed capital allocation.
 Over the last five years, that prediction has been borne out: instead of _voting on policy_, governance innovation has increasingly come to revolve around _giving out money_.
 The shift from _discrete policy outcomes_ (you win, I lose) to _continuous financial outcomes_ ($10 to you, $5 to me) opens up a rich design space for contemporary social choice.
 
@@ -67,7 +67,7 @@ A **pairwise preference** is a relative choice between two options, A or B.
 Pairwise preferences are the atoms of human subjectivity: the simplest distinction a person can make, running on the "phenomenological bare metal" of perception.
 This simplicity makes them robust (they mean what they say they mean), accessible (anybody can make a relative distinction), general (many decisions can be framed in relative terms), and flexible (pairwise preferences can be aggregated in many different ways).
 
-> Note: contrary to some depictions, Tinder-style swiping is _not_ pairwise voting, but rather a sequence of pass/fail decisions.
+> Note: contrary to some depictions, Tinder-style swipes are _not_ pairwise judgments, but pass/fail decisions.
 
 Pairwise preferences have been studied for decades, beginning with the work of [American psychometrician L. L. Thurstone](https://en.wikipedia.org/wiki/Louis_Leon_Thurstone) in 1927 and his research into subjective responses to stimuli.
 Pairwise preferences would find many applications in the ranking and ordering of items: from ranking chess players with Elo, to weighting web pages with Google's PageRank, to allocating credit for open-source contributions with [SourceCred](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4570035).
@@ -99,7 +99,7 @@ By more clearly articulating pairwise as a _paradigm_ of interrelated techniques
 
 # III. The Pairwise Paradigm
 
-The word "paradigm" comes from the Greek word for "pattern," and in scientific contexts refers to "[a distinct set of concepts or thought patterns, including theories, research methods, postulates, and standards for what constitute legitimate contributions to a field](https://en.wikipedia.org/wiki/Paradigm)."
+The word "paradigm" comes from the Greek word for "pattern," and in scientific contexts refers to "[a distinct set of concepts or thought patterns, including theories, research methods, postulates, and standards for what constitutes legitimate contributions to a field](https://en.wikipedia.org/wiki/Paradigm)."
 By framing pairwise as a "paradigm" instead of a single tool or mechanism, we emphasize that it is not any one technique, but rather the _synergies between multiple related techniques_ that produce desirable outcomes.
 
 These techniques fall into multiple buckets: audience and problem selection, interface design and data collection, and algorithmic data analysis.
@@ -128,7 +128,7 @@ In all cases, we begin with a sequence of pairwise observations $$[(a, b, x), ..
 
 ### Elo
 
-The Elo rating system, developed by [Hungarian chess master Arpad Elo](https://en.wikipedia.org/wiki/Arpad_Elo), is most well known as the basis for professional chess rankings, but has found use in determining rankings across a variety of domains.
+The Elo rating system, developed by [Hungarian chess master Arpad Elo](https://en.wikipedia.org/wiki/Arpad_Elo), is most well-known as the basis for professional chess rankings, but has found use in determining rankings across a variety of domains.
 
 In the Elo system, every participant has a rating $$R$$ determined by their prior matchups, used to predict the score of an upcoming match between $$a$$ and $$b$$:
 
@@ -264,7 +264,7 @@ $$
 [a = .1, b = .2, c = .3, d = .4] <=> [b = 2a, c = 1.5b, d = 1.33c]
 $$
 
-This generalizes to an arbitrary number of weights and suggests us that we can _in principle_ construct $$k$$ weights with only $$k-1$$ human inputs.
+This generalizes to an arbitrary number of weights and suggests to us that we can _in principle_ construct $$k$$ weights with only $$k-1$$ human inputs.
 While this limit is not achievable in practice, we can attempt to approach it, reducing the data requirement to some multiple of the number of items, i.e. $$10k$$ by directing attention towards the subset pairs which are most competitive with each other.
 
 > Note: the estimate of 10 votes per item is speculative and depends on the specific structure of the graph; real-world performance will need to be evaluated in future research.
@@ -280,7 +280,7 @@ Second, active ranking can be run transparently in the background, while star gr
 Third, active ranking allows for all projects to be compared, whereas star grouping precludes comparison between groups.
 
 Note that active ranking is an _online_ process -- the order of votes _does matter_ for determining which pairs are more likely to be shown, although the final weight production remains a batch process using all available data.
-This online nature of active ranking creates new attack vector, as prior votes now influence the likelihood of future items being shown.
+This online nature of active ranking creates a new attack vector, as prior votes now influence the likelihood of future items being shown.
 Mitigating this risk will be an important part of bringing active ranking into production.
 
 ## 3. Interface Design
@@ -402,7 +402,7 @@ Relatedly, it is important that participant _expectations_ be set appropriately.
 
 Pairwise methods don't ask participants for weights directly, but infer them _indirectly_ using an algorithmic process.
 For audiences used to assigning values directly, "giving up control" of the weights can be disorienting.
-After Optimism's RetroPGF 3, General Magic [interviewed participants](https://gov.optimism.io/t/pairwise-retrospective-and-proposed-spec-for-retropgf-4/7479) and found that while participants found the system engaging and an aid to discovery, they also struggled with the shift in expectations of not setting weights directly.
+After Optimism's RetroPGF 3, General Magic [interviewed participants](https://gov.optimism.io/t/pairwise-retrospective-and-proposed-spec-for-retropgf-4/7479) and found that while participants found the system engaging and an aid in discovery, they also struggled with the shift in expectations of not setting weights directly.
 
 Communicating the behavior of the system, and making the end-to-end process legible for participants, is key to building trust in these methods.
 
@@ -438,7 +438,7 @@ This "cybernetic" approach to capital allocation -- focusing less on static poin
 
 This idea of continuous funding has been explored before, with pilots like GeoWeb's [Streaming Quadratic Funding](https://github.com/Geo-Web-Project/streaming-quadratic-funding), and more recently Octant's [StreamVote](https://streamvote.octant.build/), combining quadratic voting with Superfluid's [continuous payments infrastructure](https://superfluid.org/) to distribute funds in real-time.
 
-However, to date no continuous funding process has been built on top of pairwise inputs.
+However, [apart from one notable example outside of the web3 context](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4856267), to date no continuous public goods funding process has been built on top of pairwise inputs.
 For reasons explored below, we believe that pairwise inputs offer a stronger basis for continuous funding, converting scarce attention into actionable allocations at high efficiency.
 
 ### Permissionless Entry
@@ -482,7 +482,7 @@ A four-year target would see 50% given out after two years, and 100% after four 
 
 Another approach, proposed by the Colony team [in their 2018 whitepaper](https://uploads-ssl.webflow.com/61840fafb9a4c433c1470856/639b50406de5d97564644805_whitepaper.pdf), would be to distribute funds at an _exponentially decaying_ rate, such that funds are distributed according to a "half life."
 
-A one-year half-life would give out half the funds in the first year, a quarter in the second year, an eight in the third, and so on (assuming no new funds).
+A one-year half-life would give out half the funds in the first year, a quarter in the second year, an eighth in the third, and so on (assuming no new funds).
 Compared to the constant rate, this approach extends the life of the process indefinitely, at the cost of a decreasing funding rate.
 
 ### Process Tempo
@@ -513,7 +513,7 @@ Given that nobody reading this is doing that, it's fair to ask what "evaluation"
 We assert that _evaluation produces legitimacy_, which translates concretely into higher future funding inflows.
 
 To adopt ideas from institutional economics, we can imagine evaluation as filling out a historically-barren "policy" layer in the three-layer model of constitution, policy, and operation.
-In this frame, the "constitutional" layer represents the code, norms, etc of the grants ecosystem itself, the "policy" layer represents the process by which specific _parameters_ (mechanisms, etc) are chosen, while the "operational" layer represents the grants rounds themselves: applications, voting, etc.
+In this frame, the "constitutional" layer represents the code, norms, etc., of the grants ecosystem itself, the "policy" layer represents the process by which specific _parameters_ (mechanisms, etc) are chosen, while the "operational" layer represents the grants rounds themselves: applications, voting, etc.
 Seen in this way, evaluation is the missing _political_ process needed to bring web3's public goods funding ecosystem from experiment into maturity.
 
 How might these evaluations be done?
@@ -531,7 +531,7 @@ Info-finance is not my area, so I cannot comment deeply on the strengths and wea
 Yet another possibility would be to develop new metrics for evaluating the "health" of a funding process.
 By tracking metrics such as the degree to which a funding distribution follows a power-law, or the churn of top projects over time, one can assess how a funding process is performing relative to an abstract baseline.
 
-Whatever approach is used, it is virtually certain that evaluation will become table-stakes for those looking to implement capital-allocation schemes.
+Whatever approach is used, it is virtually certain that evaluation will become table stakes for those looking to implement capital-allocation schemes.
 
 # VI. Additional Considerations
 
@@ -601,7 +601,9 @@ If we assume that only ~25% of the items undergo meaningful change in a given qu
 Further, given a sufficiently robust reputation system, we could imagine running "campaigns" in which the majority of the community contributes to initial project filtering, followed by experts who resolve only the highest-ambiguity pairs, or who focus their attention on adjudicating between the outputs of funding mechanisms themselves.
 Participants could be rewarded with sought-after digital collectibles, helping solidify a public-spirited identity among ecosystem participants.
 
-The idea of sustaining a complex public goods funding ecosystem with such little effort might seem implausible, and the continued development of these techniques will certainly surface new challenges and limitations.
+The net effect is that of an always-on social choice "sensor," roughly analogous to a solar panel, collecting ambient preference information and converting it into actionable outputs in real-time.
+
+The idea of sustaining a complex public goods funding ecosystem with so little effort might seem implausible, and the continued development of these techniques will certainly surface new challenges and limitations.
 And yet, the arguments have been laid out, and these are the conclusions we've drawn.
 
 ### Final Thoughts
