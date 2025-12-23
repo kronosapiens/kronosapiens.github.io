@@ -20,7 +20,19 @@ tags:
 
 _Abstract: Pairwise methods are best thought of as a **paradigm** for turning **scarce attention** into **robust allocation signals**. With the right **algorithms**, **interface**, and **audience**, they can support the continuous funding of ecosystems at surprisingly low attention cost._
 
-Thanks to **Carl Cervone**, **David Gasquez**, and **Timber Stinson-Schroff** for feedback on earlier versions of this essay.
+Thanks to Carl Cervone, David Gasquez, and Timber Stinson-Schroff for feedback on earlier versions of this essay.
+
+- [I. Motivations](#i-motivations)
+- [II. Why Pairwise](#ii-why-pairwise)
+- [III. The Pairwise Paradigm](#iii-the-pairwise-paradigm)
+  - [1. Algorithm Selection](#1-algorithm-selection)
+  - [2. Pair Selection](#2-pair-selection)
+  - [3. Interface Design](#3-interface-design)
+  - [4. Audience Development](#4-audience-development)
+- [IV. Continuous Funding](#iv-continuous-funding)
+- [V. Evaluation and Legitimacy](#v-evaluation-and-legitimacy)
+- [VI. Additional Considerations](#vi-additional-considerations)
+- [VII. Putting It All Together](#vii-putting-it-all-together)
 
 # I. Motivations
 
@@ -102,8 +114,8 @@ By more clearly articulating pairwise as a _paradigm_ of interrelated techniques
 The word "paradigm" comes from the Greek word for "pattern," and in scientific contexts refers to "[a distinct set of concepts or thought patterns, including theories, research methods, postulates, and standards for what constitutes legitimate contributions to a field](https://en.wikipedia.org/wiki/Paradigm)."
 By framing pairwise as a "paradigm" instead of a single tool or mechanism, we emphasize that it is not any one technique, but rather the _synergies between multiple related techniques_ that produce desirable outcomes.
 
-These techniques fall into multiple buckets: audience and problem selection, interface design and data collection, and algorithmic data analysis.
-As an end-to-end pipeline, audience selection feeds into a voting interface, which feeds data to algorithms that guide both ongoing data collection and final analysis:
+These techniques fall into multiple buckets: audience and problem development, interface design and data collection, and algorithmic data analysis.
+As an end-to-end pipeline, audiences feed into a voting interface, which feed data to algorithms that guide both ongoing data collection and final analysis:
 
 ![The Pairwise Paradigm](/img/pairwise-flow.png)
 
@@ -377,9 +389,9 @@ Finally, here is a mockup of an interface I would consider close to ideal, focus
 
 This interface leans into ordinal inputs and prioritizes speed and access over gatekeeping, while leveraging AI summarization and metrics to standardize decision framing.
 
-## 4. Audience Selection
+## 4. Audience Development
 
-The next key consideration when running a pairwise voting process is audience selection and development.
+The next key consideration when running a pairwise voting process is audience development.
 
 #### Audience Selection
 
