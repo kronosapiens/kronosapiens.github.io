@@ -18,9 +18,9 @@ tags:
   </span>
 </div>
 
-_Abstract: Pairwise methods are best thought of as a **paradigm** for turning **scarce attention** into **robust allocation signals**. With the right **algorithms**, **interface**, and **audience**, they can support the continuous funding of ecosystems at surprisingly low attention cost._
+_Abstract: Pairwise methods are best thought of as composing a **paradigm** for turning **scarce attention** into **robust allocation signals**. With the right **algorithms**, **interface**, and **audience**, they can support the continuous funding of ecosystems at surprisingly low attention cost._
 
-Thanks to Carl Cervone, David Gasquez, and Timber Stinson-Schroff for feedback on earlier versions of this essay.
+Thanks to Carl Cervone and David Gasquez for feedback on earlier versions of this essay.
 
 - [I. Motivations](#i-motivations)
 - [II. Why Pairwise](#ii-why-pairwise)
@@ -43,11 +43,11 @@ At its core, the problem stems from attempting to measure complex social reality
 In attempting to distill _subjective_ reality into _objective_ votes, information is lost, and the measurement process itself becomes an arena for power contestation.
 In the end, the best we can do is design _task-specific_ systems in which the gap between subjective experience and objective input is as small as possible, decreasing the scope of conflict and increasing both the utility and legitimacy of these systems.
 
-[In 2019 I speculated that]({% post_url 2019-05-08-against-voting %}), at least within the web3 governance community, the limitations of pass-fail voting would shift interest away from proposal-based decision-making towards distributed capital allocation.
-Over the last five years, that prediction has been borne out: instead of _voting on policy_, governance innovation has increasingly come to revolve around _giving out money_.
-The shift from _discrete policy outcomes_ (you win, I lose) to _continuous financial outcomes_ ($10 to you, $5 to me) opens up a rich design space for contemporary social choice.
+[In mid-2019 I speculated that]({% post_url 2019-05-08-against-voting %}), within the web3 governance community, the limitations of pass-fail voting would shift interest away from proposal-based decision-making towards distributed capital allocation.
+Over the last six years, that prediction has largely been borne out: instead of _voting on policy_, governance innovation has increasingly come to revolve around _giving out money_.
+The shift from _discrete policy outcomes_ (you win, I lose) to _continuous financial outcomes_ ($10 to you, $5 to me) opens a rich design space for social choice.
 
-Within the domain of decentralized capital allocation, several classes of techniques have been explored:
+Within this domain, several classes of techniques have been explored:
 
 - **Quadratic Funding**, in which direct donations double as "votes" dividing a matching pool, subject to square-root constraints.
 - **Pairwise Methods**, in which inputs are framed as "A vs B" and converted into numeric allocations via an algorithm.
@@ -57,10 +57,10 @@ Within the domain of decentralized capital allocation, several classes of techni
 Each of these approaches, on some level, seeks to convert _scarce attention_ into _useful signal_.
 Each has its own strengths and weaknesses:
 
-- **Quadratic Funding** struggles to allocate attention, leading to "beauty contests."
-- **Pairwise Methods** struggles to get sufficient coverage to produce reliable results.
-- **Metrics-Based** struggles with "Goodhart's Law" failures and incentivizes misrepresentation.
-- **AI-Augmented** struggles with issues of alignment, legitimacy, and interpretability.
+- **Quadratic Funding** advantages smaller groups, but struggles to allocate attention, leading to "beauty contests."
+- **Pairwise Methods** offer a simple and intuitive framing, but struggle to get sufficient coverage to produce good results.
+- **Metrics-Based** reduce scope for politics, but struggle with "Goodhart's Law" failures and incentivizes misrepresentation.
+- **AI-Augmented** sidestep issues of voter apathy, but struggle with issues of alignment, legitimacy, and interpretability.
 
 [I have been researching and working with decision-making systems since 2016](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3359677), with a focus on pairwise methods.
 I believe that we should continue exploring _all_ of these techniques, and develop a culture of practice able to select from among them based on the characteristics of the problem, and audience, at hand.
@@ -69,7 +69,7 @@ The rest of this essay will discuss **pairwise preferences** specifically, and d
 We will argue that pairwise methods should not be understood as isolated mechanisms, but as part of a larger _paradigm of decision-making_ incorporating multiple complementary techniques.
 By approaching pairwise methods as a _paradigm_, it becomes easier to see how the various elements combine into a high-performance system for allocating shared resources.
 
-This essay will focus on the use-case of "[public goods funding](https://en.wikipedia.org/wiki/Public_good)," in which communities come together to fund critical infrastructure, as this is the domain with the most activity and richest basis for analysis.
+We will focus on the use-case of "[public goods funding](https://en.wikipedia.org/wiki/Public_good)," in which communities come together to fund critical infrastructure, as this is the domain with the most activity and richest basis for analysis.
 The scope of these methods, however, is broader: instead of funding public goods, we could apply these methods to problems as grand as the setting of federal budgets, or as mundane as judging hackathons or [prioritizing chores in a coliving house](https://www.zaratan.world/chorewheel).
 Given the range of possible applications, getting pairwise right would be a major unlock in our ability to coordinate at scale.
 
@@ -81,38 +81,35 @@ This simplicity makes them robust (they mean what they say they mean), accessibl
 
 > Note: contrary to some depictions, Tinder-style swipes are _not_ pairwise judgments, but pass/fail decisions.
 
-Pairwise preferences have been studied for decades, beginning with the work of [American psychometrician L. L. Thurstone](https://en.wikipedia.org/wiki/Louis_Leon_Thurstone) in 1927 and his research into subjective responses to stimuli.
+Pairwise preferences have been studied for decades, going back to the work of [American psychometrician L. L. Thurstone](https://en.wikipedia.org/wiki/Louis_Leon_Thurstone) in 1927 and his research into subjective responses to stimuli.
 Pairwise preferences would find many applications in the ranking and ordering of items: from ranking chess players with Elo, to weighting web pages with Google's PageRank, to allocating credit for open-source contributions with [SourceCred](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4570035).
 
-This dual heritage, as a technique for subjective measurement _and_ allocating weights among items, suggests these techniques have much to offer to the practice of distributed capital allocation, which faces exactly these problems.
+This dual heritage, as a technique for subjective measurement _and_ allocating weights among items, suggests these methods have much to offer to the practice of distributed capital allocation, which faces exactly these problems.
 
 USV's Albert Wenger [recently argued](https://open.spotify.com/episode/6XJOXe3whWTCm3TkuvAWQq?si=e51a8b5f558e43be) that "capital allocation is often downstream from attention allocation."
 As society increasingly comes to view attention as its scarcest resource, evaluating social choice schemes through the lens of attention becomes increasingly critical.
 When compared to other voting systems, pairwise methods are arguably more "attention-native" -- stimulating, game-like, and inherently rewarding to engage with.
-This dynamic alone makes pairwise preferences particularly well-suited to our historical moment.
 
-In contrast, a common critique of non-attention-native methods like quadratic funding is that they lead to "beauty contests" -- projects with marketing muscle attract most of the funding, at the expense of valuable, but more subtle, alternatives.
-
-Pairwise methods, on the other hand, more naturally _distribute attention_ by presenting items in random pairs.
+Unlike non-attention-native methods like quadratic funding, which often lead to "beauty contests" favoring projects with marketing muscle, pairwise methods more naturally _distribute attention_ by presenting items in random pairs.
 This approach elevates _item discovery_ into a first-class construct, as voters are frequently exposed to items with which they are unfamiliar.
 This reduces the need (and benefit) for projects to market themselves, freeing resources for driving engagement with _the system as a whole_.
 
 Further, distributing voter attention makes strategic voting more costly.
-Unlike, for instance, a Borda Count, in which one can trivially "bury" a rival, voter evaluations will involve pairs of items in which they have no strategic interest.
+Unlike, for instance, a Borda Count, in which one can trivially "bury" a rival by listing them last, voter evaluations will involve many pairs of items in which they have no strategic interest.
 
 Seen through this lens, pairwise methods appear as a natural basis for social choice in an environment of scarce attention.
-Rather than take voting methods designed for ink and parchment and try to adapt them to fast-paced, interactive decision environments, we can take decision primitives _designed for attention_ and use them as the basis for an entirely new regime.
+Rather than take voting methods designed for pen and paper and try to adapt them to fast-paced, digital decision environments, we can take decision primitives _designed for attention_ and make them the core of an entirely new regime.
 
-Despite these attractive qualities, pairwise methods have remained niche.
+Despite these attractive qualities, pairwise methods remain niche.
 They have seen some use in public goods funding, such as in [Optimism's RetroPGF](https://www.optimism.io/blog/announcing-retropgf-round-3-recipients) (helping to allocate $100mm+ in funding) as well as in this year's [Deep Funding](http://deepfunding.org/) initiative, but have yet to capture the enthusiasm of other techniques.
 
-This is in part due to gaps in pairwise practice, and the lack of an overarching vision, which make the technique difficult to use and to communicate.
-By more clearly articulating pairwise as a _paradigm_ of interrelated techniques, we can more clearly communicate the scope of these methods, build momentum around their use, and advance the art and practice of public goods funding overall.
+This is in part due to gaps in pairwise practice, as well as the lack of an overarching vision -- making the technique difficult to use and to communicate.
+By clearly articulating pairwise as a _paradigm_ of interrelated techniques, we can better communicate the scope of these methods, build momentum around their use, and advance the art and practice of public goods funding overall.
 
 # III. The Pairwise Paradigm
 
 The word "paradigm" comes from the Greek word for "pattern," and in scientific contexts refers to "[a distinct set of concepts or thought patterns, including theories, research methods, postulates, and standards for what constitutes legitimate contributions to a field](https://en.wikipedia.org/wiki/Paradigm)."
-By framing pairwise as a "paradigm" instead of a single tool or mechanism, we emphasize that it is not any one technique, but rather the _synergies between multiple related techniques_ that produce desirable outcomes.
+By framing pairwise as a "paradigm" instead of a single tool or mechanism, we emphasize that it is not any one technique, but rather the _synergies between techniques_ that produce desirable outcomes.
 
 These techniques fall into multiple buckets: audience and problem development, interface design and data collection, and algorithmic data analysis.
 As an end-to-end pipeline, audiences feed into a voting interface, which feed data to algorithms that guide both ongoing data collection and final analysis:
@@ -129,12 +126,12 @@ We will now explore these topics, starting with algorithms (what we’re trying 
 > Feel free to skim if the details are not relevant to you.
 
 Pairwise preferences themselves do not determine rankings or weights.
-Rather, they must be _converted_ into weights using an algorithmic process, a type of "machine for converting subjectivity into objectivity."
+Rather, they must be _converted_ into weights using an algorithmic process, a "machine for converting subjectivity into objectivity."
 The choice of algorithm has far-reaching implications for what kind of output gets created, and how it should be interpreted.
 
-This section will discuss several options and their properties, with a focus on the _ontology_ and _complexity_ of each algorithm -- how each algorithm models reality, and how effectively it processes information relative to that model.
+This section will discuss several options and their properties, with a focus on the _ontology_ and _complexity_ of each algorithm -- how each algorithm models reality, and how it processes information relative to that model.
 
-In all cases, we begin with a sequence of pairwise observations $$[(a, b, x), ...]$$ with $$x$$ presenting the pairwise judgment, and want to produce a set of weights $$w = [w_a, w_b, ...]$$ telling us how to divide a fixed pool of capital among the items.
+In all cases, we begin with a sequence of pairwise observations $$[(a, b, x), ...]$$ with $$x$$ representing the pairwise judgment, and want to produce a set of weights $$w = [w_a, w_b, ...]$$ telling us how to divide a fixed pool of capital among the items.
 
 > Note: Throughout this section, we will use the standard ["Big-O" notation](https://en.wikipedia.org/wiki/Big_O_notation) for evaluating the complexity, in terms of both computation and data, of these techniques.
 
@@ -154,14 +151,14 @@ $$
 R^{'}_a \leftarrow R_a + g(S_{ab} - E[S_{ab}])
 $$
 
-**Ontologically**, Elo models interactions as occurring _in a sequence, between the entities themselves_, with the entities changing as a result of these encounters.
+**Ontologically**, Elo models interactions as occurring _in a sequence between the entities themselves_, with the entities changing as a result of these encounters.
 
-**Computationally**, Elo is $$O(n)$$ in the _number of matchups_ $$n$$, with every matchup resulting in one constant-time ($$O(1)$$) update, with no minimum number of observations.
+**Computationally**, Elo is $$O(n)$$ in the _number of matchups_ $$n$$, with every matchup resulting in one constant-time update, with no minimum number of observations.
 
-Unlike the other algorithms discussed, which generate weights at once using _all_ of the observed preference data, Elo is an _online_ algorithm, meaning that the rankings are updated after every match -- and are thus dependent on the specific sequence of the matches.
-In addition, data are understood as the result of a matchup _between_ two items, _not_ as a vote on a pair of items by an independent observer.
+Unlike the other algorithms discussed, which generate weights in a single batch using _all_ of the observed preference data, Elo is an _online_ algorithm, meaning that the rankings are updated after every matchup -- and are thus dependent on the _specific sequence of the matches_.
+Data are understood as the result of a matchup _between_ two items, _not_ as a vote on a pair of items by an independent observer.
 
-While often proposed as a candidate algorithm for capital allocation, Elo's ontology of _a sequence of matchups between items_ makes it a *bad fit* for the use-case, in which data takes the form of _a set of votes by third-party observers_.
+While often proposed as a candidate algorithm for capital allocation, Elo's ontology of _a sequence of matchups between items_ makes it a **bad fit** for the use-case, in which data takes the form of _a set of votes by third-party observers_.
 
 ### Bradley-Terry
 
@@ -173,12 +170,12 @@ $$
 P(a > b) = \frac{p_a}{p_a + p_b}
 $$
 
-**Ontologically**, Bradley-Terry is fundamentally _Platonic_: pairwise observations are understood as random fluctuations revealing a hidden capital-T Truth.
+**Ontologically**, Bradley-Terry is essentially _Platonic_: pairwise observations are understood as random fluctuations revealing a hidden capital-T Truth.
 
 **Computationally**, fitting a Bradley-Terry model is $$O(nm)$$ in the _number of matchups_ $$n$$ and _number of iterations_ $$m$$ needed to converge, requiring observations $$O(k^2)$$ in the number of items $$k$$.
 
 Note the similarity to Elo, which also models results as a ratio of latent scores.
-However, unlike Elo, Bradley-Terry produces weights in a batch based on a _set of unordered preferences,_ making it a better fit in the setting where the inputs have no natural ordering.
+However, unlike Elo, Bradley-Terry produces weights in a batch based on a _set of unordered preferences,_ making it a more natural choice in the setting where the inputs have no inherent ordering.
 In terms of computational complexity, Bradley-Terry models are typically fit using a statistical technique of Maximum-Likelihood Estimation, in which the underlying probabilities are iteratively updated to improve their fit to the observed data, requiring several passes, or _iterations_, over the training data.
 
 Bradley-Terry methods are popular in the academic literature, as they lend themselves well to evaluation and simulation -- one can begin with a fictional "ground truth," run a simulated voting process, and then evaluate how well the recovered weights align with the initial ground truth.
@@ -188,31 +185,31 @@ These types of simulations, while rigorous in the statistical sense, tell us les
 
 Spectral methods, the most famous of which is Google's PageRank, aggregate pairwise inputs into a "graph" of interactions, and then take the weights from the graph's _principal eigenvector_.
 
-In linear algebra, the _eigenvector_ ("self-vector") of a graph or matrix is the vector $$v$$ such that:
+In linear algebra, the _eigenvector_ ("self-vector") of a graph or matrix $$X$$ is the vector $$v$$ such that:
 
 $$
 Xv = \lambda v
 $$
 
-We can interpret this vector as the "direction" to which the _whole graph points_, which can be interpreted as a type of "center" or "steady state" of the data ([see visualization](https://en.wikipedia.org/wiki/PageRank#/media/File:Page_rank_animation.gif)).
+We can interpret this vector as representing the "direction" to which the graph "points," which we can interpret as a type of "center" or "steady state" of the data ([see visualization](https://en.wikipedia.org/wiki/PageRank#/media/File:Page_rank_animation.gif)).
 Techniques for decomposing a graph into these components are known as "spectral methods" after the "spectrum" of latent values they reveal (just as white light is divided into a "spectrum" of constituent colors).
 
-**Ontologically**, spectral methods invert the Bradley-Terry model by taking _interactions_ as the only knowable reality; weights are understood as _summary statistics_, not latent truth.
+**Ontologically**, spectral methods invert the Bradley-Terry model by taking _interactions_ as the only knowable reality; weights are understood as _summary statistics_, not hidden truths.
 
 **Computationally**, spectral methods are $$O(k^3 + n)$$ in the _number of items_ $$k$$ and the _number of matchups_ $$n$$, requiring $$O(k^2)$$ observations.
 That the computation grows with the number of items, not the number of votes, makes this technique shine in settings where many votes are cast on a small number of items.
 
-> Note: spectral methods naively require $$O(k^2)$$ observations, but smart pair selection can reduce this to $$O(k)$$ (see "active ranking" below).
+> Note: spectral methods naively require $$O(k^2)$$ observations, but smart pair selection can reduce this to $$O(k)$$ (see "[active ranking](#active-ranking)" below).
 
-Spectral methods have a history dating at least back to [Keener (1993)](https://www2.math.upenn.edu/~kazdan/312S14/Notes/Perron-Frobenius-football-SIAM1993.pdf).
-Historically, spectral methods were most commonly used for judging tournaments and competitions, in which the "votes" emerge _endogenously_ from interactions among the items themselves (i.e. two teams competing _with each other_, two websites linking _to each other_).
+Spectral methods have a history dating back to German mathematician [Edmund Landau](https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem), who in 1915 described how they could be used to judge the outcomes of competitions.
+In this setting, "votes" emerge _endogenously_ from interactions among the items themselves (i.e. two teams competing _with each other_, two websites linking _to each other_).
 In 2018, inspired by projects like [Pol.is](https://pol.is) and [All Our Ideas](https://allourideas.org/), my colleagues at Colony and I [extended these techniques to the domain of social choice](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3317445), modeling votes emerging _exogenously_ as voter judgments.
-This work led to the development of [pairwise.vote](https://pairwise.vote/), the preferred pairwise UI for web3 public goods funding, used in both Optimism's RetroPGF and the first iteration of this year's Deep Funding initiative.
+This work led to the development of [pairwise.vote](https://pairwise.vote/), the preferred pairwise interface for web3 public goods funding, used in both Optimism's RetroPGF and the first iteration of this year's Deep Funding initiative.
 
-Pairwise methods were historically neglected relative to Bradley-Terry, until the [2015 Rank Centrality paper](https://arxiv.org/pdf/1209.1688) demonstrated both their statistical equivalence and computational advantages.
-Perhaps the most important difference between the models is that spectral methods evaluate relationships _globally_ and leverage transitive relationships not explicitly observed: if A beats B, and B beats C, then a spectral method can infer that A likely beats C.
-This propagation of signal creates more complex interactions, but also allows these methods to produce better results with less data.
-Spectral methods are also robust against cycles and other intransitive relationships, for which they produce ties, not contradictions.
+Among researchers, spectral methods were historically neglected relative to Bradley-Terry until the [2015 Rank Centrality paper](https://arxiv.org/pdf/1209.1688) demonstrated both their statistical equivalence and computational advantages.
+The key theoretical difference between the models is that spectral methods evaluate relationships _globally_ and leverage transitive relationships not explicitly observed: if A beats B, and B beats C, then a spectral method can infer that A likely beats C.
+This propagation of signal creates more complex interactions, but also allows these methods to produce better results with the same information.
+Spectral methods are also robust against cycles and other intransitive relationships, for which they produce ties, not contradictions (see "[intransitivity of preferences](#intransitivity-of-preferences)" below)
 
 For these reasons, we believe spectral methods are a _strong choice_ for capital allocation, which cares about modeling relationships across an entire ecosystem.
 
@@ -234,7 +231,7 @@ This reframing of the problem -- and of the role of voters -- aims to produce be
 
 > Given that weights are not derived from votes directly, Deep Funding may be better understood as a meta-algorithm than as a pairwise algorithm proper.
 
-Unlike the $$O(k^2)$$ vote requirement of Bradley-Terry and the spectral methods, Deep Funding aims to produce results with only $$O(k)$$ votes and a small constant factor, on the order of _one vote for every ten items_.
+Unlike the $$O(k^2)$$ vote requirement of Bradley-Terry and the spectral methods, Deep Funding aims to produce results with only $$O(k)$$ votes and a small constant factor, on the order of $$k/10$$, or _one vote for every ten items_.
 This reduction in complexity from _quadratic_ to _linear_ means that Deep Funding methods can be applied to problems with many items, for which it would not be feasible to gather a large number of pairwise judgments.
 
 > Note that this smaller data requirement _does not_ take into account the computation needed to create the weight proposals themselves.
@@ -273,11 +270,11 @@ In theory, we can imagine needing as few as $$O(k)$$ votes, albeit with a large 
 To give intuition for why this should be possible, observe that any weighting of $$k$$ items can be expressed as a set of $$k-1$$ scalars (up to an overall scaling factor), representing the pairwise _ratio_ of two adjacent items:
 
 $$
-[a = .1, b = .2, c = .3, d = .4] <=> [b = 2a, c = 1.5b, d = 1.33c]
+[.1, .2, .3, .4] \rightarrow [2, 3/2, 4/3]
 $$
 
 This generalizes to an arbitrary number of weights and suggests to us that we can _in principle_ construct $$k$$ weights with only $$k-1$$ human inputs.
-While this limit is not achievable in practice, we can attempt to approach it, reducing the data requirement to some multiple of the number of items, i.e. $$10k$$ by directing attention towards the subset pairs which are most competitive with each other.
+While this limit is not achievable in practice, we can attempt to approach it, reducing the data requirement to some multiple of the number of items, i.e. $$k \cdot 10$$ by directing attention towards the subset pairs which are most competitive with each other.
 
 > Note: the estimate of 10 votes per item is speculative and depends on the specific structure of the graph; real-world performance will need to be evaluated in future research.
 
@@ -347,8 +344,6 @@ However, it does seem that in our setting of decentralized capital allocation by
 When it comes to visual design, the Pairwise team has arguably gone the furthest.
 Consider the interface they developed for the Deep Funding pilot:
 
-#### Pairwise.vote
-
 ![Pairwise Sample Interface](/img/pairwise-ui.png)
 
 Here we see a number of design elements:
@@ -366,8 +361,6 @@ Further, this approach leverages both _metrics_ and _AI judgment_, while leaving
 The key insight is that while the metrics and summaries may be the same for every project, individual voters _qualitatively_ integrate the information differently, yielding richer results than would be possible by allocating funds by metric or AI judgment _directly_.
 Pairwise methods are more robust to [Goodhart's Law](https://en.wikipedia.org/wiki/Goodhart%27s_law)-style failures, common among metric and AI-based approaches, in which projects learn to "game the system" by tailoring their self-representation to more narrow and mechanical decision criteria.
 
-#### Verdict
-
 Here is another interface example, [Verdict](https://deepfundingjury.com/evaluation), recently developed by the Deep Funding team:
 
 ![Deep Funding Jury](/img/deepfundingjury-ui.png)
@@ -380,8 +373,6 @@ This interface was developed following the initial pilot, which used the Pairwis
 When analyzing the data from that pilot, the Deep Funding team found that their cardinal rankings varied significantly in scale and range per-voter.
 Rather than adopt ordinal inputs, which are more robust to voter idiosyncrasies, they chose to increase gatekeeping as a way of maintaining data quality.
 It retains the use of AI summaries, but omits the metrics featured in the earlier iteration, pushing voters to rely more heavily on textual summaries.
-
-#### Hypothetical Mockup
 
 Finally, here is a mockup of an interface I would consider close to ideal, focusing on simplicity and comprehensibility:
 
@@ -401,7 +392,7 @@ They succeed by directing participant attention efficiently over a range of item
 Pairwise methods are less effective when used by a _small group of experts_, who are more likely to have _strong prior knowledge_ of the items in question.
 For this audience, who has _already performed_ the cognitive labor of developing opinion, assigning weights directly might be more efficient and more natural.
 
-> To give a **concrete example**, during the Deep Funding pilot a senior Ethereum community member criticized the process on the grounds that they had already formed clear opinions about the right weights for individual projects, and that the pairwise process made it harder to express those opinions.
+> To give a concrete example, during the Deep Funding pilot a senior Ethereum community member criticized the process on the grounds that they had already formed clear opinions about the right weights for individual projects, and that the pairwise process made it harder to express those opinions.
 
 It is also possible to have an audience which lacks a _minimum baseline_ of context, such that even with a quality interface, they are unable to meaningfully distinguish between items.
 
@@ -450,7 +441,7 @@ This "cybernetic" approach to capital allocation -- focusing less on static poin
 
 This idea of continuous funding has been explored before, with pilots like GeoWeb's [Streaming Quadratic Funding](https://github.com/Geo-Web-Project/streaming-quadratic-funding), and more recently Octant's [StreamVote](https://streamvote.octant.build/), combining quadratic voting with Superfluid's [continuous payments infrastructure](https://superfluid.org/) to distribute funds in real-time.
 
-However, [apart from one notable example outside of the web3 context](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4856267), to date no continuous public goods funding process has been built on top of pairwise inputs.
+However, [apart from one notable multi-year real-world example](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4856267), to date no continuous public goods funding process has been built on top of pairwise inputs.
 For reasons explored below, we believe that pairwise inputs offer a stronger basis for continuous funding, converting scarce attention into actionable allocations at high efficiency.
 
 ### Permissionless Entry
@@ -471,7 +462,7 @@ Pairwise methods are well-suited for this type of permissionless, self-correctin
 In contrast, quadratic "votes" are logically conditioned on the _entire set_ of items (i.e. I might give $10 to A on its own, but only $5 in the presence of B, which gets the other $5), making quadratic methods less naturally adapted to a continuous setting in which items are frequently being added and removed.
 This limitation creates frictions which must be overcome.
 
-> To give a **concrete example**, StreamVote screened projects before allowing them to claim funding, winnowing the final set of projects from 3,980 down to 17 -- a 99.6% rejection rate and large administrative lift.
+> To give a concrete example, StreamVote [performed AI screening of projects before allowing them to claim funding](https://x.com/OctantApp/status/1999558961624965309), winnowing the final set of projects from 3,980 down to 17 -- a 99.6% rejection rate, and large use of administrative power.
 
 In contrast, an always-on pairwise process with active ranking can _itself_ serve to screen and filter a dynamic pool of candidates, eliminating a costly administrative task.
 
@@ -516,15 +507,15 @@ At the start of this essay, we argued that the limitations of pass/fail voting l
 Capital allocation, however, has its own challenges: in particular, _evaluation_.
 
 As has been well-documented by Metagov's [Grant Innovation Lab](https://grant.metagov.org/), difficulties in evaluating the effectiveness of grant programs are leading to an erosion of trust in public goods funding overall, and a slow reduction in funding for such programs.
-As a result, over the past year the public goods funding community has increasingly begun prioritizing _evaluation_ over _experimentation_.
+As a result, over the past year the public goods funding community has [increasingly begun prioritizing _evaluation_ over _experimentation_](https://ethresear.ch/t/three-fundamental-problems-in-ethereum-public-goods-funding-a-research-agenda/23474).
 
 On some level, evaluation is an impossible and fundamentally speculative task.
 If someone who wanted to support public goods could evaluate the future impact of a present investment with certainty, they would be better off making billions on Wall Street and starting a charitable foundation.
 
-Given that nobody reading this is doing that, it's fair to ask what "evaluation" actually achieves.
-We assert that _evaluation produces legitimacy_, which translates concretely into higher future funding inflows.
+Given that nobody is doing that, and that evaluation is -- on some level -- _made-up_, it's fair to ask what "evaluation" actually achieves.
+We suggest that _evaluation produces legitimacy_, which translates concretely into higher future funding inflows.
 
-To adopt ideas from institutional economics, we can imagine evaluation as filling out a historically-barren "policy" layer in the three-layer model of constitution, policy, and operation.
+To adopt ideas from institutional economics, we can imagine evaluation as filling out a currently-barren "policy" layer in the three-layer model of constitution, policy, and operations.
 In this frame, the "constitutional" layer represents the code, norms, etc., of the grants ecosystem itself, the "policy" layer represents the process by which specific _parameters_ (mechanisms, etc) are chosen, while the "operational" layer represents the grants rounds themselves: applications, voting, etc.
 Seen in this way, evaluation is the missing _political_ process needed to bring web3's public goods funding ecosystem from experiment into maturity.
 
@@ -541,7 +532,7 @@ Info-finance is not my area, so I cannot comment deeply on the strengths and wea
 > This is not idle speculation. [The proliferation of sports betting apps has begun affecting player behavior](https://www.espn.com/espn/betting/story/_/id/47337056/scandals-prediction-markets-2025-turning-point-sports-betting), who exploit privileged positions to resolve markets in their favor.
 
 Yet another possibility would be to develop new metrics for evaluating the "health" of a funding process.
-By tracking metrics such as the degree to which a funding distribution follows a power-law, or the churn of top projects over time, one can assess how a funding process is performing relative to an abstract baseline.
+By tracking metrics such as the degree to which a funding distribution follows a power-law, or the churn of projects over time, one can assess how a funding process is performing relative to an idealized baseline.
 
 Whatever approach is used, it is virtually certain that evaluation will become table stakes for those looking to implement capital-allocation schemes.
 
@@ -594,7 +585,7 @@ To give an example, one can meaningfully prefer an apple or an orange; one canno
 Part of the practitioner's skill is ensuring that the items being considered are part of a semantically coherent set.
 This meaning can come from either grouping like items together, or framing the comparison in a way which makes sense for the given set.
 
-> To give a **concrete example**, this year's Deep Funding initiative framed the decision in terms of the relative impact of two _software dependencies_ on a given _software project_; the same dependency might be assessed very differently depending on which project's context was being considered.
+> To give a concrete example, this year's Deep Funding initiative framed the decision in terms of the relative impact of two _software dependencies_ on a given _software project_; the same dependency might be assessed very differently depending on which project's context was being considered.
 
 In permissionless settings where it may be difficult to ensure homogeneity in advance, techniques like star grouping can be used to segment items into coherent sets on-the-fly.
 
@@ -608,12 +599,12 @@ For a set of 600 items, this calls for **50 hours** of total voter attention.
 If we assume each voter contributes four five-minute sessions (20 minutes), then we need only 150 voters to produce legitimate results -- a relatively easy lift.
 
 As a continuous process, things get even better.
-If we assume that only ~25% of the items undergo meaningful change in a given quarter, we can sustain a continuous funding process _indefinitely_ with an attention cost of **5 minutes per item per year** (5 min * 0.25 * 4 quarters).
+If we assume that only ~25% of the items undergo meaningful change in a given quarter, we can sustain a continuous funding process _indefinitely_ with an attention cost of **5 minutes per item per year**.
 
 Further, given a sufficiently robust reputation system, we could imagine running "campaigns" in which the majority of the community contributes to initial project filtering, followed by experts who resolve only the highest-ambiguity pairs, or who focus their attention on adjudicating between the outputs of funding mechanisms themselves.
 Participants could be rewarded with sought-after digital collectibles, helping solidify a public-spirited identity among ecosystem participants.
 
-The net effect is that of an always-on social choice "sensor," roughly analogous to a solar panel, collecting ambient preference information and converting it into actionable outputs in real-time.
+The net effect is that of an always-on social choice "sensor" -- a solar panel for governance -- collecting ambient preference information and converting it into actionable outputs in real-time.
 
 The idea of sustaining a complex public goods funding ecosystem with so little effort might seem implausible, and the continued development of these techniques will certainly surface new challenges and limitations.
 And yet, the arguments have been laid out, and these are the conclusions we've drawn.
