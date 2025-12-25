@@ -20,7 +20,7 @@ tags:
 
 _Abstract: Pairwise methods are best thought of as composing a **paradigm** for turning **scarce attention** into **robust allocation signals**. With the right **algorithms**, **interface**, and **audience**, they can support the continuous funding of ecosystems at surprisingly low attention cost._
 
-Thanks to Carl Cervone and David Gasquez for feedback on earlier versions of this essay.
+Thanks to Carl Cervone, David Gasquez, and Ori Shimony for feedback on earlier versions of this essay.
 
 - [I. Motivations](#i-motivations)
 - [II. Why Pairwise](#ii-why-pairwise)
@@ -59,7 +59,7 @@ Each has its own strengths and weaknesses:
 
 - **Quadratic Funding** advantages smaller groups, but struggles to allocate attention, leading to "beauty contests."
 - **Pairwise Methods** offer a simple and intuitive framing, but struggle to get sufficient coverage to produce good results.
-- **Metrics-Based** reduce scope for politics, but struggle with "Goodhart's Law" failures and incentivizes misrepresentation.
+- **Metrics-Based** reduce scope for politics, but struggle with "Goodhart's Law" failures and incentivize misrepresentation.
 - **AI-Augmented** sidestep issues of voter apathy, but struggle with issues of alignment, legitimacy, and interpretability.
 
 [I have been researching and working with decision-making systems since 2016](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3359677), with a focus on pairwise methods.
@@ -82,7 +82,7 @@ This simplicity makes them robust (they mean what they say they mean), accessibl
 > Note: contrary to some depictions, Tinder-style swipes are _not_ pairwise judgments, but pass/fail decisions.
 
 Pairwise preferences have been studied for decades, going back to the work of [American psychometrician L. L. Thurstone](https://en.wikipedia.org/wiki/Louis_Leon_Thurstone) in 1927 and his research into subjective responses to stimuli.
-Pairwise preferences would find many applications in the ranking and ordering of items: from ranking chess players with Elo, to weighting web pages with Google's PageRank, to allocating credit for open-source contributions with [SourceCred](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4570035).
+Pairwise preferences would find many applications in the ranking and ordering of items: from ranking chess players with Elo, to weighting web pages with Google's [PageRank](https://en.wikipedia.org/wiki/PageRank), to assessing the reliability of nodes in a peer-to-peer file-sharing network with [EigenTrust](https://en.wikipedia.org/wiki/EigenTrust), to allocating credit for open-source contributions with [SourceCred](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4570035).
 
 This dual heritage, as a technique for subjective measurement _and_ allocating weights among items, suggests these methods have much to offer to the practice of distributed capital allocation, which faces exactly these problems.
 
@@ -112,7 +112,7 @@ The word "paradigm" comes from the Greek word for "pattern," and in scientific c
 By framing pairwise as a "paradigm" instead of a single tool or mechanism, we emphasize that it is not any one technique, but rather the _synergies between techniques_ that produce desirable outcomes.
 
 These techniques fall into multiple buckets: audience and problem development, interface design and data collection, and algorithmic data analysis.
-As an end-to-end pipeline, audiences feed into a voting interface, which feed data to algorithms that guide both ongoing data collection and final analysis:
+As an end-to-end pipeline, audiences feed into a voting interface, which feeds data to algorithms that guide both ongoing data collection and final analysis:
 
 ![The Pairwise Paradigm](/img/pairwise-flow.png)
 
@@ -145,10 +145,10 @@ $$
 E[S_{ab}] = \frac{f(R_a)}{f(R_a) + f(R_b)}
 $$
 
-After a match, the player's Elo ratings are updated as a function of the _actual outcome_ vs the _predicted outcome_ against an opponent:
+After a match, the players' Elo ratings are updated as a function of the _actual outcome_ vs the _predicted outcome_ against an opponent:
 
 $$
-R^{'}_a \leftarrow R_a + g(S_{ab} - E[S_{ab}])
+R'_a \leftarrow R_a + g(S_{ab} - E[S_{ab}])
 $$
 
 **Ontologically**, Elo models interactions as occurring _in a sequence between the entities themselves_, with the entities changing as a result of these encounters.
@@ -396,7 +396,7 @@ For this audience, who has _already performed_ the cognitive labor of developing
 
 It is also possible to have an audience which lacks a _minimum baseline_ of context, such that even with a quality interface, they are unable to meaningfully distinguish between items.
 
-The ideal audience, then, is a _large and diverse group of people with at least some domain knowledge_, able to make judgments on never-before-seen pairs after about 30 seconds of absorbing information
+The ideal audience, then, is a _large and diverse group of people with at least some domain knowledge_, able to make judgments on never-before-seen pairs after about 30 seconds of absorbing information.
 This group will be able to provide the most _net_ information, in terms of both _quantity_ and _quality_ of inputs.
 
 #### Audience Expectations
@@ -421,6 +421,13 @@ One might imagine a process in which the majority of the community engages early
 
 Reputation and identity is a deep field and beyond the scope of this essay, but it is worth gesturing towards how these ideas might be combined.
 
+#### Audience Compensation
+
+While pairwise voting processes are often seen as more inherently engaging than other forms of voting, it would be naive to expect ongoing voter participation without some external incentive or motivation -- financial, relational (status), or both.
+
+Financial rewards are straightforward, but can incentivize mercenary behavior and, being zero-sum, create a drag on resources.
+Non-financial rewards, such as digital collectibles which double as attestations for a public goods funding reputation system, represent an underexplored and positive-sum alternative.
+
 # IV. Continuous Funding
 
 Possibly the most significant application of pairwise methods is the idea of "continuous funding."
@@ -437,7 +444,7 @@ Instead of discrete rounds, which make inefficient use of both administrative an
 
 Continuous funding processes also allow for a more relaxed attitude towards "correctness," as the opportunity to course-correct is built in from the get-go.
 Rather than feel pressured to "get it right" the first time, it becomes possible to "throw something out there" with the confidence that allocations will be updated in response to new information, and that over time the resources will flow towards the point of greatest impact.
-This "cybernetic" approach to capital allocation -- focusing less on static point solutions and more on dynamic processes -- promises to be more robust and resilient than the high-cost, round-based approaches dominant today.
+This "cybernetic" or evolutionary approach to capital allocation -- focusing less on static point solutions and more on self-correcting processes -- promises to be more robust and resilient than the high-cost, round-based approaches dominant today.
 
 This idea of continuous funding has been explored before, with pilots like GeoWeb's [Streaming Quadratic Funding](https://github.com/Geo-Web-Project/streaming-quadratic-funding), and more recently Octant's [StreamVote](https://streamvote.octant.build/), combining quadratic voting with Superfluid's [continuous payments infrastructure](https://superfluid.org/) to distribute funds in real-time.
 
@@ -483,7 +490,7 @@ Unlike rounds-based approaches, in which the entire pot is given out at the end 
 One approach would be to distribute funds at a _constant_ rate over some period of time.
 A four-year target would see 50% given out after two years, and 100% after four years, at which point the process would end (assuming no new funds).
 
-Another approach, proposed by the Colony team [in their 2018 whitepaper](https://uploads-ssl.webflow.com/61840fafb9a4c433c1470856/639b50406de5d97564644805_whitepaper.pdf), would be to distribute funds at an _exponentially decaying_ rate, such that funds are distributed according to a "half life."
+Another approach, proposed by the Colony team [in their 2018 whitepaper](https://uploads-ssl.webflow.com/61840fafb9a4c433c1470856/639b50406de5d97564644805_whitepaper.pdf), would be to distribute funds at an _exponentially decaying_ rate, such that funds are distributed according to a "half-life."
 
 A one-year half-life would give out half the funds in the first year, a quarter in the second year, an eighth in the third, and so on (assuming no new funds).
 Compared to the constant rate, this approach extends the life of the process indefinitely, at the cost of a decreasing funding rate.
@@ -492,10 +499,10 @@ Compared to the constant rate, this approach extends the life of the process ind
 
 Throughout this section, we have emphasized the value of reducing the administrative overhead involved in running grant rounds.
 However, we acknowledge that even a continuous process might benefit from a periodic "tempo" of participation.
+An always-on process is hard to keep top-of-mind, and might see particiption lapse over time.
 
-While pairwise voting processes are often seen as more inherently engaging than other forms of voting, it would be naive to expect ongoing voter participation without some external incentive or motivation -- relational (status), financial, or both.
-To provide this, one could imagine running "campaigns" to periodically refresh voting data at scale, leveraging leaderboards and other rewards to stimulate data-collection.
-In the best case, resources which would otherwise have gone to administrative tasks can be redirected towards higher-impact purposes, such as commissioning compelling digital collectibles to give as rewards to process participants.
+To counteract this, one could imagine running "campaigns" to periodically refresh voting data at scale, leveraging leaderboards and other incentives to stimulate data-collection.
+In the best case, resources which would otherwise have gone to administrative tasks can be redirected towards other purposes, such as commissioning compelling digital collectibles to give as rewards to participants.
 
 On the payouts side, one could imagine making payouts on a monthly or quarterly basis, or conditioning payouts on milestones determined by a separate governance process.
 
@@ -510,13 +517,14 @@ As has been well-documented by Metagov's [Grant Innovation Lab](https://grant.me
 As a result, over the past year the public goods funding community has [increasingly begun prioritizing _evaluation_ over _experimentation_](https://ethresear.ch/t/three-fundamental-problems-in-ethereum-public-goods-funding-a-research-agenda/23474).
 
 On some level, evaluation is an impossible and fundamentally speculative task.
-If someone who wanted to support public goods could evaluate the future impact of a present investment with certainty, they would be better off making billions on Wall Street and starting a charitable foundation.
+If someone wanted to support public goods and could accurately evaluate the future impact of a present investment (or even the present impact of a past investment), they would be better off making billions on Wall Street and starting a foundation.
 
-Given that nobody is doing that, and that evaluation is -- on some level -- _made-up_, it's fair to ask what "evaluation" actually achieves.
+Given that nobody is doing that, and that evaluation is on some level _made-up_, it's fair to ask what "evaluation" actually achieves.
 We suggest that _evaluation produces legitimacy_, which translates concretely into higher future funding inflows.
+As Vitalik Buterin famously said, "[legitimacy is the scarcest resource](https://vitalik.eth.limo/general/2021/03/23/legitimacy.html)."
 
 To adopt ideas from institutional economics, we can imagine evaluation as filling out a currently-barren "policy" layer in the three-layer model of constitution, policy, and operations.
-In this frame, the "constitutional" layer represents the code, norms, etc., of the grants ecosystem itself, the "policy" layer represents the process by which specific _parameters_ (mechanisms, etc) are chosen, while the "operational" layer represents the grants rounds themselves: applications, voting, etc.
+In this frame, the "constitutional" layer represents the code, norms, etc., of the grants ecosystem itself, the "policy" layer represents the process by which specific _parameters_ (mechanisms, etc.) are chosen, while the "operational" layer represents the grants rounds themselves: applications, voting, etc.
 Seen in this way, evaluation is the missing _political_ process needed to bring web3's public goods funding ecosystem from experiment into maturity.
 
 How might these evaluations be done?
@@ -570,7 +578,7 @@ Unlike Bradley-Terry, which models every item as having a latent value, and inte
 To give an example, imagine items A and B, each having qualities X and Y.
 If we conceptualize voters as making pairwise decisions based on _subjective integrations_ of the data, one voter might integrate X and Y and choose A, while another, filtering through the lens of their own personal beliefs and lived experience, chooses B.
 
-Over hundreds or thousands of voters, the pairwise graph becomes a rich field of relationships with frequent cyclical and intransitive behaviors, reflecting a deep and nuanced understanding of the ecosystem in question.
+Over hundreds or thousands of voters, the pairwise graph becomes a rich field of relationships with frequent cyclical and intransitive behaviors, reflecting a deep and socially-embedded understanding of the ecosystem in question.
 Taking this graph as the only knowable ground truth, we then produce weights as a _useful synthesis_ of that data.
 
 One might imagine going even further, devising new metrics for community dynamism based on the degree of intransitivity in a given preference graph -- or of treating the preference graph as a type of "constitution" for AI governance.
@@ -587,6 +595,8 @@ This meaning can come from either grouping like items together, or framing the c
 
 > To give a concrete example, this year's Deep Funding initiative framed the decision in terms of the relative impact of two _software dependencies_ on a given _software project_; the same dependency might be assessed very differently depending on which project's context was being considered.
 
+This idea can be extended to the case when projects are of the same type, but have different funding needs -- by framing the question in terms of "where should we direct the next marginal dollar," projects of different scales can be meaningfully considered as part of the same set.
+
 In permissionless settings where it may be difficult to ensure homogeneity in advance, techniques like star grouping can be used to segment items into coherent sets on-the-fly.
 
 # VII. Putting It All Together
@@ -601,8 +611,8 @@ If we assume each voter contributes four five-minute sessions (20 minutes), then
 As a continuous process, things get even better.
 If we assume that only ~25% of the items undergo meaningful change in a given quarter, we can sustain a continuous funding process _indefinitely_ with an attention cost of **5 minutes per item per year**.
 
-Further, given a sufficiently robust reputation system, we could imagine running "campaigns" in which the majority of the community contributes to initial project filtering, followed by experts who resolve only the highest-ambiguity pairs, or who focus their attention on adjudicating between the outputs of funding mechanisms themselves.
-Participants could be rewarded with sought-after digital collectibles, helping solidify a public-spirited identity among ecosystem participants.
+Further, given a sufficiently robust **reputation system**, we could imagine running seasonal "campaigns" in which the community contributes _en masse_ to project filtering, followed by experts who resolve the highest-ambiguity pairs or adjudicate between the outputs of funding mechanisms themselves.
+Participants could be rewarded with sought-after **digital collectibles**, serving as reputation attestations and cultivating a public-spirited group identity.
 
 The net effect is that of an always-on social choice "sensor" -- a solar panel for governance -- collecting ambient preference information and converting it into actionable outputs in real-time.
 
