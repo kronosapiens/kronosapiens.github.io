@@ -15,5 +15,3 @@ future: True
 
 disqus_short_name: kronosapiens
 disqus_show_comment_count: true
-
-permalink: pretty
