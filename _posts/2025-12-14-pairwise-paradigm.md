@@ -20,7 +20,7 @@ tags:
 
 _Abstract: Pairwise methods are best thought of as composing a **paradigm** for turning **scarce attention** into **robust allocation signals**. With the right **algorithms**, **interface**, and **audience**, they can support the continuous funding of ecosystems at surprisingly low attention cost._
 
-Thanks to Carl Cervone, David Gasquez, and Ori Shimony for feedback on earlier versions of this essay.
+Thanks to Carl Cervone, David Gasquez, Ori Shimony, and Dandelion Mané for feedback on earlier versions of this essay.
 
 - [I. Motivations](#i-motivations)
 - [II. Why Pairwise](#ii-why-pairwise)
@@ -598,6 +598,32 @@ This meaning can come from either grouping like items together, or framing the c
 This idea can be extended to the case when projects are of the same type, but have different funding needs -- by framing the question in terms of "where should we direct the next marginal dollar," projects of different scales can be meaningfully considered as part of the same set.
 
 In permissionless settings where it may be difficult to ensure homogeneity in advance, techniques like star grouping can be used to segment items into coherent sets on-the-fly.
+
+### AI and Verifiability
+
+Astute readers may have detected a certain _coolness_ towards artificial intelligence throughout this essay.
+You're not imagining it -- let's address it plainly.
+
+Large language models are among the most transformative information-processing inventions since the development of writing, fundamentally changing how people participate in shared society.
+Many in the public goods funding and digital governance ecosystems are excited at the prospect of using AI to automate human judgment at scale.
+The potential benefits are real: Deep Funding, with its ~$$k/10$$ data requirement, outperforms both Bradley-Terry and spectral methods by _two orders of magnitude_, even with active ranking.
+With benefits, however come risks: of opacity, loss of agency, and the accumulation of unmodeled risk.
+Balancing reliance on AI while preserving our capacity for verifiability lets us navigate the design space more safely.
+
+We can draw an analogy to the 2008 global financial crisis, in which years of cavalier underwriting led to a sudden collapse of asset prices, as trust fled from systems which could not be independently verified.
+It is uncomfortably easy to imagine an analogous "legitimacy crisis" occurring in 2028, in which years of deference to AI judgment leads to a sudden collapse of legitimacy, and the wholesale abandonment of digital institutions.
+
+We can draw a second analogy to the design of "optimistic rollups," a popular Ethereum L2 architecture in which transactions are "optimistically" assumed valid, subject to a dispute window.
+A key aspect of their design is the idea that _any_ transaction can be disputed and independently verified.
+An optimistic rollup in which transactions were spot-checked randomly, on the order of one in every thousand transactions, and could not be individually disputed, would offer terrible security and be easily abused.
+
+The answer is not to avoid AI, but to leverage it cautiously.
+As Archimedes famously said, "Give me a lever and a place to stand, and I will move the earth."
+AI is our lever, but without firm footing, we may lose more than we gain.
+
+This essay has tried to show how a public goods funding system could be constructed end-to-end using only human judgment, with AI playing a non-critical support role.
+With this foundation in place, it becomes possible to _safely_ transition to higher levels of AI judgment, without taking on large and unmodeled risk.
+What we would advocate, in the closing months of 2025, is a two-pronged approach in which AI tools are used to leverage human judgment, but _only to the extent that the entire flow_ can in principle be performed -- and contested -- by humans.
 
 # VII. Putting It All Together
 
