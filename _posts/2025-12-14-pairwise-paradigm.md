@@ -31,8 +31,8 @@ Thanks to Carl Cervone, David Gasquez, Ori Shimony, and Dandelion Mané for feed
   - [4. Audience Development](#4-audience-development)
 - [IV. Continuous Funding](#iv-continuous-funding)
 - [V. Evaluation and Legitimacy](#v-evaluation-and-legitimacy)
-- [VI. Additional Considerations](#vi-additional-considerations)
-- [VII. Putting It All Together](#vii-putting-it-all-together)
+- [VI. Putting It All Together](#vi-putting-it-all-together)
+- [Appendix: Other Considerations](#appendix-other-considerations)
 
 # I. Motivations
 
@@ -544,9 +544,35 @@ By tracking metrics such as the degree to which a funding distribution follows a
 
 Whatever approach is used, it is virtually certain that evaluation will become table stakes for those looking to implement capital-allocation schemes.
 
-# VI. Additional Considerations
+# VI. Putting It All Together
 
-While compelling, pairwise methods have nuances and limits.
+As argued in the introduction, pairwise methods should be understood not as a single technique or mechanism, but as a _paradigm of social choice_.
+Having introduced the various pieces of this paradigm, we can begin putting them together, and offer concrete estimates of the actual attention requirements for public goods funding.
+
+Assuming **30 seconds per vote** and **10 votes per item** with active ranking, pairwise methods can produce allocations at an attentional cost of **5 minutes** per item.
+For a set of 600 items, this calls for **50 hours** of total voter attention.
+If we assume each voter contributes four five-minute sessions (20 minutes), then we need only 150 voters to produce legitimate results -- a relatively easy lift.
+
+As a continuous process, things get even better.
+If we assume that only ~25% of the items undergo meaningful change in a given quarter, we can sustain a continuous funding process _indefinitely_ with an attention cost of **5 minutes per item per year**.
+
+Further, given a sufficiently robust **reputation system**, we could imagine running seasonal "campaigns" in which the community contributes _en masse_ to project filtering, followed by experts who resolve the highest-ambiguity pairs or adjudicate between the outputs of funding mechanisms themselves.
+Participants could be rewarded with sought-after **digital collectibles**, serving as reputation attestations and cultivating a public-spirited group identity.
+
+The net effect is that of an always-on social choice "sensor" -- a solar panel for governance -- collecting ambient preference information and converting it into actionable outputs in real-time.
+
+The idea of sustaining a complex public goods funding ecosystem with so little effort might seem implausible, and the continued development of these techniques will certainly surface new challenges and limitations.
+And yet, the arguments have been laid out, and these are the conclusions we've drawn.
+
+### Final Thoughts
+
+The task of helping groups of people effectively manage shared resources is one of the most pressing problems of our day.
+We have argued that pairwise methods, seen not as isolated techniques but as part of a _paradigm_ of social choice, offer a compelling toolkit for solving exactly this problem.
+
+Relative to other techniques and to their underlying potential, pairwise methods remain underexplored.
+By articulating a "pairwise paradigm," we hope to help chart the way.
+
+# Appendix: Other Considerations
 
 ### The Independence of Irrelevant Alternatives
 
@@ -624,31 +650,3 @@ AI is our lever, but without firm footing, we may lose more than we gain.
 This essay has tried to show how a public goods funding system could be constructed end-to-end using only human judgment, with AI playing a non-critical support role.
 With this foundation in place, it becomes possible to _safely_ transition to higher levels of AI judgment, without taking on large and unmodeled risk.
 What we would advocate, in the closing months of 2025, is a two-pronged approach in which AI tools are used to leverage human judgment, but _only to the extent that the entire flow_ can in principle be performed -- and contested -- by humans.
-
-# VII. Putting It All Together
-
-As argued in the introduction, pairwise methods should be understood not as a single technique or mechanism, but as a _paradigm of social choice_.
-Having introduced the various pieces of this paradigm, we can begin putting them together, and offer concrete estimates of the actual attention requirements for public goods funding.
-
-Assuming **30 seconds per vote** and **10 votes per item** with active ranking, pairwise methods can produce allocations at an attentional cost of **5 minutes** per item.
-For a set of 600 items, this calls for **50 hours** of total voter attention.
-If we assume each voter contributes four five-minute sessions (20 minutes), then we need only 150 voters to produce legitimate results -- a relatively easy lift.
-
-As a continuous process, things get even better.
-If we assume that only ~25% of the items undergo meaningful change in a given quarter, we can sustain a continuous funding process _indefinitely_ with an attention cost of **5 minutes per item per year**.
-
-Further, given a sufficiently robust **reputation system**, we could imagine running seasonal "campaigns" in which the community contributes _en masse_ to project filtering, followed by experts who resolve the highest-ambiguity pairs or adjudicate between the outputs of funding mechanisms themselves.
-Participants could be rewarded with sought-after **digital collectibles**, serving as reputation attestations and cultivating a public-spirited group identity.
-
-The net effect is that of an always-on social choice "sensor" -- a solar panel for governance -- collecting ambient preference information and converting it into actionable outputs in real-time.
-
-The idea of sustaining a complex public goods funding ecosystem with so little effort might seem implausible, and the continued development of these techniques will certainly surface new challenges and limitations.
-And yet, the arguments have been laid out, and these are the conclusions we've drawn.
-
-### Final Thoughts
-
-The task of helping groups of people effectively manage shared resources is one of the most pressing problems of our day.
-We have argued that pairwise methods, seen not as isolated techniques but as part of a _paradigm_ of social choice, offer a compelling toolkit for solving exactly this problem.
-
-Relative to other techniques and to their underlying potential, pairwise methods remain underexplored.
-By articulating a "pairwise paradigm," we hope to help chart the way.
