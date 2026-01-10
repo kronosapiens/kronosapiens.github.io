@@ -131,7 +131,7 @@ The choice of algorithm has far-reaching implications for what kind of output ge
 
 This section will discuss several options and their properties, with a focus on the _ontology_ and _complexity_ of each algorithm -- how each algorithm models reality, and how it processes information relative to that model.
 
-In all cases, we begin with a sequence of pairwise observations $$[(a, b, x), ...]$$ with $$x$$ representing the pairwise judgment, and want to produce a set of weights $$w = [w_a, w_b, ...]$$ telling us how to divide a fixed pool of capital among the items.
+In all cases, we begin with a sequence of pairwise observations $$[(a, b, x), ...]$$ with $$x$$ representing the pairwise judgment, and want to produce a set of weights $$w = [w_a, w_b, ...]$$ summing to 1 telling us how to divide a fixed pool of capital among the items.
 
 > Note: Throughout this section, we will use the standard ["Big-O" notation](https://en.wikipedia.org/wiki/Big_O_notation) for evaluating the complexity, in terms of both computation and data, of these techniques.
 
@@ -139,7 +139,7 @@ In all cases, we begin with a sequence of pairwise observations $$[(a, b, x), ..
 
 The Elo rating system, developed by [Hungarian chess master Arpad Elo](https://en.wikipedia.org/wiki/Arpad_Elo), is most well-known as the basis for professional chess rankings, but has found use in determining rankings across a variety of domains.
 
-In the Elo system, every participant has a rating $$R$$ determined by their prior matchups, used to predict the score of an upcoming match between $$a$$ and $$b$$:
+In the Elo system, every participant has a rating $$R$$ determined by their prior matchups, used to predict the score $$S$$ of an upcoming match between $$a$$ and $$b$$:
 
 $$
 E[S_{ab}] = \frac{f(R_a)}{f(R_a) + f(R_b)}
@@ -527,7 +527,7 @@ To adopt ideas from institutional economics, we can imagine evaluation as fillin
 In this frame, the "constitutional" layer represents the code, norms, etc., of the grants ecosystem itself, the "policy" layer represents the process by which specific _parameters_ (mechanisms, etc.) are chosen, while the "operational" layer represents the grants rounds themselves: applications, voting, etc.
 Seen in this way, evaluation is the missing _political_ process needed to bring web3's public goods funding ecosystem from experiment into maturity.
 
-How might these evaluations be done?
+[How might these evaluations be done?](https://davidgasquez.com/weight-allocation-mechanism-evals/)
 
 One possibility, adapting [techniques used to evaluate large-language models](https://arxiv.org/pdf/2403.04132), is to subject allocations _themselves_ to pairwise judgments.
 In addition to pairwise judgments _between projects_, the community can make pairwise judgments _between allocations produced by competing mechanisms_.
