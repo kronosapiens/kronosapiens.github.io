@@ -278,10 +278,15 @@ While this limit is not achievable in practice, we can attempt to approach it, r
 
 > Note: the estimate of 10 votes per item is speculative and depends on the specific structure of the graph; real-world performance will need to be evaluated in future research.
 
+
 Implementing active ranking is surprisingly straightforward.
 For every pair of items $$a, b$$ we construct a Beta distribution $$p_{ab} \sim Beta(votes[a,b], votes[b,a])$$ representing the ambiguity of the pair, and then sample based on $$Var(p_{ab})$$.
 This variance will be high for pairs with few or mixed observations, and low for pairs in which one item is repeatedly preferred -- directing voter attention to where it is most valuable.
 Calculating these distributions can be done iteratively, with the relevant distribution being updated in constant-time after each vote.
+
+An optional extension to active ranking would be to sample not only by $$Var(p_{ab})$$, but by $$Var(p_{ab}) \cdot w_a w_b$$, effectively upsampling the higher-weighted items.
+The idea here is that not only do we want to direct voter attention to the most _ambiguous_ pairs, but to the most ambiguous pairs that are _also_ the highest-value, as this is where the attention will have the greatest marginal impact on allocations.
+Extending active ranking in this way requires more computation, as weights will need updating after each vote, but in practice weights can almost certainly be cached and updated periodically, amortizing computation without significantly degrading performance.
 
 Compared to star grouping, active ranking has several advantages.
 First, active ranking permits $$O(k)$$ comparisons _total_, while star grouping implies $$O(k^2)$$ votes _per tier_.
