@@ -1,0 +1,2 @@
+- Read `style-guide.md` for stylistic information.
+- ALWAYS ensure you have the latest version of a file before editing. DO NOT rely on context.
