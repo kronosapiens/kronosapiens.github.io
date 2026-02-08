@@ -22,7 +22,7 @@ Pioneering DAO framework on Ethereum mainnet
 
 Machine learning for location intelligence
 
-# Papers
+# Publications
 
 [**(2024) Cybernetic Governance in a Coliving House**]({{site.baseurl}}/work/papers/coliving.pdf)
 
@@ -47,6 +47,12 @@ Daniel Kronovet, Aron Fischer, Jack du Rose
 Alex Rea, Daniel Kronovet, Aron Fischer, Jack du Rose
 
 *Technical description of the Colony DAO platform; revised 2020*
+
+[**(2018) Passive Visit Detection**](https://patents.google.com/patent/US11017325B2/en)
+
+Stephanie Yang, Lauren Hannah, Daniel Kronovet, Catgatay Berk Kapicioglu
+
+*US Patent describing techniques and methods for determining stops from location sensors*
 
 [**(2017) An Analysis of Pairwise Preference**]({{site.baseurl}}/work/papers/thesis.pdf)
 
