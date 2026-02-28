@@ -11,7 +11,7 @@ tags:
 
 ---
 
-_This essay was originally prepared for a London-based zine focusing on critical analyses of gentrification. The editors ultimately felt that this essay was too market- and policy-oriented for their arts-oriented audience, so I am publishing it here._
+_This essay was originally prepared for a London-based zine on gentrification._
 
 ## Sharing the Wealth
 
