@@ -297,6 +297,8 @@ Note that active ranking is an _online_ process -- the order of votes _does matt
 This online nature of active ranking creates a new attack vector, as prior votes now influence the likelihood of future items being shown.
 Mitigating this risk will be an important part of bringing active ranking into production.
 
+> **Update:** For an account of implementing active ranking in practice, see "[Implementing Active Ranking]({% post_url 2026-03-29-implementing-active-ranking %})".
+
 ## 3. Interface Design
 
 Another key consideration is _the design of the voting interface_.
